@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486725691c9031f41b9ebdd4241496e3, type: 3}
+  m_Name: UpgradeList_Offensive_SingleTargetTower
+  m_EditorClassIdentifier: Assembly-CSharp::TowerCategoryData_SO
+  cards:
+  - title: Repair
+    description: 
+    cost: 50
+    icon: {fileID: 0}
+    towerPrefab: {fileID: 0}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: c173e80028e7a9549b92861d7b0f5a7e, type: 3}
+  - title: Demolish
+    description: 
+    cost: 20
+    icon: {fileID: 0}
+    towerPrefab: {fileID: 0}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: 7365589d571d8c44bacd60b528f98f81, type: 3}
+  - title: Increase Damage
+    description: 
+    cost: 20
+    icon: {fileID: 0}
+    towerPrefab: {fileID: 0}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: c0395b3ba308f3248b639e453cb60bd8, type: 3}

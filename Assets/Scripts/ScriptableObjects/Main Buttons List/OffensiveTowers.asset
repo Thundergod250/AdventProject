@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486725691c9031f41b9ebdd4241496e3, type: 3}
+  m_Name: OffensiveTowers
+  m_EditorClassIdentifier: Assembly-CSharp::TowerCategoryData_SO
+  cards:
+  - title: Single Target Tower
+    description: 
+    cost: 20
+    icon: {fileID: 0}
+    towerPrefab: {fileID: 7795377701471874775, guid: 090254ab1ad366e4ca33287a7c66759d, type: 3}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
+  - title: Long Ranged Tower
+    description: 
+    cost: 20
+    icon: {fileID: 0}
+    towerPrefab: {fileID: 1065772514863795281, guid: e8036666d76b89f4a94e91ebdfb671c6, type: 3}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
