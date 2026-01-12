@@ -26,32 +26,37 @@ public class PlayerGrab : MonoBehaviour
 
     public void GrabObject(GameObject obj)
     {
-        if (isOnCooldown || IsPlayerCarryingObject || obj == null) return;
 
-        // Parent to grab point immediately
-        currentGrabbedObj = obj;
-        obj.transform.SetParent(PlayerGrabPoint);
-        obj.transform.localPosition = Vector3.zero;
-        obj.transform.localRotation = Quaternion.identity;
+        Destroy(obj);
 
-        // Disable physics + colliders while carried
-        Rigidbody rb = obj.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = true;
-            rb.detectCollisions = false;
-        }
+        if (obj == null) Debug.LogWarning("No More");
 
-        foreach (var col in obj.GetComponents<Collider>())
-            col.enabled = false;
+        //if (isOnCooldown || IsPlayerCarryingObject || obj == null) return;
 
-        IsPlayerCarryingObject = true;
+        //// Parent to grab point immediately
+        //currentGrabbedObj = obj;
+        //obj.transform.SetParent(PlayerGrabPoint);
+        //obj.transform.localPosition = Vector3.zero;
+        //obj.transform.localRotation = Quaternion.identity;
 
-        // Trigger event
-        EvtOnGrab?.Invoke(obj);
+        //// Disable physics + colliders while carried
+        //Rigidbody rb = obj.GetComponent<Rigidbody>();
+        //if (rb != null)
+        //{
+        //    rb.isKinematic = true;
+        //    rb.detectCollisions = false;
+        //}
 
-        // Start cooldown
-        StartCoroutine(ActionCooldown());
+        //foreach (var col in obj.GetComponents<Collider>())
+        //    col.enabled = false;
+
+        //IsPlayerCarryingObject = true;
+
+        //// Trigger event
+        //EvtOnGrab?.Invoke(obj);
+
+        //// Start cooldown
+        //StartCoroutine(ActionCooldown());
     }
 
     public void ReleaseGrabbedObject()
