@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAnimation PlayerAnimation;
     public PlayerInteraction PlayerInteraction;
     public PlayerGrab PlayerGrab;
+    public PlayerInventory PlayerInventory;
     public Animator animator; 
 
     private void Start()
@@ -25,6 +26,11 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         PlayerMovement.MovementOnJump(context);
+    }
+
+    public void OnOpeninventory(InputAction.CallbackContext context)
+    {
+        PlayerInventory.InventoryOnOpenInventory(context);
     }
 
     // === Movement Control Methods ===
