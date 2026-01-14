@@ -16,19 +16,44 @@ public class PlayerInventory : MonoBehaviour
         PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
     }
 
+    public void AddToInventory(GameObject ItemObject)
+    {
+        Item.Add(ItemObject);
+        Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
+
+    }
+
     private void Start()
     {
-        for (int i = 0; i < SlotCount; i++) 
-        { 
-            Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
-            if(i < Item.Count)
+        //for (int i = 0; i < SlotCount; i++)
+        //{
+        //    Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
+        //    //if (i < Item.Count)
+        //    //{
+        //    //    GameObject item = Instantiate(Item[i], SlotPrefab.transform);
+        //    //    item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        //    //    slot.currentItem = item;
+        //    //}
+
+        //}
+
+    }
+
+    public bool AddItem(GameObject itemPrefab)
+    {
+        foreach(Transform SlotTransform in InventoryPanel.transform)
+        {
+            Slot slot = SlotTransform.GetComponent<Slot>();
+
+            if(slot != null && slot.currentItem == null)
             {
-                GameObject item = Instantiate(Item[i], SlotPrefab.transform);
-                item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                slot.currentItem = item;
+                GameObject newItem = Instantiate(itemPrefab, SlotTransform);
+                newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                slot.currentItem = newItem;
+                return true;
             }
-        
         }
 
+        return false;
     }
 }
