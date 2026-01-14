@@ -4,16 +4,12 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public List<GameObject> Item = new List<GameObject>();
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject PlayerInventoryUI;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.I))
+            PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
     }
 }

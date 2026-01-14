@@ -123,8 +123,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288891533921860037}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.22913554, y: 0.5536031, z: -0.22896022, w: -0.7672013}
-  m_LocalPosition: {x: 3.7476392, y: 3.0457954, z: -1.4196827}
+  m_LocalRotation: {x: -0.24751702, y: -0.37149543, z: 0.16389176, w: -0.8796965}
+  m_LocalPosition: {x: -2.88161, y: 2.8049743, z: -3.027476}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 3778112114396300799}
   - component: {fileID: 8430264172108288562}
   - component: {fileID: 4549943407503985007}
+  - component: {fileID: 6575858084935877479}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -533,6 +534,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
     m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ea9afdf-f252-4665-854c-7893b3d18a71
+    m_ActionName: 'Gameplay/GoldIncrease[/Keyboard/ctrl,/Keyboard/rightBracket]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -569,6 +574,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
   animator: {fileID: 6098598076430173885}
+  idleState: Idle
+  runState: Walk
+  jumpState: Jump
+  grabIdleState: Basic Grab
+  grabWalkState: Grab and Walk
+  grabJumpState: Grab and Jump
 --- !u!114 &8430264172108288562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,9 +594,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGrab
   PlayerGrabPoint: {fileID: 2506867188676803050}
   IsPlayerCarryingObject: 0
+  PlayerAnimation: {fileID: 3778112114396300799}
   EvtOnGrab:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 4549943407503985007}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _DisableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4549943407503985007}
         m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
         m_MethodName: _DisableInteraction
@@ -644,6 +668,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
+--- !u!114 &6575858084935877479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99352152eabbe7447b95b67ce1de4098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  Item: []
+  PlayerInventoryUI: {fileID: 0}
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
