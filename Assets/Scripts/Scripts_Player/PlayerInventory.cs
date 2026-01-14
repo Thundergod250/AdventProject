@@ -5,19 +5,30 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public GameObject InventoryPanel;
+    public GameObject SlotPrefab;
+    public int SlotCount;
     public List<GameObject> Item = new List<GameObject>();
     public GameObject PlayerInventoryUI;
 
     public void InventoryOnOpenInventory(InputAction.CallbackContext context)
     {
         PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        //if(Input.GetKeyDown(KeyCode.I))
-        //    PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
+        for (int i = 0; i < SlotCount; i++) 
+        { 
+            Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
+            if(i < Item.Count)
+            {
+                GameObject item = Instantiate(Item[i], SlotPrefab.transform);
+                item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                slot.currentItem = item;
+            }
+        
+        }
+
     }
 }
