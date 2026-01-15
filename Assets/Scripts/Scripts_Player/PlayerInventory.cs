@@ -13,7 +13,7 @@ public class PlayerInventory : MonoBehaviour
     public GameObject PlayerInventoryUI;
     public GameObject InventoryStatusUI;
 
-    public int TotalWeight;
+    public int CurrentWeight;
     public int MaxWeight;
 
     public void InventoryOnOpenInventory(InputAction.CallbackContext context) => PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
@@ -23,7 +23,7 @@ public class PlayerInventory : MonoBehaviour
         GarbageObject garbageObject = ItemObject.GetComponent<GarbageObject>();
 
         Item.Add(ItemObject);
-        TotalWeight += garbageObject.ObjectWeight;
+        CurrentWeight += garbageObject.ObjectWeight;
 
         Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
 
