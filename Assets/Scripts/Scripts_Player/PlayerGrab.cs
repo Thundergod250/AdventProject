@@ -26,7 +26,8 @@ public class PlayerGrab : MonoBehaviour
 
     public void GrabObject(GameObject obj)
     {
-        GameManager.Instance.PlayerInventory.Item.Add(obj);
+        GameManager.Instance.PlayerInventory.AddToInventory(obj);
+        //GameManager.Instance.PlayerInventory.AddItem(obj);
         Destroy(obj);
 
         if (obj == null) Debug.LogWarning("No More");
