@@ -1,6 +1,8 @@
+using TMPro;
 using UnityEngine;
 
 public class Slot : MonoBehaviour
 {
-    public GameObject currentItem;
+    public TextMeshProUGUI Garbage;
+    public TextMeshProUGUI GarbageDescription;
 }

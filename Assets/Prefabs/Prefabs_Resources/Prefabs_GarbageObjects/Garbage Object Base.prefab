@@ -468,8 +468,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a79547dfad44a34ea3f691bca08c7a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GarbageObject
-  group: 0
-  subtype: 0
+  Group: 0
+  Subtype: 0
+  ObjectName: Plastic
+  ObjectDescription: This is a Plastic Bottle
+  ObjectWeight: 5
 --- !u!114 &4355805760622762454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +542,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
     m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ea9afdf-f252-4665-854c-7893b3d18a71
+    m_ActionName: 'Gameplay/GoldIncrease[/Keyboard/ctrl,/Keyboard/rightBracket]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e47361a3-e910-468a-8453-9d95029071dc
+    m_ActionName: 'Gameplay/Inventory[/Keyboard/i]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

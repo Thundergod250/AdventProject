@@ -2,14 +2,19 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Threading.Tasks;
+
 
 public class PlayerInventory : MonoBehaviour
 {
     public GameObject InventoryPanel;
     public GameObject SlotPrefab;
-    public int SlotCount;
     public List<GameObject> Item = new List<GameObject>();
     public GameObject PlayerInventoryUI;
+    public GameObject InventoryStatusUI;
+
+    public int TotalWeight;
+    public int MaxWeight;
 
     public void InventoryOnOpenInventory(InputAction.CallbackContext context)
     {
@@ -18,42 +23,56 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddToInventory(GameObject ItemObject)
     {
+        GarbageObject garbageObject = ItemObject.GetComponent<GarbageObject>();
+
         Item.Add(ItemObject);
+        TotalWeight += garbageObject.ObjectWeight;
+
         Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
 
-    }
 
-    private void Start()
-    {
-        //for (int i = 0; i < SlotCount; i++)
-        //{
-        //    Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
-        //    //if (i < Item.Count)
-        //    //{
-        //    //    GameObject item = Instantiate(Item[i], SlotPrefab.transform);
-        //    //    item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        //    //    slot.currentItem = item;
-        //    //}
-
-        //}
-
-    }
-
-    public bool AddItem(GameObject itemPrefab)
-    {
-        foreach(Transform SlotTransform in InventoryPanel.transform)
+        if(garbageObject != null)
         {
-            Slot slot = SlotTransform.GetComponent<Slot>();
-
-            if(slot != null && slot.currentItem == null)
-            {
-                GameObject newItem = Instantiate(itemPrefab, SlotTransform);
-                newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                slot.currentItem = newItem;
-                return true;
-            }
+            slot.Garbage.text = garbageObject.ObjectName;
+            slot.GarbageDescription.text = garbageObject.ObjectDescription;
         }
 
-        return false;
     }
+
+    public void ShowInventoryPanel()
+    {
+        InventoryPanel.SetActive(!InventoryPanel.activeSelf);
+    }
+
+    public async void UITimerCall()
+    {
+        await InventoryStatusUITimer();
+    }
+
+    public async Task InventoryStatusUITimer()
+    {
+       
+        InventoryStatusUI.SetActive(true);
+        await Task.Delay(2 * 1000);
+        InventoryStatusUI.SetActive(false);
+
+    }
+
+    //public bool AddItem(GameObject itemPrefab)
+    //{
+    //    foreach(Transform SlotTransform in InventoryPanel.transform)
+    //    {
+    //        Slot slot = SlotTransform.GetComponent<Slot>();
+
+    //        if(slot != null && slot.currentItem == null)
+    //        {
+    //            GameObject newItem = Instantiate(itemPrefab, SlotTransform);
+    //            newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+    //            slot.currentItem = newItem;
+    //            return true;
+    //        }
+    //    }
+
+    //    return false;
+    //}
 }

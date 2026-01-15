@@ -47,13 +47,13 @@ public class TowerPlasticCollector : TowerUtilityBase
             return true;
 
         if (checkGroupOnly)
-            return garbage.group == requiredGroup;
+            return garbage.Group == requiredGroup;
 
         if (checkSubtypeOnly)
-            return garbage.subtype == requiredSubtype;
+            return garbage.Subtype == requiredSubtype;
 
         if (checkBothGroupAndSubtype)
-            return garbage.group == requiredGroup && garbage.subtype == requiredSubtype;
+            return garbage.Group == requiredGroup && garbage.Subtype == requiredSubtype;
 
         return false;
     }

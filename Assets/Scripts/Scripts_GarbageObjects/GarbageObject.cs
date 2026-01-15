@@ -30,6 +30,9 @@ public class GarbageObject : MonoBehaviour
     }
 
     [Header("Garbage Classification")]
-    public GarbageGroup group;
-    public GarbageSubtype subtype;
+    public GarbageGroup Group;
+    public GarbageSubtype Subtype;
+    public string ObjectName;
+    public string ObjectDescription;
+    public int ObjectWeight;
 }
