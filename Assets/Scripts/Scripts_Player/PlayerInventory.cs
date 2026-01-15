@@ -9,17 +9,14 @@ public class PlayerInventory : MonoBehaviour
 {
     public GameObject InventoryPanel;
     public GameObject SlotPrefab;
-    public List<GameObject> Item = new List<GameObject>();
+    public List<GameObject> Item = new();
     public GameObject PlayerInventoryUI;
     public GameObject InventoryStatusUI;
 
     public int TotalWeight;
     public int MaxWeight;
 
-    public void InventoryOnOpenInventory(InputAction.CallbackContext context)
-    {
-        PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
-    }
+    public void InventoryOnOpenInventory(InputAction.CallbackContext context) => PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
 
     public void AddToInventory(GameObject ItemObject)
     {
@@ -36,26 +33,17 @@ public class PlayerInventory : MonoBehaviour
             slot.Garbage.text = garbageObject.ObjectName;
             slot.GarbageDescription.text = garbageObject.ObjectDescription;
         }
-
     }
 
-    public void ShowInventoryPanel()
-    {
-        InventoryPanel.SetActive(!InventoryPanel.activeSelf);
-    }
+    public void ShowInventoryPanel() => InventoryPanel.SetActive(!InventoryPanel.activeSelf);
 
-    public async void UITimerCall()
-    {
-        await InventoryStatusUITimer();
-    }
+    public async void UITimerCall() => await InventoryStatusUITimer();
 
     public async Task InventoryStatusUITimer()
     {
-       
         InventoryStatusUI.SetActive(true);
         await Task.Delay(2 * 1000);
         InventoryStatusUI.SetActive(false);
-
     }
 
     //public bool AddItem(GameObject itemPrefab)
