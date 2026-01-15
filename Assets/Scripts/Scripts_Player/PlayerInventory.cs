@@ -21,39 +21,36 @@ public class PlayerInventory : MonoBehaviour
         Item.Add(ItemObject);
         Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
 
-    }
+        GarbageObject garbageObject = ItemObject.GetComponent<GarbageObject>();
 
-    private void Start()
-    {
-        //for (int i = 0; i < SlotCount; i++)
-        //{
-        //    Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
-        //    //if (i < Item.Count)
-        //    //{
-        //    //    GameObject item = Instantiate(Item[i], SlotPrefab.transform);
-        //    //    item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        //    //    slot.currentItem = item;
-        //    //}
-
-        //}
-
-    }
-
-    public bool AddItem(GameObject itemPrefab)
-    {
-        foreach(Transform SlotTransform in InventoryPanel.transform)
+        if(garbageObject != null)
         {
-            Slot slot = SlotTransform.GetComponent<Slot>();
-
-            if(slot != null && slot.currentItem == null)
-            {
-                GameObject newItem = Instantiate(itemPrefab, SlotTransform);
-                newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                slot.currentItem = newItem;
-                return true;
-            }
+            slot.Garbage.text = garbageObject.ObjectName;
+            slot.GarbageDescription.text = garbageObject.ObjectDescription;
         }
 
-        return false;
     }
+
+    public void ShowInventoryPanel()
+    {
+        InventoryPanel.SetActive(!InventoryPanel.activeSelf);
+    }
+
+    //public bool AddItem(GameObject itemPrefab)
+    //{
+    //    foreach(Transform SlotTransform in InventoryPanel.transform)
+    //    {
+    //        Slot slot = SlotTransform.GetComponent<Slot>();
+
+    //        if(slot != null && slot.currentItem == null)
+    //        {
+    //            GameObject newItem = Instantiate(itemPrefab, SlotTransform);
+    //            newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+    //            slot.currentItem = newItem;
+    //            return true;
+    //        }
+    //    }
+
+    //    return false;
+    //}
 }
