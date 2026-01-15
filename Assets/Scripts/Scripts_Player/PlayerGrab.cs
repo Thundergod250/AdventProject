@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using System;
 
 public class PlayerGrab : MonoBehaviour
 {
@@ -33,7 +34,8 @@ public class PlayerGrab : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.PlayerInventory.InventoryStatusUI.SetActive(!GameManager.Instance.PlayerInventory.InventoryStatusUI.activeSelf);
+            GameManager.Instance.PlayerInventory.UITimerCall();
+            //GameManager.Instance.PlayerInventory.InventoryStatusUI.SetActive(!GameManager.Instance.PlayerInventory.InventoryStatusUI.activeSelf);
             Debug.LogWarning("No More Space");
 
         }

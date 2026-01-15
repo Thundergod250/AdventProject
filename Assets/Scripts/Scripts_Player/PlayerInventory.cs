@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Threading.Tasks;
+
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -40,6 +42,20 @@ public class PlayerInventory : MonoBehaviour
     public void ShowInventoryPanel()
     {
         InventoryPanel.SetActive(!InventoryPanel.activeSelf);
+    }
+
+    public async void UITimerCall()
+    {
+        await InventoryStatusUITimer();
+    }
+
+    public async Task InventoryStatusUITimer()
+    {
+       
+        InventoryStatusUI.SetActive(true);
+        await Task.Delay(2 * 1000);
+        InventoryStatusUI.SetActive(false);
+
     }
 
     //public bool AddItem(GameObject itemPrefab)
