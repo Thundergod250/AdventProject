@@ -9,7 +9,6 @@ public class PlayerInventory : MonoBehaviour
 {
     public GameObject InventoryPanel;
     public GameObject SlotPrefab;
-    public List<GameObject> Item = new();
     public GameObject PlayerInventoryUI;
     public GameObject InventoryStatusUI;
 
@@ -18,11 +17,8 @@ public class PlayerInventory : MonoBehaviour
 
     public void InventoryOnOpenInventory(InputAction.CallbackContext context) => PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
 
-    public void AddToInventory(GameObject ItemObject)
+    public void AddToInventory(GarbageObject garbageObject)
     {
-        GarbageObject garbageObject = ItemObject.GetComponent<GarbageObject>();
-
-        Item.Add(ItemObject);
         CurrentWeight += garbageObject.ObjectWeight;
 
         Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();

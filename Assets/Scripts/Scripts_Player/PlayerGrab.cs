@@ -21,12 +21,12 @@ public class PlayerGrab : MonoBehaviour
     private GameObject currentGrabbedObj;
     private bool isOnCooldown = false;
 
-    public void GrabObject(GameObject obj)
+    public void GrabObject(GarbageObject obj)
     {
         if(GameManager.Instance.PlayerInventory.CurrentWeight < GameManager.Instance.PlayerInventory.MaxWeight)
         {
             GameManager.Instance.PlayerInventory.AddToInventory(obj);
-            Destroy(obj); // TO CONVERT TO OBJECT POOLING
+            Destroy(obj.gameObject); // TO CONVERT TO OBJECT POOLING
         }
         else
         {
