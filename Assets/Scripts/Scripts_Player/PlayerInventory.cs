@@ -19,17 +19,20 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddToInventory(GarbageObject garbageObject)
     {
-        CurrentWeight += garbageObject.ObjectWeight;
+        if (garbageObject == null || garbageObject.ResourceData == null)
+            return;
 
-        Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
+        // Add weight from ScriptableObject
+        CurrentWeight += garbageObject.ResourceData.ObjectWeight;
 
+        // Create slot
+        Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>(); //CONVERT TO OBJECT POOLING
 
-        if(garbageObject != null)
-        {
-            slot.Garbage.text = garbageObject.ObjectName;
-            slot.GarbageDescription.text = garbageObject.ObjectDescription;
-        }
+        // Assign UI text from ScriptableObject data
+        slot.Garbage.text = garbageObject.ResourceData.ObjectName;
+        slot.GarbageDescription.text = garbageObject.ResourceData.ObjectDescription;
     }
+
 
     public void ShowInventoryPanel() => InventoryPanel.SetActive(!InventoryPanel.activeSelf);
 

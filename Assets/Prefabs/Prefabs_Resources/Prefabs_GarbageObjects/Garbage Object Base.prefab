@@ -468,11 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a79547dfad44a34ea3f691bca08c7a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GarbageObject
-  Group: 0
-  Subtype: 0
-  ObjectName: Plastic
-  ObjectDescription: This is a Plastic Bottle
-  ObjectWeight: 5
+  ResourceData: {fileID: 11400000, guid: 6d187062b1e94cb428d27297ed1ce4e3, type: 2}
 --- !u!114 &4355805760622762454
 MonoBehaviour:
   m_ObjectHideFlags: 0

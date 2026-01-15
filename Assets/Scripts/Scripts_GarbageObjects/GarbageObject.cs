@@ -2,37 +2,15 @@ using UnityEngine;
 
 public class GarbageObject : MonoBehaviour
 {
-    public enum GarbageGroup
+    [Header("Garbage Data Reference")]
+    public ResourceData ResourceData;
+
+    // Example usage
+    private void Start()
     {
-        Plastic,
-        Organic,
-        Metal,
-        Glass,
-        Electronic
+        if (ResourceData != null)
+        {
+            Debug.Log($"Garbage: {ResourceData.ObjectName}, Group: {ResourceData.Group}, Weight: {ResourceData.ObjectWeight}");
+        }
     }
-
-    public enum GarbageSubtype
-    {
-        // Plastic
-        Bottle,
-
-        // Organic
-        Wood,
-        PizzaBox,
-
-        // Metal
-        Can,
-        Pipe,
-
-        // Electronic
-        CircuitBoard,
-        Battery
-    }
-
-    [Header("Garbage Classification")]
-    public GarbageGroup Group;
-    public GarbageSubtype Subtype;
-    public string ObjectName;
-    public string ObjectDescription;
-    public int ObjectWeight;
 }

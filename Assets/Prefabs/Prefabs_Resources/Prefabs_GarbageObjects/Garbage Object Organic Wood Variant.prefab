@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704972943926834406, guid: 416af86767ae30b42a68012c1a814557, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7704972943926834406, guid: 416af86767ae30b42a68012c1a814557, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_ActionId
@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: subtype
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7952310711008049135, guid: 416af86767ae30b42a68012c1a814557, type: 3}
+      propertyPath: ResourceData
+      value: 
+      objectReference: {fileID: 11400000, guid: 0bbac307738b67043a423fa52e431a35, type: 2}
     - target: {fileID: 8229282200520670026, guid: 416af86767ae30b42a68012c1a814557, type: 3}
       propertyPath: m_Size.x
       value: 1.5147461
