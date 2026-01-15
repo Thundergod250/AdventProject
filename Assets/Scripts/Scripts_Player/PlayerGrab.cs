@@ -5,9 +5,7 @@ using System;
 
 public class PlayerGrab : MonoBehaviour
 {
-    public Transform PlayerGrabPoint;
     public bool IsPlayerCarryingObject;
-    public PlayerAnimation PlayerAnimation;
 
     // === Events ===
     public UnityEvent<GameObject> EvtOnGrab;
@@ -39,36 +37,6 @@ public class PlayerGrab : MonoBehaviour
             Debug.LogWarning("No More Space");
 
         }
-
-
-        //if (obj == null) Debug.LogWarning("No More");
-
-        //if (isOnCooldown || IsPlayerCarryingObject || obj == null) return;
-
-        //// Parent to grab point immediately
-        //currentGrabbedObj = obj;
-        //obj.transform.SetParent(PlayerGrabPoint);
-        //obj.transform.localPosition = Vector3.zero;
-        //obj.transform.localRotation = Quaternion.identity;
-
-        //// Disable physics + colliders while carried
-        //Rigidbody rb = obj.GetComponent<Rigidbody>();
-        //if (rb != null)
-        //{
-        //    rb.isKinematic = true;
-        //    rb.detectCollisions = false;
-        //}
-
-        //foreach (var col in obj.GetComponents<Collider>())
-        //    col.enabled = false;
-
-        //IsPlayerCarryingObject = true;
-
-        //// Trigger event
-        //EvtOnGrab?.Invoke(obj);
-
-        //// Start cooldown
-        //StartCoroutine(ActionCooldown());
     }
 
     public void ReleaseGrabbedObject()
