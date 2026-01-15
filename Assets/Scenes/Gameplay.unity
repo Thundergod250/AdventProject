@@ -1323,66 +1323,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_UIInputModule
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
-      value: e47361a3-e910-468a-8453-9d95029071dc
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
-      value: 'Gameplay/Inventory[/Keyboard/i]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3688964133521184813}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: InventoryOnOpenInventory
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerInventory, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PlayerInventory, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2205877847749605719, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: PlayerInventory
-      value: 
-      objectReference: {fileID: 3688964133521184813}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 226.45027
@@ -1424,17 +1364,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6575858084935877479, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: SlotCount
-      value: 15
+      propertyPath: MaxWeight
+      value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 6575858084935877479, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: SlotPrefab
-      value: 
-      objectReference: {fileID: 1070585376230951824, guid: 0119e63300aad504f87a5bd822f716c9, type: 3}
     - target: {fileID: 6575858084935877479, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: InventoryPanel
       value: 
       objectReference: {fileID: 7788687841394568307}
+    - target: {fileID: 6575858084935877479, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: InventoryStatusUI
+      value: 
+      objectReference: {fileID: 7788687841394568308}
     - target: {fileID: 6575858084935877479, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: PlayerInventoryUI
       value: 
@@ -1474,6 +1414,10 @@ PrefabInstance:
     - target: {fileID: 4517890138909975071, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
       propertyPath: ObjectName
       value: Wood
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517890138909975071, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
+      propertyPath: ObjectWeight
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4517890138909975071, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
       propertyPath: ObjectDescription
@@ -1848,6 +1792,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8376553381272400211, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: m_Name
+      value: Inventory Status
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376553381272400211, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9192366198569973207, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: m_Name
       value: Player UI
@@ -1869,6 +1821,11 @@ GameObject:
 --- !u!1 &7788687841394568307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 151825153019268791, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+  m_PrefabInstance: {fileID: 7788687841394568305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7788687841394568308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8376553381272400211, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
   m_PrefabInstance: {fileID: 7788687841394568305}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8765189257349807378 stripped

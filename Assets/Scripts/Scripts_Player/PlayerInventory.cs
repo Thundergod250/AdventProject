@@ -7,9 +7,12 @@ public class PlayerInventory : MonoBehaviour
 {
     public GameObject InventoryPanel;
     public GameObject SlotPrefab;
-    public int SlotCount;
     public List<GameObject> Item = new List<GameObject>();
     public GameObject PlayerInventoryUI;
+    public GameObject InventoryStatusUI;
+
+    public int TotalWeight;
+    public int MaxWeight;
 
     public void InventoryOnOpenInventory(InputAction.CallbackContext context)
     {
@@ -18,10 +21,13 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddToInventory(GameObject ItemObject)
     {
+        GarbageObject garbageObject = ItemObject.GetComponent<GarbageObject>();
+
         Item.Add(ItemObject);
+        TotalWeight += garbageObject.ObjectWeight;
+
         Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>();
 
-        GarbageObject garbageObject = ItemObject.GetComponent<GarbageObject>();
 
         if(garbageObject != null)
         {

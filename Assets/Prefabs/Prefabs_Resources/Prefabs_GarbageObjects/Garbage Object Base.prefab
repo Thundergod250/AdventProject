@@ -472,6 +472,7 @@ MonoBehaviour:
   Subtype: 0
   ObjectName: Plastic
   ObjectDescription: This is a Plastic Bottle
+  ObjectWeight: 5
 --- !u!114 &4355805760622762454
 MonoBehaviour:
   m_ObjectHideFlags: 0

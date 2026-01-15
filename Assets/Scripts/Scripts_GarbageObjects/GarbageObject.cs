@@ -34,4 +34,5 @@ public class GarbageObject : MonoBehaviour
     public GarbageSubtype Subtype;
     public string ObjectName;
     public string ObjectDescription;
+    public int ObjectWeight;
 }

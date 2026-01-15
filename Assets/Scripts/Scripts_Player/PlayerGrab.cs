@@ -26,11 +26,20 @@ public class PlayerGrab : MonoBehaviour
 
     public void GrabObject(GameObject obj)
     {
-        GameManager.Instance.PlayerInventory.AddToInventory(obj);
-        //GameManager.Instance.PlayerInventory.AddItem(obj);
-        Destroy(obj);
+        if(GameManager.Instance.PlayerInventory.TotalWeight < GameManager.Instance.PlayerInventory.MaxWeight)
+        {
+            GameManager.Instance.PlayerInventory.AddToInventory(obj);
+            Destroy(obj);
+        }
+        else
+        {
+            GameManager.Instance.PlayerInventory.InventoryStatusUI.SetActive(!GameManager.Instance.PlayerInventory.InventoryStatusUI.activeSelf);
+            Debug.LogWarning("No More Space");
 
-        if (obj == null) Debug.LogWarning("No More");
+        }
+
+
+        //if (obj == null) Debug.LogWarning("No More");
 
         //if (isOnCooldown || IsPlayerCarryingObject || obj == null) return;
 
