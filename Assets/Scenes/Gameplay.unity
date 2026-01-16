@@ -1636,22 +1636,6 @@ PrefabInstance:
       propertyPath: HasEnoughMoney.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4517890138909975071, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
-      propertyPath: ObjectName
-      value: Wood
-      objectReference: {fileID: 0}
-    - target: {fileID: 4517890138909975071, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
-      propertyPath: ObjectWeight
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4517890138909975071, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
-      propertyPath: ObjectDescription
-      value: This is a Wood
-      objectReference: {fileID: 0}
-    - target: {fileID: 4609524877535097111, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5492135777194319739, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 216.72798
@@ -1693,8 +1677,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4582474815771959275, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8681cdb60da74f94aa5d8e8927a46a06, type: 3}
@@ -1739,6 +1722,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 715899787770034870}
     m_Modifications:
+    - target: {fileID: 419623560971531194, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.0021897627
+      objectReference: {fileID: 0}
+    - target: {fileID: 566948035068995477, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.0021813815
+      objectReference: {fileID: 0}
+    - target: {fileID: 782246033839093618, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.008586705
+      objectReference: {fileID: 0}
     - target: {fileID: 1300356522198471508, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_Name
       value: Tutorial Area
@@ -1782,6 +1777,26 @@ PrefabInstance:
     - target: {fileID: 4567186530254124272, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731601354871247138, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.0073869172
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497597831402613581, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.0014672462
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738436353545115082, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.002274369
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901343115042209115, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.0042279
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292967078017289383, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.0019895858
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
