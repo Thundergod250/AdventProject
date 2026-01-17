@@ -22,8 +22,10 @@ public class TowerPlasticCollector : TowerUtilityBase
     public bool checkSubtypeOnly = false;
     public bool checkBothGroupAndSubtype = false;
 
+    /*
     public GarbageObject.GarbageGroup requiredGroup;
     public GarbageObject.GarbageSubtype requiredSubtype;
+    */
 
     private void OnTriggerEnter(Collider other)
     {
@@ -46,14 +48,14 @@ public class TowerPlasticCollector : TowerUtilityBase
         if (!checkGroupOnly && !checkSubtypeOnly && !checkBothGroupAndSubtype)
             return true;
 
-        if (checkGroupOnly)
+        /*if (checkGroupOnly)
             return garbage.Group == requiredGroup;
 
         if (checkSubtypeOnly)
             return garbage.Subtype == requiredSubtype;
 
         if (checkBothGroupAndSubtype)
-            return garbage.Group == requiredGroup && garbage.Subtype == requiredSubtype;
+            return garbage.Group == requiredGroup && garbage.Subtype == requiredSubtype;*/
 
         return false;
     }

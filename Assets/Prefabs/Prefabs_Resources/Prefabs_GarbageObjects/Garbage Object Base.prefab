@@ -468,11 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a79547dfad44a34ea3f691bca08c7a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GarbageObject
-  Group: 0
-  Subtype: 0
-  ObjectName: Plastic
-  ObjectDescription: This is a Plastic Bottle
-  ObjectWeight: 5
+  ResourceData: {fileID: 11400000, guid: 6d187062b1e94cb428d27297ed1ce4e3, type: 2}
 --- !u!114 &4355805760622762454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,19 +515,7 @@ MonoBehaviour:
     m_ActionId: 07dbfa22-c426-4a2b-994c-c0ea06a73644
     m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4355805760622762454}
-        m_TargetAssemblyTypeName: GrabManipulator, Assembly-CSharp
-        m_MethodName: _Release
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: eaf488b4-919f-42bf-9ba4-79109e8c5a4d
     m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
   - m_PersistentCalls:
