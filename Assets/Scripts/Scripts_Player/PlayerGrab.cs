@@ -31,7 +31,6 @@ public class PlayerGrab : MonoBehaviour
         else
         {
             GameManager.Instance.PlayerInventory.UITimerCall();
-            //GameManager.Instance.PlayerInventory.InventoryStatusUI.SetActive(!GameManager.Instance.PlayerInventory.InventoryStatusUI.activeSelf);
             Debug.LogWarning("No More Space");
         }
     }
