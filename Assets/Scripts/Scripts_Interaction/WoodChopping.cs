@@ -1,18 +1,38 @@
-﻿using System.Threading.Tasks;// alone is not enough
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;// alone is not enough
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+public enum WASDKey
+{
+    W,
+    A,
+    S,
+    D
+}
 
 public class WoodChopping : MonoBehaviour
 {
-    public TextMeshProUGUI sequenceText;
-
     public GameObject buttonUI;
     public GameObject buttonPrefab;
 
-    [SerializeField] private List<KeyCode> sequence = new List<KeyCode>();
-    private List<GameObject> spawnedButtons = new List<GameObject>();
-    private float inputTime = 1f;
+    public InputActionReference inputW;
+    public InputActionReference inputA;
+    public InputActionReference inputS;
+    public InputActionReference inputD;
+
+    [SerializeField] private List<WASDKey> sequence = new List<WASDKey>();
+    [SerializeField] private List<GameObject> spawnedButtons = new List<GameObject>();
+    private float inputTime = 3f;
+
+    void OnEnable()
+    {
+        inputW.action.Enable();
+        inputA.action.Enable();
+        inputS.action.Enable();
+        inputD.action.Enable();
+    }
 
     public async void Prompt()
     {
@@ -24,18 +44,15 @@ public class WoodChopping : MonoBehaviour
         GenerateSequence();
 
         // Show sequence for 1 second
-        sequenceText.text = GetSequenceString();
-        sequenceText.gameObject.SetActive(true);
-        SpawnButtons();
 
         buttonUI.SetActive(false);
+
+        //SpawnButtons();
 
         await Task.Delay(1000); // 1 second
 
         // Hide sequence, show buttons
-        sequenceText.gameObject.SetActive(false);
         buttonUI.SetActive(true);
-
 
         await CheckInputAsync();
 
@@ -45,43 +62,48 @@ public class WoodChopping : MonoBehaviour
     void GenerateSequence()
     {
         sequence.Clear();
-        KeyCode[] keys = { KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D };
 
-        for (int i = 0; i < 4; i++)
-        {
-            sequence.Add(keys[Random.Range(0, keys.Length)]);
-        }
-    }
-
-    void SpawnButtons()
-    {
         // Clear old buttons
         foreach (GameObject btn in spawnedButtons)
             Destroy(btn);
 
         spawnedButtons.Clear();
 
-        // Spawn one button per letter
-        foreach (KeyCode key in sequence)
+        WASDKey[] keys = { WASDKey.W, WASDKey.A, WASDKey.S, WASDKey.D };
+
+        for (int i = 0; i < 4; i++)
         {
-            GameObject button = Instantiate(buttonPrefab, buttonUI.transform);
-            spawnedButtons.Add(button);
+            // Generate key
+            WASDKey key = keys[Random.Range(0, keys.Length)];
+            sequence.Add(key);
 
-            TMPro.TextMeshProUGUI text =
-                button.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            // Spawn UI
+            GameObject ui = Instantiate(buttonPrefab, buttonUI.transform);
+            spawnedButtons.Add(ui);
 
-            text.text = key.ToString();
+            // Set text (Image → Text)
+            TextMeshProUGUI tmp = ui.GetComponentInChildren<TextMeshProUGUI>();
+            if (tmp != null)
+            {
+                tmp.text = key.ToString();
+            }
+            else
+            {
+                Debug.LogError("Button prefab missing TextMeshProUGUI child!");
+            }
         }
     }
 
-    string GetSequenceString()
+    bool IsCorrectInput(WASDKey key)
     {
-        string result = "";
-        foreach (var key in sequence)
+        return key switch
         {
-            result += key.ToString() + " ";
-        }
-        return result;
+            WASDKey.W => inputW.action.WasPressedThisFrame(),
+            WASDKey.A => inputA.action.WasPressedThisFrame(),
+            WASDKey.S => inputS.action.WasPressedThisFrame(),
+            WASDKey.D => inputD.action.WasPressedThisFrame(),
+            _ => false
+        };
     }
 
     async Task CheckInputAsync()
@@ -91,17 +113,14 @@ public class WoodChopping : MonoBehaviour
 
         while (timer > 0f && index < sequence.Count)
         {
-            if (Input.anyKeyDown)
+            if (IsCorrectInput(sequence[index]))
             {
-                if (Input.GetKeyDown(sequence[index]))
-                {
-                    index++;
-                }
-                else
-                {
-                    Debug.Log("Failed!");
-                    return;
-                }
+                Debug.LogWarning("Succeeded");
+                index++; // move to next letter
+            }
+            else 
+            {
+                Debug.Log("Failed!");
             }
 
             timer -= Time.deltaTime;
