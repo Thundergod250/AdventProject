@@ -14,25 +14,16 @@ public enum WASDKey
 
 public class WoodChopping : MonoBehaviour
 {
+    public GameObject WoodChoppingRoot;
     public GameObject buttonUI;
     public GameObject buttonPrefab;
 
-    public InputActionReference inputW;
-    public InputActionReference inputA;
-    public InputActionReference inputS;
-    public InputActionReference inputD;
+    public PlayerInteraction PlayerInteractionVar;
 
     [SerializeField] private List<WASDKey> sequence = new List<WASDKey>();
     [SerializeField] private List<GameObject> spawnedButtons = new List<GameObject>();
     private float inputTime = 3f;
 
-    void OnEnable()
-    {
-        inputW.action.Enable();
-        inputA.action.Enable();
-        inputS.action.Enable();
-        inputD.action.Enable();
-    }
 
     public async void Prompt()
     {
@@ -44,19 +35,20 @@ public class WoodChopping : MonoBehaviour
         GenerateSequence();
 
         // Show sequence for 1 second
-
+        WoodChoppingRoot.SetActive(true);
         buttonUI.SetActive(false);
 
         //SpawnButtons();
 
-        await Task.Delay(1000); // 1 second
-
         // Hide sequence, show buttons
         buttonUI.SetActive(true);
+
+        await Task.Delay(1000); // 1 second
 
         await CheckInputAsync();
 
         buttonUI.SetActive(false);
+        WoodChoppingRoot.SetActive(false);
     }
 
     void GenerateSequence()
@@ -94,18 +86,6 @@ public class WoodChopping : MonoBehaviour
         }
     }
 
-    bool IsCorrectInput(WASDKey key)
-    {
-        return key switch
-        {
-            WASDKey.W => inputW.action.WasPressedThisFrame(),
-            WASDKey.A => inputA.action.WasPressedThisFrame(),
-            WASDKey.S => inputS.action.WasPressedThisFrame(),
-            WASDKey.D => inputD.action.WasPressedThisFrame(),
-            _ => false
-        };
-    }
-
     async Task CheckInputAsync()
     {
         float timer = inputTime;
@@ -113,7 +93,7 @@ public class WoodChopping : MonoBehaviour
 
         while (timer > 0f && index < sequence.Count)
         {
-            if (IsCorrectInput(sequence[index]))
+            if (PlayerInteractionVar.IsCorrectInput(sequence[index]))
             {
                 Debug.LogWarning("Succeeded");
                 index++; // move to next letter
