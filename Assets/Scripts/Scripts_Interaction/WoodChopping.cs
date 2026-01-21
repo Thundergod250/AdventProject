@@ -49,6 +49,7 @@ public class WoodChopping : MonoBehaviour
 
         buttonUI.SetActive(false);
         WoodChoppingRoot.SetActive(false);
+        GameManager.Instance.PlayerController.EnableMovement();
     }
 
     void GenerateSequence()
