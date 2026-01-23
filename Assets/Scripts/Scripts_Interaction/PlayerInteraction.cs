@@ -23,9 +23,6 @@ public class PlayerInteraction : MonoBehaviour
     private Coroutine enableRoutine;
     private WaitForSeconds raycastInterval = new WaitForSeconds(0.1f);
 
-    [Header("Hitscan")]
-    public InputAction LeftClick;
-
     private void OnEnable()
     {
         if (enableRoutine == null)
@@ -165,7 +162,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
         {
             Debug.Log("Hit object: " + hit.collider.gameObject.name);
-
+            if (hit.collider.gameObject.GetComponent<Interactable>())
+            {
+                currentInteractable.Interact();
+                currentInteractable = null;
+            }
         }
     }
 }
