@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 8430264172108288562}
   - component: {fileID: 4549943407503985007}
   - component: {fileID: 6575858084935877479}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,10 +525,6 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: eaf488b4-919f-42bf-9ba4-79109e8c5a4d
-    m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
     m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
   - m_PersistentCalls:
@@ -567,6 +563,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e47361a3-e910-468a-8453-9d95029071dc
     m_ActionName: 'Gameplay/Inventory[/Keyboard/i]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9485bf6-4f16-43f6-9065-6110faac3d90
+    m_ActionName: 'Gameplay/Chop__W[/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ffb3aed-4af5-4a3c-a63f-f2a83d4c2373
+    m_ActionName: 'Gameplay/Chop_A[/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe7460db-a7c4-49aa-b14c-c83c4191cb33
+    m_ActionName: 'Gameplay/Chop_S[/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5b264a82-a691-4932-8a5e-7356403609b7
+    m_ActionName: 'Gameplay/Chop__D[/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -621,9 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d8130fcb20f6f42b042b9d98d70ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGrab
-  PlayerGrabPoint: {fileID: 2506867188676803050}
   IsPlayerCarryingObject: 0
-  PlayerAnimation: {fileID: 3778112114396300799}
   EvtOnGrab:
     m_PersistentCalls:
       m_Calls:
@@ -711,9 +721,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   InventoryPanel: {fileID: 0}
   SlotPrefab: {fileID: 1070585376230951824, guid: 0119e63300aad504f87a5bd822f716c9, type: 3}
-  SlotCount: 15
-  Item: []
   PlayerInventoryUI: {fileID: 0}
+  InventoryStatusUI: {fileID: 0}
+  CurrentWeight: 0
+  MaxWeight: 0
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1263,10 @@ MonoBehaviour:
     m_Bits: 4294967295
   ui_interactionTab: {fileID: 0}
   enableDelay: 0.1
+  inputW: {fileID: 0}
+  inputA: {fileID: 0}
+  inputS: {fileID: 0}
+  inputD: {fileID: 0}
 --- !u!114 &2962641263942207459
 MonoBehaviour:
   m_ObjectHideFlags: 0

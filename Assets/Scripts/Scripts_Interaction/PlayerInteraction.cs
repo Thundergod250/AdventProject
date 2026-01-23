@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -22,21 +23,10 @@ public class PlayerInteraction : MonoBehaviour
     private Coroutine enableRoutine;
     private WaitForSeconds raycastInterval = new WaitForSeconds(0.1f);
 
-    [Header("Minigame Inputs (WASD)")]
-    public InputActionReference inputW;
-    public InputActionReference inputA;
-    public InputActionReference inputS;
-    public InputActionReference inputD;
-
     private void OnEnable()
     {
         if (enableRoutine == null)
             enableRoutine = StartCoroutine(EnableWithDelay());
-
-        inputW?.action.Enable();
-        inputA?.action.Enable();
-        inputS?.action.Enable();
-        inputD?.action.Enable();
     }
 
     private void OnDisable()
@@ -145,18 +135,6 @@ public class PlayerInteraction : MonoBehaviour
         ui_interactionTab.Hide();
     }
 
-    public bool IsCorrectInput(WASDKey key)
-    {
-        return key switch
-        {
-            WASDKey.W => inputW.action.WasPressedThisFrame(),
-            WASDKey.A => inputA.action.WasPressedThisFrame(),
-            WASDKey.S => inputS.action.WasPressedThisFrame(),
-            WASDKey.D => inputD.action.WasPressedThisFrame(),
-            _ => false
-        };
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
@@ -173,5 +151,22 @@ public class PlayerInteraction : MonoBehaviour
         Vector3 boxCenter = transform.position + transform.TransformDirection(boxOffset);
         Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, boxSize);
         Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+    }
+
+    //Hitscan Function
+    public void OnClickPerformed(InputAction.CallbackContext context)
+    {
+        Ray ray = new Ray(this.gameObject.transform.position + Vector3.up, this.gameObject.transform.forward);
+
+        //Limits how far you can look
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+        {
+            Debug.Log("Hit object: " + hit.collider.gameObject.name);
+            if (hit.collider.gameObject.GetComponent<Interactable>())
+            {
+                currentInteractable.Interact();
+                currentInteractable = null;
+            }
+        }
     }
 }

@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
         PlayerInventory.InventoryOnOpenInventory(context);
     }
 
+    public void OnLeftClick(InputAction.CallbackContext context)
+    {
+        PlayerInteraction.OnClickPerformed(context);
+    }
+
     // === Movement Control Methods ===
     public void EnableMovement()
     {
