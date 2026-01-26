@@ -24,20 +24,13 @@ public class UI_Manager : MonoBehaviour
         {
             if (group != null)
                 group.SetActive(group == targetGroup);
-            UI_TowerShop.ClearCards();
         }
     }
 
     public void FocusMainUIGroup() => FocusUI(mainUiGroup);
 
     public void FocusTowerUpgrades() => FocusUI(towerUpgrades);
-
-    public void FocusTowerUpgradesWithCondition(TowerController towerController)
-    {
-        FocusUI(towerUpgrades);
-        UI_TowerShop.ShowShopButtons(towerController != null);
-    }
-
+    
     public void RegisterUIGroup(GameObject newGroup)
     {
         if (newGroup != null && !uiGroups.Contains(newGroup))

@@ -6,9 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float slashCooldown = 1f; 
     [SerializeField] private GameObject bulletPrefab;   // assign in Inspector
-    [SerializeField] private Transform bulletSpawnPoint; // optional spawn point (e.g. hand or front of player)
-    [SerializeField] private float bulletSpeed = 15f;
-    [SerializeField] private float bulletLifetime = 1.5f;
+    [SerializeField] private Transform bulletSpawnPoint; // optional spawn point
 
     private bool canSlash = true;
 
@@ -30,20 +28,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (bulletPrefab == null) return;
 
-        // Use spawn point if provided, otherwise player position
         Transform spawn = bulletSpawnPoint != null ? bulletSpawnPoint : transform;
-
-        GameObject bullet = Instantiate(bulletPrefab, spawn.position, spawn.rotation);
-
-        // Give it forward velocity
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.linearVelocity = spawn.forward * bulletSpeed;
-        }
-
-        // Destroy after lifetime
-        Destroy(bullet, bulletLifetime);
+        Instantiate(bulletPrefab, spawn.position, spawn.rotation);
     }
 
     private IEnumerator SlashCooldownRoutine()

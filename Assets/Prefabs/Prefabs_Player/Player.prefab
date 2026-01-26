@@ -725,8 +725,8 @@ MonoBehaviour:
   slashCooldown: 1
   bulletPrefab: {fileID: 3886554215781179537, guid: 324d910ee5b715942b7dfb83d052a6c2, type: 3}
   bulletSpawnPoint: {fileID: 2878381358046898893}
-  bulletSpeed: 15
-  bulletLifetime: 1
+  bulletSpeed: 20
+  bulletLifetime: 0.5
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
