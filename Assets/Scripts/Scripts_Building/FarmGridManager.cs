@@ -35,12 +35,12 @@ public class FarmGridManager : MonoBehaviour
                 tile.name = $"Tile_{x}_{y}";
                 tile.transform.parent = transform;
 
-                var upgradePlatform = tile.GetComponent<Building_UpgradePlatform>();
-                if (upgradePlatform != null)
+                var farmTile = tile.GetComponent<Upgrade_FarmTile>();
+                if (farmTile != null)
                 {
-                    upgradePlatform.gridManager = this;
-                    upgradePlatform.gridX = x;
-                    upgradePlatform.gridY = y;
+                    farmTile.gridManager = this;
+                    farmTile.gridX = x;
+                    farmTile.gridY = y;
                 }
 
                 bool isTopRight = (x == gridWidth - 1) && (y == gridHeight - 1);

@@ -2274,9 +2274,9 @@ PrefabInstance:
       value: Tutorial Area
       objectReference: {fileID: 0}
     - target: {fileID: 3893984012227389236, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      propertyPath: farmTilePrefab
+      propertyPath: buyPlatformTilePrefab
       value: 
-      objectReference: {fileID: 3014596623018988444, guid: c7510bf43ed615a4e8d869ea36b77aeb, type: 3}
+      objectReference: {fileID: 3595906604389251248, guid: 51081b3004e320b48b420c9cb9312a52, type: 3}
     - target: {fileID: 4567186530254124272, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2317,7 +2317,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6720129001594814847, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
     m_RemovedGameObjects:
     - {fileID: -2853551653595865084, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
     m_AddedGameObjects: []

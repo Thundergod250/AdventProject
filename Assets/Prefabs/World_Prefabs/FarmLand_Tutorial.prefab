@@ -49,7 +49,7 @@ MonoBehaviour:
   gridWidth: 10
   gridHeight: 10
   tileSpacing: 2.5
-  buyPlatformTilePrefab: {fileID: 8984636300372691237, guid: e2c941382375e2a43ae00e723b1b2d99, type: 3}
+  buyPlatformTilePrefab: {fileID: 3595906604389251248, guid: 51081b3004e320b48b420c9cb9312a52, type: 3}
   farmTilePrefab: {fileID: 3014596623018988444, guid: c7510bf43ed615a4e8d869ea36b77aeb, type: 3}
 --- !u!1001 &4229850817161920277
 PrefabInstance:
@@ -165,7 +165,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradeBox_Mesh
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5684487273121174160, guid: e2c941382375e2a43ae00e723b1b2d99, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
