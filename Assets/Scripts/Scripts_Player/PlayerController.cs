@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public PlayerAttack PlayerAttack; 
     public Animator animator;
 
-
     private void Start()
     {
         if (GameManager.Instance != null)

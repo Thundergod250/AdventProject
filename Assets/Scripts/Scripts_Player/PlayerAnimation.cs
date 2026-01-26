@@ -1,8 +1,8 @@
+using System;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
 
     [Header("Normal States")]
     [SerializeField] private string idleState = "Idle";
@@ -13,7 +13,10 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private string grabState = "Basic Grab";
     [SerializeField] private string slashState = "Slash";
 
+    private Animator animator;
     private string currentState;
+
+    private void Start() => animator = GameManager.Instance.PlayerController.animator;
 
     private void PlayState(string stateName, float crossFade = 0.05f)
     {

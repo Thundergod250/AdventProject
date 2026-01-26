@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
 
     [SerializeField] private Transform cameraTransform;
-    [SerializeField] private PlayerAnimation playerAnimation;
 
     private bool canMove = true;
     private bool isJumping = false;
@@ -22,10 +21,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Noclip Settings")]
     [SerializeField] private float noclipSpeed = 15f;
-
+    
+    private PlayerAnimation playerAnimation;
+    
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        playerAnimation = GameManager.Instance.PlayerController.PlayerAnimation; 
 
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
