@@ -19,16 +19,13 @@ public class Breakable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HIT HIT HIT");
-        // Check if hit by a projectile
-        if (other.gameObject.GetComponent<ProjectileBase>())
+        if (other.TryGetComponent(out ProjectileBase projectile))
         {
-            ProjectileBase projectile = other.gameObject.GetComponent<ProjectileBase>(); 
-            Debug.Log("DAMAGE TAKEN");
-            health?.TakeDamage(25); // damage value, adjust as needed
-            Destroy(projectile.gameObject); // remove projectile on impact
+            health?.TakeDamage(25); // adjust damage as needed
+            Destroy(projectile.gameObject);
         }
     }
+
     
     private void HandleDeath()
     {
@@ -40,10 +37,8 @@ public class Breakable : MonoBehaviour
         }
 
         // Drop resource
-        if (resourceDropped != null)
-        {
+        if (resourceDropped != null) 
             Instantiate(resourceDropped, transform.position, Quaternion.identity);
-        }
 
         // Destroy this breakable object
         Destroy(gameObject);
