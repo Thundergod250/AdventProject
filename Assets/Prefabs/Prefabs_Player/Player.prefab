@@ -417,7 +417,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -602,7 +602,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   cameraTransform: {fileID: 3986986069622755096}
-  playerAnimation: {fileID: 8407781069043861718}
   speed: 8
   jumpHeight: 2
   gravity: -19.6
@@ -723,7 +722,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80ca29ff50cd3241b79c0b5ae821cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  playerAnimation: {fileID: 8407781069043861718}
+  slashCooldown: 1
+  bulletPrefab: {fileID: 3886554215781179537, guid: 324d910ee5b715942b7dfb83d052a6c2, type: 3}
+  bulletSpawnPoint: {fileID: 2878381358046898893}
+  bulletSpeed: 15
+  bulletLifetime: 1
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,7 +1434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13282ba931675df4ba09e84c038fb0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
-  animator: {fileID: 2097000520802548608}
   idleState: Idle
   runState: Walk
   jumpState: Jump

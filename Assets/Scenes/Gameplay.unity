@@ -1807,10 +1807,22 @@ PrefabInstance:
       propertyPath: ui_interactionTab
       value: 
       objectReference: {fileID: 1977973918}
+    - target: {fileID: 560419357319343064, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1367724001468933626, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2132086252992222447, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 3886554215781179537, guid: 324d910ee5b715942b7dfb83d052a6c2, type: 3}
+    - target: {fileID: 2132086252992222447, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: bulletSpawnPoint
+      value: 
+      objectReference: {fileID: 3688964133521184822}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 226.45027
@@ -1879,6 +1891,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99352152eabbe7447b95b67ce1de4098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!4 &3688964133521184822 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+  m_PrefabInstance: {fileID: 3688964133521184811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3971589712687983088
 PrefabInstance:
   m_ObjectHideFlags: 0
