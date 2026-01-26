@@ -813,29 +813,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: 4f379d4a89ae7d545838884624e51e91, type: 3}
   m_ActionId: 5b264a82-a691-4932-8a5e-7356403609b7
---- !u!1 &1123473526 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4614156883726752881, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-  m_PrefabInstance: {fileID: 6720083353953556391}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1123473528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123473526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3aeb4546db331488ef4d1be36ca9f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FarmGridManager
-  gridWidth: 4
-  gridHeight: 4
-  tileSpacing: 2
-  origin: {x: 0, y: 0, z: 0}
-  farmTilePrefab: {fileID: 3014596623018988444, guid: c7510bf43ed615a4e8d869ea36b77aeb, type: 3}
-  upgradePlatformPrefab: {fileID: 8984636300372691237, guid: e2c941382375e2a43ae00e723b1b2d99, type: 3}
 --- !u!1 &1213180628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,6 +2273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial Area
       objectReference: {fileID: 0}
+    - target: {fileID: 3893984012227389236, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: farmTilePrefab
+      value: 
+      objectReference: {fileID: 3014596623018988444, guid: c7510bf43ed615a4e8d869ea36b77aeb, type: 3}
     - target: {fileID: 4567186530254124272, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2340,10 +2321,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: -2853551653595865084, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4614156883726752881, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1123473528}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
 --- !u!4 &6720083353953556392 stripped
 Transform:

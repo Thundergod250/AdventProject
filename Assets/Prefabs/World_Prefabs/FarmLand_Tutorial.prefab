@@ -50,6 +50,7 @@ MonoBehaviour:
   gridHeight: 10
   tileSpacing: 2.5
   buyPlatformTilePrefab: {fileID: 8984636300372691237, guid: e2c941382375e2a43ae00e723b1b2d99, type: 3}
+  farmTilePrefab: {fileID: 3014596623018988444, guid: c7510bf43ed615a4e8d869ea36b77aeb, type: 3}
 --- !u!1001 &4229850817161920277
 PrefabInstance:
   m_ObjectHideFlags: 0

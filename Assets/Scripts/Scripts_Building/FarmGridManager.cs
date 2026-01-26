@@ -9,18 +9,18 @@ public class FarmGridManager : MonoBehaviour
 
     [Header("Prefabs")]
     public GameObject buyPlatformTilePrefab;
+    public GameObject farmTilePrefab;
 
     private void Start() => GenerateGrid();
 
     private void GenerateGrid()
     {
-        if (buyPlatformTilePrefab == null)
+        if (buyPlatformTilePrefab == null || farmTilePrefab == null)
         {
-            Debug.LogError("BuyPlatformTilePrefab is not assigned!");
+            Debug.LogError("Prefabs are not assigned!");
             return;
         }
 
-        // Calculate offsets so grid is centered
         float offsetX = (gridWidth - 1) * tileSpacing / 2f;
         float offsetZ = (gridHeight - 1) * tileSpacing / 2f;
 
@@ -28,18 +28,13 @@ public class FarmGridManager : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                // Local position relative to manager
                 Vector3 localPos = new Vector3(x * tileSpacing - offsetX, 0f, y * tileSpacing - offsetZ);
-
-                // Convert local position into world space using manager’s transform
                 Vector3 worldPos = transform.TransformPoint(localPos);
 
-                // Instantiate with manager’s rotation
                 GameObject tile = Instantiate(buyPlatformTilePrefab, worldPos, transform.rotation);
                 tile.name = $"Tile_{x}_{y}";
                 tile.transform.parent = transform;
 
-                // Assign grid data directly
                 var upgradePlatform = tile.GetComponent<Building_UpgradePlatform>();
                 if (upgradePlatform != null)
                 {
@@ -48,7 +43,6 @@ public class FarmGridManager : MonoBehaviour
                     upgradePlatform.gridY = y;
                 }
 
-                // Disable all tiles except the top‑right one
                 bool isTopRight = (x == gridWidth - 1) && (y == gridHeight - 1);
                 tile.SetActive(isTopRight);
             }
