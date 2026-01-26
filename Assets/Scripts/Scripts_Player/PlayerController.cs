@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInteraction PlayerInteraction;
     public PlayerGrab PlayerGrab;
     public PlayerInventory PlayerInventory;
+    public PlayerAttack PlayerAttack; 
     public Animator animator;
 
 
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftClick(InputAction.CallbackContext context)
     {
-        PlayerInteraction.OnClickPerformed(context);
+        PlayerAttack.OnSlash(context);
     }
 
     // === Movement Control Methods ===
