@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Breakable
   explosionVFX: {fileID: 8561264910821484625, guid: 45869b61cb96e064b92a8b02bd38a7f9, type: 3}
   explosionLifetime: 1
-  resourceDropped: {fileID: 1264588313684391851, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+  resourceDropped: {fileID: 6601367754676294331, guid: 3c232b62c594e264986038e5e0ffb7bd, type: 3}
 --- !u!114 &2525860721588990591
 MonoBehaviour:
   m_ObjectHideFlags: 0
