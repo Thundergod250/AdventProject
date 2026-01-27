@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-
     [Header("Normal States")]
     [SerializeField] private string idleState = "Idle";
     [SerializeField] private string runState = "Walk";
@@ -45,6 +43,17 @@ public class PlayerAnimation : MonoBehaviour
     {
         currentState = null; // allow movement to take over again
     }
+
+    // 🔑 Called via Animation Event at end of Grab animation
+    public void OnGrabAnimationEnd()
+    {
+        currentState = null; // reset so movement can take over
+
+        var movement = GameManager.Instance.PlayerController.PlayerMovement;
+        if (movement != null) 
+            UpdateMovementAnimation(movement.CurrentSpeed, movement.IsJumping);
+    }
+
 
     public void ResetAnimations() => PlayState(idleState, 0.1f);
 }
