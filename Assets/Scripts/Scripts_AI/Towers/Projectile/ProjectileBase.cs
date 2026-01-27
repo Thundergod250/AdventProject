@@ -1,132 +1,40 @@
+using System;
 using UnityEngine;
 
 public class ProjectileBase : MonoBehaviour
 {
-    public enum ProjectileOwnerType
+    [SerializeField] private float speed = 15f;
+    [SerializeField] private float lifetime = 1.5f;
+    [SerializeField] private GameObject explosionVFX; // optional prefab for impact effect
+    [SerializeField] private float explosionLifetime = 1f; // how long the VFX stays before despawn
+
+    private Rigidbody rb;
+
+    private void Awake()
     {
-        Tower,
-        Enemy
+        rb = GetComponent<Rigidbody>();
     }
 
-    private Transform target;
-    private int damage;
-    private float speed;
-    private GameObject prefabRef; 
-    private ProjectileOwnerType ownerType;
-
-    [Header("Lifetime")]
-    [SerializeField] private float lifetime = 5f;
-    private float lifeTimer;
-
-    [Header("Explosion VFX")]
-    [SerializeField] private GameObject explosionVFX; // pooled explosion prefab
-    
-    public void Initialize(Transform target, int damage, float speed, GameObject prefabRef, ProjectileOwnerType ownerType)
+    private void Start()
     {
-        this.target = target;
-        this.damage = damage;
-        this.speed = speed;
-        this.prefabRef = prefabRef;
-        this.ownerType = ownerType;
+        // Move forward immediately
+        if (rb != null)
+            rb.linearVelocity = transform.forward * speed;
 
-        lifeTimer = lifetime;
+        // Auto-despawn after lifetime
+        Destroy(gameObject, lifetime);
     }
 
-    private void Update()
-    {
-        // Lifetime countdown
-        lifeTimer -= Time.deltaTime;
-        if (lifeTimer <= 0f)
-        {
-            Explode();
-            Debug.Log("This " + gameObject.name + " exploded on Timer");
-            ReturnToPool();
-            return;
-        }
-
-        if (target == null)
-        {
-            Explode();
-            Debug.Log("This " + gameObject.name + " exploded on No Target");
-            ReturnToPool();
-            return;
-        }
-
-        // Move toward target
-        Vector3 direction = (target.position - transform.position).normalized;
-        transform.position += direction * (speed * Time.deltaTime);
-
-        // Rotate projectile to face its movement direction
-        if (direction.sqrMagnitude > 0.001f)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
-    }
-    
-    private void ApplyDamageToEnemy(EnemyBase enemy)
-    {
-        if (enemy != null) 
-            enemy.Health.TakeDamage(damage);
-    }
-    
-    private void ApplyDamageToTower(TowerController tower)
-    {
-        if (tower != null) 
-            tower.TowerHealth.TakeDamage(damage);
-    }
-    
     private void OnTriggerEnter(Collider other)
     {
-        // Ignore self collisions or unrelated colliders
-        if (other.gameObject == gameObject) return;
-
-        if (ownerType == ProjectileOwnerType.Tower)
+        // Spawn VFX if assigned
+        if (explosionVFX != null)
         {
-            if (other.TryGetComponent(out EnemyBase enemy))
-            {
-                ApplyDamageToEnemy(enemy);
-                Debug.Log($"{gameObject.name} hit Enemy: {enemy.name}");
-                Explode();
-                ReturnToPool();
-            }
+            GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
+            Destroy(vfx, explosionLifetime); // destroy VFX after its lifetime
         }
 
-        if (ownerType == ProjectileOwnerType.Enemy)
-        {
-            if (other.TryGetComponent(out TowerController tower))
-            {
-                ApplyDamageToTower(tower);
-                Debug.Log($"{gameObject.name} hit Tower: {tower.name}");
-                Explode();
-                ReturnToPool();
-            }
-        }
-    }
-
-    
-    private void Explode()
-    {
-        if (explosionVFX == null) return;
-
-        // Spawn explosion via pooling
-        GameObject vfx = GameManager.Instance.SpawnObject(
-            explosionVFX,
-            null,
-            transform.position,
-            Quaternion.identity
-        );
-
-        // If explosion prefab has DelayDisable, it will auto‑return
-        var delay = vfx.GetComponent<DelayDisable>();
-        if (delay != null)
-            delay.SetPrefabReference(explosionVFX);
-    }
-    
-    private void ReturnToPool()
-    {
-        if (prefabRef != null)
-            GameManager.Instance.ObjectPooling.Return(prefabRef, gameObject);
-        else
-            gameObject.SetActive(false);
+        // Destroy projectile on impact
+        Destroy(gameObject);
     }
 }

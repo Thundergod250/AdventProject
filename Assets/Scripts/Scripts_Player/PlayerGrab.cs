@@ -23,10 +23,14 @@ public class PlayerGrab : MonoBehaviour
 
     public void GrabObject(GarbageObject obj)
     {
-        if(GameManager.Instance.PlayerInventory.CurrentWeight < GameManager.Instance.PlayerInventory.MaxWeight)
+        Debug.Log("OBJECT GRABBED");
+        if (GameManager.Instance.PlayerInventory.CurrentWeight < GameManager.Instance.PlayerInventory.MaxWeight)
         {
             GameManager.Instance.PlayerInventory.AddToInventory(obj);
             Destroy(obj.gameObject); // TO CONVERT TO OBJECT POOLING
+
+            // 🔑 Trigger grab animation
+            GameManager.Instance.PlayerController.PlayerAnimation?.TriggerGrab();
         }
         else
         {

@@ -83,11 +83,11 @@ public class EnemyMovement : MonoBehaviour
     {
         roamTimer -= Time.deltaTime;
 
-        if (roamTimer <= 0f || (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance))
+        /*if (roamTimer <= 0f || (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance))
         {
             SetNewDestination();
             roamTimer = roamInterval;
-        }
+        }*/
     }
 
     private void SetNewDestination()

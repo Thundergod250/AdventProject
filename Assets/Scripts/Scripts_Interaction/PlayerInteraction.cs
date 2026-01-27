@@ -152,21 +152,4 @@ public class PlayerInteraction : MonoBehaviour
         Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, boxSize);
         Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
     }
-
-    //Hitscan Function
-    public void OnClickPerformed(InputAction.CallbackContext context)
-    {
-        Ray ray = new Ray(this.gameObject.transform.position + Vector3.up, this.gameObject.transform.forward);
-
-        //Limits how far you can look
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
-        {
-            Debug.Log("Hit object: " + hit.collider.gameObject.name);
-            if (hit.collider.gameObject.GetComponent<Interactable>())
-            {
-                currentInteractable.Interact();
-                currentInteractable = null;
-            }
-        }
-    }
 }
