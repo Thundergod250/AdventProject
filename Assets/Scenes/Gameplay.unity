@@ -1260,7 +1260,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CampFunding
   money: 0
   moneyPerSecond: 1
+  updateInterval: 5
   EvtOnMoneyChange:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnRateChange:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1430492520
@@ -2487,12 +2491,6 @@ PrefabInstance:
     - target: {fileID: 8239639484298854748, guid: 98203da19b32212498723b1628efda8b, type: 3}
       propertyPath: m_Name
       value: ProfitBoard
-      objectReference: {fileID: 0}
-    - target: {fileID: 8832178590952654224, guid: 98203da19b32212498723b1628efda8b, type: 3}
-      propertyPath: m_text
-      value: '0
-
-'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
