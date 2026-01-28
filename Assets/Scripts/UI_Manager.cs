@@ -7,24 +7,15 @@ public class UI_Manager : MonoBehaviour
     private GameObject currentUI;
     private GameObject previousUI;
 
+    [SerializeField] private PlayerManipulator playerManipulator;
+
     private void Awake()
     {
-        foreach (UIPanelIdentifier identifier in GetComponentsInChildren<UIPanelIdentifier>(true))
+        foreach (var identifier in GetComponentsInChildren<UIPanelIdentifier>(true))
         {
             if (!panelLookup.ContainsKey(identifier.PanelType))
                 panelLookup.Add(identifier.PanelType, identifier.gameObject);
         }
-    }
-    
-    public void ToggleUI(UIPanelType type)
-    {
-        if (!panelLookup.TryGetValue(type, out var targetUI)) return;
-
-        // If it's already the current UI and active → close it
-        if (currentUI == targetUI && currentUI.activeSelf)
-            CloseCurrentUI();
-        else
-            OpenUI(type);
     }
 
     public void OpenUI(UIPanelType type)
@@ -36,6 +27,9 @@ public class UI_Manager : MonoBehaviour
 
         previousUI = currentUI;
         currentUI = targetUI;
+
+        // 🔒 Disable player control when UI is open
+        playerManipulator?._DisableAllMovement();
     }
 
     public void CloseCurrentUI()
@@ -44,7 +38,18 @@ public class UI_Manager : MonoBehaviour
         {
             currentUI.SetActive(false);
             currentUI = null;
+
+            // 🔓 Re-enable player control when UI closes
+            playerManipulator?._EnableAllMovement();
         }
+    }
+
+    public void ToggleUI(UIPanelType type)
+    {
+        if (currentUI != null && GetPanelType(currentUI) == type)
+            CloseCurrentUI();
+        else
+            OpenUI(type);
     }
 
     public void GoBackToPreviousUI()

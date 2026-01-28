@@ -1374,17 +1374,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
---- !u!114 &1622678045 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 52962085420262557, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-  m_PrefabInstance: {fileID: 3688964133521184811}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c940b9b1370126249aff8e2172c8df85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
 --- !u!114 &1811346353 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2205877847749605719, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
@@ -1956,122 +1945,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
-      value: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
-      value: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
-      value: 1ea9afdf-f252-4665-854c-7893b3d18a71
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: e47361a3-e910-468a-8453-9d95029071dc
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
-      value: a9485bf6-4f16-43f6-9065-6110faac3d90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
-      value: 6ffb3aed-4af5-4a3c-a63f-f2a83d4c2373
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
-      value: fe7460db-a7c4-49aa-b14c-c83c4191cb33
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
-      value: 5b264a82-a691-4932-8a5e-7356403609b7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
-      value: 1f6d59d2-a13c-4266-8e77-ca789e934c9f
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
-      value: fc6808a3-6fc6-4530-99a2-be2ca60cbcd9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
-      value: 'Gameplay/Scroll[/Mouse/scroll/y]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
-      value: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
-      value: 'Gameplay/GoldIncrease[/Keyboard/ctrl,/Keyboard/rightBracket]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: 'Gameplay/Inventory[/Keyboard/i]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
-      value: 'Gameplay/Chop__W[/Keyboard/w]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
-      value: 'Gameplay/Chop_A[/Keyboard/a]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
-      value: 'Gameplay/Chop_S[/Keyboard/s]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_ActionName
-      value: 'Gameplay/Chop__D[/Keyboard/d]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
-      value: 'Gameplay/LeftClick[/Mouse/leftButton]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
-      value: 'Gameplay/Interact[/Keyboard/f]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1622678045}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnInteract
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerInteraction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6575858084935877479, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: InventoryPanel
       value: 
@@ -2080,10 +1953,6 @@ PrefabInstance:
       propertyPath: InventoryStatusUI
       value: 
       objectReference: {fileID: 7788687841394568308}
-    - target: {fileID: 6575858084935877479, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: PlayerInventoryUI
-      value: 
-      objectReference: {fileID: 7788687841394568306}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2551,11 +2420,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
---- !u!1 &7788687841394568306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4685201163648083180, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
-  m_PrefabInstance: {fileID: 7788687841394568305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7788687841394568307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 151825153019268791, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}

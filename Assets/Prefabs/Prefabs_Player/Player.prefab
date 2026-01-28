@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 1632417819172464259}
   - component: {fileID: 1127985473742766121}
   - component: {fileID: 8430264172108288562}
-  - component: {fileID: 4549943407503985007}
+  - component: {fileID: 1311181230335843113}
   - component: {fileID: 6575858084935877479}
   - component: {fileID: 2132086252992222447}
   m_Layer: 9
@@ -584,6 +584,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1f6d59d2-a13c-4266-8e77-ca789e934c9f
     m_ActionName: 'Gameplay/LeftClick[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc6808a3-6fc6-4530-99a2-be2ca60cbcd9
+    m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5e03f932-ef01-4466-affe-5d998ab9d734
+    m_ActionName: 'Gameplay/Escape[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -622,20 +630,8 @@ MonoBehaviour:
   EvtOnGrab:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4549943407503985007}
-        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
-        m_MethodName: _DisableInteraction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4549943407503985007}
-        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+      - m_Target: {fileID: 1311181230335843113}
+        m_TargetAssemblyTypeName: PlayerManipulator, Assembly-CSharp
         m_MethodName: _DisableInteraction
         m_Mode: 1
         m_Arguments:
@@ -649,8 +645,8 @@ MonoBehaviour:
   EvtOnReleaseGrabObj:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4549943407503985007}
-        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+      - m_Target: {fileID: 1311181230335843113}
+        m_TargetAssemblyTypeName: PlayerManipulator, Assembly-CSharp
         m_MethodName: _EnableInteraction
         m_Mode: 1
         m_Arguments:
@@ -664,8 +660,8 @@ MonoBehaviour:
   EvtOnRemovedGrabbedObject:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4549943407503985007}
-        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+      - m_Target: {fileID: 1311181230335843113}
+        m_TargetAssemblyTypeName: PlayerManipulator, Assembly-CSharp
         m_MethodName: _EnableInteraction
         m_Mode: 1
         m_Arguments:
@@ -676,11 +672,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  tossForce: 10
-  grabDelay: 0.2
-  downwardForceMultiplier: 1
-  downwardRampRate: 10
---- !u!114 &4549943407503985007
+--- !u!114 &1311181230335843113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -689,9 +681,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1367724001468933626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d9c8720df4f2ed4fa681e0502319cc0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManipulator
 --- !u!114 &6575858084935877479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,7 +698,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   InventoryPanel: {fileID: 0}
   SlotPrefab: {fileID: 1070585376230951824, guid: 0119e63300aad504f87a5bd822f716c9, type: 3}
-  PlayerInventoryUI: {fileID: 0}
   InventoryStatusUI: {fileID: 0}
   CurrentWeight: 0
   MaxWeight: 20
@@ -725,8 +716,6 @@ MonoBehaviour:
   slashCooldown: 1
   bulletPrefab: {fileID: 3886554215781179537, guid: 324d910ee5b715942b7dfb83d052a6c2, type: 3}
   bulletSpawnPoint: {fileID: 2878381358046898893}
-  bulletSpeed: 20
-  bulletLifetime: 0.5
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,6 +1288,42 @@ MonoBehaviour:
     m_ActionId: 07dbfa22-c426-4a2b-994c-c0ea06a73644
     m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
+    m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
+    m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ea9afdf-f252-4665-854c-7893b3d18a71
+    m_ActionName: 'Gameplay/GoldIncrease[/Keyboard/ctrl,/Keyboard/rightBracket]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e47361a3-e910-468a-8453-9d95029071dc
+    m_ActionName: 'Gameplay/Inventory[/Keyboard/i]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9485bf6-4f16-43f6-9065-6110faac3d90
+    m_ActionName: 'Gameplay/Chop__W[/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ffb3aed-4af5-4a3c-a63f-f2a83d4c2373
+    m_ActionName: 'Gameplay/Chop_A[/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe7460db-a7c4-49aa-b14c-c83c4191cb33
+    m_ActionName: 'Gameplay/Chop_S[/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5b264a82-a691-4932-8a5e-7356403609b7
+    m_ActionName: 'Gameplay/Chop__D[/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f6d59d2-a13c-4266-8e77-ca789e934c9f
+    m_ActionName: 'Gameplay/LeftClick[/Mouse/leftButton]'
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 52962085420262557}
         m_TargetAssemblyTypeName: PlayerInteraction, Assembly-CSharp
@@ -1312,16 +1337,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: eaf488b4-919f-42bf-9ba4-79109e8c5a4d
+    m_ActionId: fc6808a3-6fc6-4530-99a2-be2ca60cbcd9
     m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
-    m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
-    m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
