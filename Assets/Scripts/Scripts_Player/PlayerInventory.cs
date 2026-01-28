@@ -14,7 +14,7 @@ public class PlayerInventory : MonoBehaviour
     public int CurrentWeight;
     public int MaxWeight;
 
-    public void InventoryOnOpenInventory(InputAction.CallbackContext context) => GameManager.Instance.UIManager.OpenUI(UIPanelType.Inventory);
+    public void InventoryOnOpenInventory(InputAction.CallbackContext context) => GameManager.Instance.UIManager.ToggleUI(UIPanelType.Inventory);
 
     public void AddToInventory(GarbageObject garbageObject)
     {

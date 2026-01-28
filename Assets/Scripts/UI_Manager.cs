@@ -15,6 +15,17 @@ public class UI_Manager : MonoBehaviour
                 panelLookup.Add(identifier.PanelType, identifier.gameObject);
         }
     }
+    
+    public void ToggleUI(UIPanelType type)
+    {
+        if (!panelLookup.TryGetValue(type, out var targetUI)) return;
+
+        // If it's already the current UI and active → close it
+        if (currentUI == targetUI && currentUI.activeSelf)
+            CloseCurrentUI();
+        else
+            OpenUI(type);
+    }
 
     public void OpenUI(UIPanelType type)
     {
