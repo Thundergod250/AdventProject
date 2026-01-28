@@ -31,6 +31,7 @@ public class CampFunding : MonoBehaviour
     public int CollectMoney()
     {
         int collected = money;
+        GameManager.Instance.GoldManager.AddGold(collected);
 
         // Reset storage
         money = 0;
