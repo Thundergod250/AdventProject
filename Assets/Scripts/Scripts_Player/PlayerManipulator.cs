@@ -6,21 +6,15 @@ public class PlayerManipulator : MonoBehaviour
     public void _DisableInteraction()
     {
         var interaction = GameManager.Instance.PlayerController.PlayerInteraction;
-        if (interaction != null)
-        {
-            GameManager.Instance.UIManager.UI_Grab_Tab.EnableGrabTab();
+        if (interaction != null) 
             interaction.enabled = false;
-        }
     }
 
     public void _EnableInteraction()
     {
         var interaction = GameManager.Instance.PlayerController.PlayerInteraction;
-        if (interaction != null)
-        {
-            GameManager.Instance.UIManager.UI_Grab_Tab.DisableGrabTab();
+        if (interaction != null) 
             interaction.enabled = true;
-        }
     }
 
     // === Player Movement Control ===

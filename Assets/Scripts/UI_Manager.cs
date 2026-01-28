@@ -3,36 +3,48 @@ using System.Collections.Generic;
 
 public class UI_Manager : MonoBehaviour
 {
-    public UI_Interaction UI_Interaction;
-    public UI_Gold UI_Gold;
-    public UI_Grab_Tab UI_Grab_Tab;
-
-    [SerializeField] private GameObject mainUiGroup;
-    [SerializeField] private GameObject towerUpgrades;
-
-    private List<GameObject> uiGroups;
+    private Dictionary<UIPanelType, GameObject> panelLookup = new();
+    private GameObject currentUI;
+    private GameObject previousUI;
 
     private void Awake()
     {
-        uiGroups = new List<GameObject> { mainUiGroup, towerUpgrades };
-    }
-
-    public void FocusUI(GameObject targetGroup)
-    {
-        foreach (var group in uiGroups)
+        foreach (UIPanelIdentifier identifier in GetComponentsInChildren<UIPanelIdentifier>(true))
         {
-            if (group != null)
-                group.SetActive(group == targetGroup);
+            if (!panelLookup.ContainsKey(identifier.PanelType))
+                panelLookup.Add(identifier.PanelType, identifier.gameObject);
         }
     }
 
-    public void FocusMainUIGroup() => FocusUI(mainUiGroup);
-
-    public void FocusTowerUpgrades() => FocusUI(towerUpgrades);
-    
-    public void RegisterUIGroup(GameObject newGroup)
+    public void OpenUI(UIPanelType type)
     {
-        if (newGroup != null && !uiGroups.Contains(newGroup))
-            uiGroups.Add(newGroup);
+        if (!panelLookup.TryGetValue(type, out var targetUI)) return;
+
+        foreach (var panel in panelLookup.Values)
+            panel.SetActive(panel == targetUI);
+
+        previousUI = currentUI;
+        currentUI = targetUI;
+    }
+
+    public void CloseCurrentUI()
+    {
+        if (currentUI != null)
+        {
+            currentUI.SetActive(false);
+            currentUI = null;
+        }
+    }
+
+    public void GoBackToPreviousUI()
+    {
+        if (previousUI != null)
+            OpenUI(GetPanelType(previousUI));
+    }
+
+    private UIPanelType GetPanelType(GameObject panel)
+    {
+        var id = panel.GetComponent<UIPanelIdentifier>();
+        return id != null ? id.PanelType : UIPanelType.None;
     }
 }
