@@ -36,12 +36,14 @@ public class PlayerManipulator : MonoBehaviour
     {
         _DisablePlayerMovement();
         _DisableCameraMovement();
+        _DisableInteraction();
     }
 
     public void _EnableAllMovement()
     {
         _EnablePlayerMovement();
         _EnableCameraMovement();
+        _EnableInteraction();
     }
 
     // === Grab Control ===
