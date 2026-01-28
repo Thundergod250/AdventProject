@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 4976667694289124026}
   - component: {fileID: 342567243704660054}
   - component: {fileID: 795946090175094835}
+  - component: {fileID: 2577231564277586765}
+  - component: {fileID: 5725884784581510388}
+  - component: {fileID: 7160368319273646297}
   m_Layer: 0
   m_Name: Rock3_Duos
   m_TagString: Untagged
@@ -110,3 +113,60 @@ LODGroup:
     renderers:
     - renderer: {fileID: 342567243704660054}
   m_Enabled: 1
+--- !u!65 &2577231564277586765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289687511462343589}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.621472, y: 3.0661516, z: 4.649279}
+  m_Center: {x: 2.05423, y: 0.854285, z: 0.6643667}
+--- !u!114 &5725884784581510388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289687511462343589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634841488cfca3047839a110a2295876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Breakable
+  explosionVFX: {fileID: 8561264910821484625, guid: 45869b61cb96e064b92a8b02bd38a7f9, type: 3}
+  explosionLifetime: 1
+  resourceDropped: {fileID: 8943704049594194540, guid: 54246c2e423ee8e4e965622f65d10aa5, type: 3}
+--- !u!114 &7160368319273646297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289687511462343589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  currentHealth: 0
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  startSetHealth: 100
