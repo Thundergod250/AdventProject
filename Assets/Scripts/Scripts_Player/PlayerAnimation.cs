@@ -41,8 +41,16 @@ public class PlayerAnimation : MonoBehaviour
     // Called via Animation Event at end of Slash animation
     public void OnSlashAnimationEnd()
     {
-        currentState = null; // allow movement to take over again
+        currentState = null;
+
+        var movement = GameManager.Instance.PlayerController.PlayerMovement;
+        if (movement != null)
+        {
+            // ✅ Immediately resume movement animation
+            UpdateMovementAnimation(movement.CurrentSpeed, movement.IsJumping);
+        }
     }
+
 
     // 🔑 Called via Animation Event at end of Grab animation
     public void OnGrabAnimationEnd()

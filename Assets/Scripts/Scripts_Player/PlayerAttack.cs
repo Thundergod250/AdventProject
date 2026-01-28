@@ -4,9 +4,10 @@ using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private float slashCooldown = 1f; 
-    [SerializeField] private GameObject bulletPrefab;   // assign in Inspector
-    [SerializeField] private Transform bulletSpawnPoint; // optional spawn point
+    [SerializeField] private float slashCooldown = 0.5f; 
+    [SerializeField] private float spawnDelay = 0.2f; // ⏱️ Editable delay before bullet spawns
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform bulletSpawnPoint;
 
     private bool canSlash = true;
 
@@ -14,19 +15,20 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!context.performed || !canSlash) return;
 
-        // ✅ Block attack if UI is open
         if (GameManager.Instance.UIManager.IsUIBlockingGameplay())
             return;
 
         GameManager.Instance.PlayerController.PlayerAnimation?.TriggerSlash();
-        SpawnBullet();
+
+        StartCoroutine(DelayedSpawnBullet());
         StartCoroutine(SlashCooldownRoutine());
     }
 
-
-    private void SpawnBullet()
+    private IEnumerator DelayedSpawnBullet()
     {
-        if (bulletPrefab == null) return;
+        yield return new WaitForSeconds(spawnDelay);
+
+        if (bulletPrefab == null) yield break;
 
         Transform spawn = bulletSpawnPoint != null ? bulletSpawnPoint : transform;
         Instantiate(bulletPrefab, spawn.position, spawn.rotation);

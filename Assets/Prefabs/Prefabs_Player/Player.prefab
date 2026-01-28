@@ -726,7 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80ca29ff50cd3241b79c0b5ae821cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  slashCooldown: 1
+  slashCooldown: 0.5
+  spawnDelay: 0.2
   bulletPrefab: {fileID: 3886554215781179537, guid: 324d910ee5b715942b7dfb83d052a6c2, type: 3}
   bulletSpawnPoint: {fileID: 2878381358046898893}
 --- !u!1 &3610988257724653628
