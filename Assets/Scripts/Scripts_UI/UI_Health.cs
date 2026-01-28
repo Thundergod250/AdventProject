@@ -27,7 +27,7 @@ public class UI_Health : MonoBehaviour
         healthBar.fillAmount = fillAmount;
     }
 
-    private void HideHealthBar()
+    public void HideHealthBar()
     {
         if (healthBar != null)
             healthBar.gameObject.SetActive(false);
