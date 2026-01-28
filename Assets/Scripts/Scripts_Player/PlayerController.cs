@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     public PlayerInteraction PlayerInteraction;
     public PlayerGrab PlayerGrab;
     public PlayerInventory PlayerInventory;
-    public PlayerAttack PlayerAttack; 
+    public PlayerAttack PlayerAttack;
+    public PlayerInput PlayerInput;
     public Animator animator;
 
     private void Start()

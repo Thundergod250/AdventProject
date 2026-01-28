@@ -14,15 +14,15 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!context.performed || !canSlash) return;
 
-        // Trigger animation
+        // ✅ Block attack if UI is open
+        if (GameManager.Instance.UIManager.IsUIBlockingGameplay())
+            return;
+
         GameManager.Instance.PlayerController.PlayerAnimation?.TriggerSlash();
-
-        // Spawn bullet
         SpawnBullet();
-
-        // Start cooldown
         StartCoroutine(SlashCooldownRoutine());
     }
+
 
     private void SpawnBullet()
     {
