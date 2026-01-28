@@ -1,0 +1,58 @@
+using UnityEngine;
+
+public class PlayerManipulator : MonoBehaviour
+{
+    // === Interaction Control ===
+    public void _DisableInteraction()
+    {
+        var interaction = GameManager.Instance.PlayerController.PlayerInteraction;
+        if (interaction != null)
+        {
+            GameManager.Instance.UIManager.UI_Grab_Tab.EnableGrabTab();
+            interaction.enabled = false;
+        }
+    }
+
+    public void _EnableInteraction()
+    {
+        var interaction = GameManager.Instance.PlayerController.PlayerInteraction;
+        if (interaction != null)
+        {
+            GameManager.Instance.UIManager.UI_Grab_Tab.DisableGrabTab();
+            interaction.enabled = true;
+        }
+    }
+
+    // === Player Movement Control ===
+    public void _DisablePlayerMovement() => GameManager.Instance.PlayerController?.DisableMovement();
+    public void _EnablePlayerMovement()  => GameManager.Instance.PlayerController?.EnableMovement();
+
+    // === Camera Control ===
+    public void _DisableCameraMovement() => GameManager.Instance.CameraManager?.DisableCamera();
+    public void _EnableCameraMovement()  => GameManager.Instance.CameraManager?.EnableCamera();
+
+    // === Combined Movement Control ===
+    public void _DisableAllMovement()
+    {
+        _DisablePlayerMovement();
+        _DisableCameraMovement();
+    }
+
+    public void _EnableAllMovement()
+    {
+        _EnablePlayerMovement();
+        _EnableCameraMovement();
+    }
+
+    // === Grab Control ===
+    public void _Grab(GameObject obj)
+    {
+        var grabber = GameManager.Instance.PlayerController.PlayerGrab;
+        if (grabber != null && obj != null)
+        {
+            var garbage = obj.GetComponent<GarbageObject>();
+            if (garbage != null) 
+                grabber.GrabObject(garbage);
+        }
+    }
+}
