@@ -14,8 +14,22 @@ public class PlayerInventory : MonoBehaviour
     
     public void AddItem(Item item)
     {
+        // Check if stackable item already exists
+        foreach (var existing in items)
+        {
+            if (existing.IsSameType(item))
+            {
+                existing.amount += item.amount;
+                Debug.Log($"Stacked {item.itemName} x{item.amount} → Total: {existing.amount}");
+                EvtOnInventoryChanged?.Invoke();
+                Destroy(item.gameObject); // remove world object
+                return;
+            }
+        }
+
+        // If no match, add as new entry
         items.Add(item);
-        Debug.Log($"Added {item.itemName} x{item.amount} to inventory.");
+        Debug.Log($"Added new {item.itemName} x{item.amount} to inventory.");
         EvtOnInventoryChanged?.Invoke();
     }
 
@@ -29,3 +43,5 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 }
+
+

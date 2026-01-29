@@ -13,7 +13,7 @@ public class UI_InventorySlot : MonoBehaviour
     public void SetItem(Item item)
     {
         currentItem = item;
-        //icon.sprite = item.icon;
         nameText.text = item.itemName;
-    }
+        amountText.text = item.amount.ToString(); // ✅ show stack count
+    }   
 }
