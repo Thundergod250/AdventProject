@@ -9829,9 +9829,8 @@ GameObject:
   - component: {fileID: 7145777823586653159}
   - component: {fileID: 7002138369905944064}
   - component: {fileID: 3046140517081157165}
-  - component: {fileID: 4979003084191942185}
+  - component: {fileID: -6599905774239323243}
   - component: {fileID: 4795285503929865688}
-  - component: {fileID: 6921081440568272960}
   m_Layer: 0
   m_Name: Resources_Main_Wood
   m_TagString: Untagged
@@ -10035,7 +10034,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4979003084191942185
+--- !u!114 &-6599905774239323243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10044,10 +10043,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6601367754676294331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a79547dfad44a34ea3f691bca08c7a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a7436cdaddd5834eb089c6cded87c0c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GarbageObject
-  ResourceData: {fileID: 11400000, guid: 0bbac307738b67043a423fa52e431a35, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Item_Resource
+  itemName: Wood
+  icon: {fileID: 0}
+  amount: 1
+  resourceType: 0
 --- !u!114 &4795285503929865688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10060,84 +10062,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7842c0f9522958e4183189877e6c26f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabManipulator
---- !u!114 &6921081440568272960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6601367754676294331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 4f379d4a89ae7d545838884624e51e91, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c5bc773d-0006-4a64-8f4f-7b4e32260f04
-    m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 07dbfa22-c426-4a2b-994c-c0ea06a73644
-    m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
-    m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
-    m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1ea9afdf-f252-4665-854c-7893b3d18a71
-    m_ActionName: 'Gameplay/GoldIncrease[/Keyboard/ctrl,/Keyboard/rightBracket]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e47361a3-e910-468a-8453-9d95029071dc
-    m_ActionName: 'Gameplay/Inventory[/Keyboard/i]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a9485bf6-4f16-43f6-9065-6110faac3d90
-    m_ActionName: 'Gameplay/Chop__W[/Keyboard/w]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6ffb3aed-4af5-4a3c-a63f-f2a83d4c2373
-    m_ActionName: 'Gameplay/Chop_A[/Keyboard/a]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fe7460db-a7c4-49aa-b14c-c83c4191cb33
-    m_ActionName: 'Gameplay/Chop_S[/Keyboard/s]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5b264a82-a691-4932-8a5e-7356403609b7
-    m_ActionName: 'Gameplay/Chop__D[/Keyboard/d]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f6d59d2-a13c-4266-8e77-ca789e934c9f
-    m_ActionName: 'Gameplay/LeftClick[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fc6808a3-6fc6-4530-99a2-be2ca60cbcd9
-    m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &7755832948106792604
 GameObject:
   m_ObjectHideFlags: 0

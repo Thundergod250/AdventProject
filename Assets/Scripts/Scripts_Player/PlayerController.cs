@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnOpeninventory(InputAction.CallbackContext context)
     {
-        PlayerInventory.InventoryOnOpenInventory(context);
+        //PlayerInventory.InventoryOnOpenInventory(context);
     }
 
     public void OnLeftClick(InputAction.CallbackContext context)

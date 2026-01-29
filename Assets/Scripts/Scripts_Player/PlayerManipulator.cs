@@ -43,12 +43,12 @@ public class PlayerManipulator : MonoBehaviour
     // === Grab Control ===
     public void _Grab(GameObject obj)
     {
-        var grabber = GameManager.Instance.PlayerController.PlayerGrab;
+        /*var grabber = GameManager.Instance.PlayerController.PlayerGrab;
         if (grabber != null && obj != null)
         {
             var garbage = obj.GetComponent<GarbageObject>();
             if (garbage != null) 
                 grabber.GrabObject(garbage);
-        }
+        }*/
     }
 }

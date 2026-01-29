@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6599905774239323243, guid: 3c232b62c594e264986038e5e0ffb7bd, type: 3}
+      propertyPath: itemName
+      value: Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: -6599905774239323243, guid: 3c232b62c594e264986038e5e0ffb7bd, type: 3}
+      propertyPath: resourceType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4482427371477418334, guid: 3c232b62c594e264986038e5e0ffb7bd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.19999999
@@ -102,6 +110,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6802885152454581093, guid: 3c232b62c594e264986038e5e0ffb7bd, type: 3}
   m_PrefabInstance: {fileID: 2847030938158368983}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8943704049594194540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6601367754676294331, guid: 3c232b62c594e264986038e5e0ffb7bd, type: 3}
+  m_PrefabInstance: {fileID: 2847030938158368983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4872200051793196737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock2_Single (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5020850136797305231, guid: 1a66ae701bdbefe499978d1ddfb6af55, type: 3}
+      propertyPath: resourceDropped
+      value: 
+      objectReference: {fileID: 8943704049594194540}
     - target: {fileID: 8705316057282357102, guid: 1a66ae701bdbefe499978d1ddfb6af55, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

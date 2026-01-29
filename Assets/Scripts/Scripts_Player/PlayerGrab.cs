@@ -3,29 +3,20 @@ using UnityEngine.Events;
 
 public class PlayerGrab : MonoBehaviour
 {
-    public bool IsPlayerCarryingObject;
+    private PlayerInventory inventory;
 
-    // === Events ===
-    public UnityEvent<GameObject> EvtOnGrab;
-    public UnityEvent<GameObject> EvtOnReleaseGrabObj;
-    public UnityEvent<GameObject> EvtOnRemovedGrabbedObject;
-
-    private GameObject currentGrabbedObj;
-
-    public void GrabObject(GarbageObject obj)
+    private void Start()
     {
-        if (GameManager.Instance.PlayerInventory.CurrentWeight < GameManager.Instance.PlayerInventory.MaxWeight)
-        {
-            GameManager.Instance.PlayerInventory.AddToInventory(obj);
-            Destroy(obj.gameObject); // TO CONVERT TO OBJECT POOLING
+        inventory = GameManager.Instance.PlayerController.PlayerInventory;
+    }
 
-            // 🔑 Trigger grab animation
-            GameManager.Instance.PlayerController.PlayerAnimation?.TriggerGrab();
-        }
-        else
-        {
-            GameManager.Instance.PlayerInventory.UITimerCall();
-            Debug.LogWarning("No More Space");
-        }
+    public void GrabObject(Item item)
+    {
+        if (item == null) return;
+
+        inventory.AddItem(item);
+
+        // Destroy the world object after pickup
+        Destroy(item.gameObject);
     }
 }
