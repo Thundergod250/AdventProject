@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerInventory : MonoBehaviour
     [Header("Inventory Events")]
     public UnityEvent EvtOnInventoryChanged; 
 
+    public void InventoryOnOpenInventory(InputAction.CallbackContext context) => GameManager.Instance.UIManager.ToggleUI(UIPanelType.Inventory);
+    
     public void AddItem(Item item)
     {
         items.Add(item);
