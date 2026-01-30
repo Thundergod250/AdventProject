@@ -39,7 +39,7 @@ public class PlayerAnimation : MonoBehaviour
     public void TriggerSlash() => PlayState(slashState, 0.1f);
 
     // Called via Animation Event at end of Slash animation
-    public void OnSlashAnimationEnd()
+    /*public void OnSlashAnimationEnd()
     {
         currentState = null;
 
@@ -60,7 +60,7 @@ public class PlayerAnimation : MonoBehaviour
         var movement = GameManager.Instance.PlayerController.PlayerMovement;
         if (movement != null) 
             UpdateMovementAnimation(movement.CurrentSpeed, movement.IsJumping);
-    }
+    }*/
 
 
     public void ResetAnimations() => PlayState(idleState, 0.1f);

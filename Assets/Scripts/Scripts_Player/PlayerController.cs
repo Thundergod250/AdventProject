@@ -29,10 +29,16 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement.MovementOnJump(context);
     }
+    
+    public void OnLookJump(InputAction.CallbackContext context)
+    {
+        PlayerMovement.MovementOnLook(context);
+    }
+
 
     public void OnOpeninventory(InputAction.CallbackContext context)
     {
-        //PlayerInventory.InventoryOnOpenInventory(context);
+        PlayerInventory.InventoryOnOpenInventory(context);
     }
 
     public void OnLeftClick(InputAction.CallbackContext context)
@@ -43,11 +49,11 @@ public class PlayerController : MonoBehaviour
     // === Movement Control Methods ===
     public void EnableMovement()
     {
-        PlayerMovement.SetCanMove(true);
+        //PlayerMovement.SetCanMove(true);
     }
 
     public void DisableMovement()
     {
-        PlayerMovement.DisableMovement();
+        //PlayerMovement.DisableMovement();
     }
 }

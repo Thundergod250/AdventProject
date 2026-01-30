@@ -1,137 +1,89 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement Settings")]
+    public float moveSpeed = 5f;
+    public float lookSensitivity = 2f;
+    public float jumpHeight = 2f;
+    public float gravity = -9.81f;
+
+    [Header("Ground Check")]
+    public Transform groundCheck;          // Empty GameObject at feet
+    public float groundRadius = 0.3f;      // Radius of overlap sphere
+    public LayerMask groundMask;           // Layers considered "ground"
+
     private CharacterController controller;
-
-    [SerializeField] private Transform cameraTransform;
-
-    private bool canMove = true;
-    private bool isJumping = false;
-    private bool noclip = false;
+    private Vector3 velocity;
+    private bool isGrounded;
 
     private Vector2 moveInput;
-    private Vector3 velocity;
-    
-    public float CurrentSpeed => moveInput.magnitude;   // normalized input magnitude
-    public bool IsJumping => isJumping;
-    public bool IsMoving => moveInput.magnitude > 0.1f;
+    private Vector2 lookInput;
+    private bool jumpRequested;
 
-    [Header("Movement Settings")]
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float gravity = -9.8f;
-
-    [Header("Noclip Settings")]
-    [SerializeField] private float noclipSpeed = 15f;
-    
-    private PlayerAnimation playerAnimation;
-    
-    private void Start()
-    {
-        controller = GetComponent<CharacterController>();
-        playerAnimation = GameManager.Instance.PlayerController.PlayerAnimation; 
-
-        if (cameraTransform == null && Camera.main != null)
-            cameraTransform = Camera.main.transform;
-    }
+    private void Awake() => controller = GetComponent<CharacterController>();
 
     private void Update()
     {
-        if (!canMove) return;
-
-        if (noclip)
-            HandleNoclip();
-        else
-            HandleNormalMovement();
+        HandleGroundCheck();
+        HandleMovement();
+        HandleLook();
+        HandleGravityAndJump();
     }
 
-    private void HandleNormalMovement()
-    {
-        if (controller.isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
+    // === Called from PlayerController ===
+    public void MovementOnMove(InputAction.CallbackContext context) => moveInput = context.ReadValue<Vector2>();
 
-            if (isJumping)
-            {
-                isJumping = false;
-                playerAnimation?.ResetAnimations();
-            }
-        }
-
-        Vector3 camForward = cameraTransform.forward;
-        Vector3 camRight = cameraTransform.right;
-        camForward.y = 0f;
-        camRight.y = 0f;
-        camForward.Normalize();
-        camRight.Normalize();
-
-        Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
-        controller.Move(move * (speed * Time.deltaTime));
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
-        if (move != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(move);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-        }
-
-        playerAnimation?.UpdateMovementAnimation(move.magnitude, isJumping);
-    }
-
-    private void HandleNoclip()
-    {
-        Vector3 camForward = cameraTransform.forward;
-        Vector3 camRight = cameraTransform.right;
-        camForward.Normalize();
-        camRight.Normalize();
-
-        Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
-        transform.position += move * (noclipSpeed * Time.deltaTime);
-
-        if (move != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(move);
-    }
-
-    public void MovementOnMove(InputAction.CallbackContext context)
-    {
-        if (!canMove) return;
-        moveInput = context.ReadValue<Vector2>();
-    }
+    public void MovementOnLook(InputAction.CallbackContext context) => lookInput = context.ReadValue<Vector2>();
 
     public void MovementOnJump(InputAction.CallbackContext context)
     {
-        if (!canMove || noclip) return;
+        if (context.performed) 
+            jumpRequested = true;
+    }
 
-        if (context.performed && controller.isGrounded)
+    // === Internal Logic ===
+    private void HandleGroundCheck()
+    {
+        // Sphere check at feet
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
+
+        if (isGrounded && velocity.y < 0) 
+            velocity.y = -2f; // small downward force to keep grounded
+    }
+
+    private void HandleMovement()
+    {
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        controller.Move(move * moveSpeed * Time.deltaTime);
+    }
+
+    private void HandleLook()
+    {
+        float mouseX = lookInput.x * lookSensitivity;
+        transform.Rotate(Vector3.up * mouseX);
+    }
+
+    private void HandleGravityAndJump()
+    {
+        if (isGrounded && jumpRequested)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            isJumping = true;
-            playerAnimation?.TriggerJump();
+            jumpRequested = false;
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
         }
     }
-
-    public void SetNoclip(bool value)
-    {
-        noclip = value;
-        controller.enabled = !noclip;
-        velocity = Vector3.zero;
-    }
-
-    public void DisableMovement()
-    {
-        canMove = false;
-        moveInput = Vector2.zero;
-        velocity = Vector3.zero;
-        playerAnimation?.ResetAnimations();
-    }
-
-    public bool GetCanMove() => canMove;
-    public Vector3 GetVelocity() => velocity;
-    
-    public void SetCanMove(bool value) => canMove = value;
 }
-
