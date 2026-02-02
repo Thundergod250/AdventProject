@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 2f;
     public float gravity = -9.81f;
 
+    [Header("Camera Settings")]
+    [SerializeField] private Transform cameraPivot; // usually the camera or a parent
+    [SerializeField] private float minPitch = -80f;
+    [SerializeField] private float maxPitch = 80f;
+    private float pitch; // current up/down angle
+
     [Header("Ground Check")]
     public Transform groundCheck;          // Empty GameObject at feet
     public float groundRadius = 0.3f;      // Radius of overlap sphere
@@ -30,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         HandleGroundCheck();
         HandleMovement();
         HandleLook();
+        HandleLookVertical();
         HandleGravityAndJump();
     }
 
@@ -64,6 +71,19 @@ public class PlayerMovement : MonoBehaviour
     {
         float mouseX = lookInput.x * lookSensitivity;
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    private void HandleLookVertical()
+    {
+        float mouseY = lookInput.y * lookSensitivity;
+
+        // Invert if needed (FPS standard)
+        pitch -= mouseY;
+
+        // Clamp so player can't flip
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+        cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
     private void HandleGravityAndJump()

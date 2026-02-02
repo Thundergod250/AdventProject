@@ -218,7 +218,6 @@ MonoBehaviour:
   PlayerAttack: {fileID: 2132086252992222447}
   PlayerInput: {fileID: 1632417819172464259}
   animator: {fileID: 2097000520802548608}
-  ShootingScript: {fileID: 0}
 --- !u!114 &1632417819172464259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +404,9 @@ MonoBehaviour:
   lookSensitivity: 0.1
   jumpHeight: 2
   gravity: -19.62
+  cameraPivot: {fileID: 0}
+  minPitch: -80
+  maxPitch: 80
   groundCheck: {fileID: 2944965602516896643}
   groundRadius: 0.1
   groundMask:
@@ -645,7 +647,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.477, z: 0.32300186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5168259841722526097}
   m_Father: {fileID: 2878381358046898893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4280118515374554605
@@ -1043,14 +1046,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7828615938686485292}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.08715578, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 2.0200093, y: 2.8799999, z: 1.6699982}
-  m_LocalScale: {x: 1, y: 1, z: 8.1602}
+  m_LocalRotation: {x: -0, y: -0.033283312, z: -0, w: 0.99944603}
+  m_LocalPosition: {x: 0.6060028, y: -0.71300006, z: 0.17799759}
+  m_LocalScale: {x: 0.30000007, y: 0.3, z: 2.4480608}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4815010637551691829}
-  m_Father: {fileID: 7358589354269997753}
-  m_LocalEulerAnglesHint: {x: 0, y: -10, z: 0}
+  m_Father: {fileID: 5455034275340039394}
+  m_LocalEulerAnglesHint: {x: 0, y: -3.815, z: 0}
 --- !u!33 &5621289289063954908
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1187,7 +1190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7358589354269997753
 Transform:
   m_ObjectHideFlags: 0
@@ -1202,7 +1205,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5876323062662177164}
-  - {fileID: 5168259841722526097}
   m_Father: {fileID: 2878381358046898893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3966669553065073327

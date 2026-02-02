@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 158328068899964932, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 158328068899964932, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081508496178960601, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081508496178960601, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2747938403942313003, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -20,6 +36,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2729194735994737544, guid: b5afcfb56abdbdd4ea172f81a0d5e8ed, type: 3}
+    - target: {fileID: 5188140919806862941, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1018.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188140919806862941, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188140919806862941, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188140919806862941, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.46
+      objectReference: {fileID: 0}
     - target: {fileID: 7251042344034550518, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.62523
@@ -72,6 +104,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8589393842477880194, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: resourceDropped
+      value: 
+      objectReference: {fileID: 6601367754676294331, guid: 26bdfc8dbb0989745a10ed6ee522b0d1, type: 3}
     - target: {fileID: 8609434740572547929, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       propertyPath: m_Name
       value: RockResource Variant
