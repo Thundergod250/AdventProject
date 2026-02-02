@@ -423,7 +423,7 @@ Transform:
   m_GameObject: {fileID: 263098330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 226.45018, y: 19.006647, z: 52.82738}
+  m_LocalPosition: {x: 226.45027, y: 19.053646, z: 53.211384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   PlayerController: {fileID: 1811346353}
-  CameraManager: {fileID: 0}
+  CameraManager: {fileID: 263098336}
   UIManager: {fileID: 1977973919}
   GoldManager: {fileID: 1282708373}
   ObjectPooling: {fileID: 123910042}
@@ -1424,6 +1424,7 @@ GameObject:
   - component: {fileID: 1702926862}
   - component: {fileID: 1702926861}
   - component: {fileID: 1702926860}
+  - component: {fileID: 1702926863}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1495,13 +1496,47 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702926859}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 226.45018, y: 19.006647, z: 52.82738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 226.45027, y: 19.053646, z: 53.211384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1702926863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702926859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d54399b04b4fa48a73e121d4937dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePanTilt
+  ReferenceFrame: 3
+  RecenterTarget: 0
+  PanAxis:
+    Value: 0
+    Center: 0
+    Range: {x: -180, y: 180}
+    Wrap: 1
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  TiltAxis:
+    Value: 0
+    Center: 0
+    Range: {x: -70, y: 70}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
 --- !u!114 &1811346353 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2205877847749605719, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
@@ -2094,9 +2129,37 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1977973919}
+    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3688964133521184817}
+    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MovementOnLook
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 226.45027
@@ -2137,6 +2200,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5455034275340039394, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.477
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455034275340039394, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.32300186
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455034275340039394, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455034275340039394, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455034275340039394, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455034275340039394, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455034275340039394, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2153,6 +2244,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99352152eabbe7447b95b67ce1de4098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &3688964133521184817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1127985473742766121, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+  m_PrefabInstance: {fileID: 3688964133521184811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77966beae08fe814aba3e96399e42e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1001 &3971589712687983088
 PrefabInstance:
   m_ObjectHideFlags: 0
