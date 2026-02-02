@@ -5,15 +5,8 @@ public class UI_ReticleRaycast : MonoBehaviour
     public Camera PlayerCamera;
     public RectTransform CrosshairUI;
     public float RayLength = 100f;
-    private Ray ray;
-    private Vector2 screenPos;
-
-    //private void Awake()
-    //{
-    //    ray = PlayerCamera.ScreenPointToRay(screenPos);
-    //    screenPos =
-    //        RectTransformUtility.WorldToScreenPoint(null, CrosshairUI.position);
-    //}
+    [SerializeField] private Ray ray;
+    [SerializeField] private Vector2 screenPos;
 
     private void OnDrawGizmos()
     {

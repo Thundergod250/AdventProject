@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public ObjectPooling ObjectPooling;
     public DebugCheats DebugCheats;
     public PlayerInventory PlayerInventory;
+    public UI_ReticleRaycast UI_ReticleRaycast;
 
     private void Awake()
     {

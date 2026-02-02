@@ -423,7 +423,7 @@ Transform:
   m_GameObject: {fileID: 263098330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 226.45027, y: 19.053646, z: 53.211384}
+  m_LocalPosition: {x: 226.45027, y: 19.006647, z: 52.82738}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -718,6 +718,7 @@ MonoBehaviour:
   ObjectPooling: {fileID: 123910042}
   DebugCheats: {fileID: 1065750941}
   PlayerInventory: {fileID: 3688964133521184813}
+  UI_ReticleRaycast: {fileID: 1237927763}
 --- !u!4 &698444993
 Transform:
   m_ObjectHideFlags: 0
@@ -1152,31 +1153,17 @@ MonoBehaviour:
   m_ObsoleteUseShadowQualitySettings: 0
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
---- !u!1 &1237927759 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4435502686182364996, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
-  m_PrefabInstance: {fileID: 7788687841394568305}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1237927760 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5558423851989236940, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
-  m_PrefabInstance: {fileID: 7788687841394568305}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1237927763
+--- !u!114 &1237927763 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+  m_PrefabInstance: {fileID: 7788687841394568305}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237927759}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbaf6ff85ee042446a19e09717c6a489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  PlayerCamera: {fileID: 263098334}
-  CrosshairUI: {fileID: 1237927760}
-  RayLength: 100
 --- !u!1 &1282708372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,6 +2677,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 263098334}
     - target: {fileID: 9192366198569973207, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: m_Name
       value: Player UI
@@ -2697,10 +2688,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4435502686182364996, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1237927763}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
 --- !u!1001 &7801588977194844541
 PrefabInstance:

@@ -4,7 +4,6 @@ using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public UI_ReticleRaycast UI_ReticleRaycast;
     [SerializeField] private float slashCooldown = 0.5f; 
     [SerializeField] private float spawnDelay = 0.2f; // ⏱️ Editable delay before bullet spawns
     [SerializeField] private GameObject bulletPrefab;
@@ -37,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
         RaycastHit hit; 
         Vector3 targetPoint;
 
-        if (UI_ReticleRaycast != null && UI_ReticleRaycast.GetRaycastHit(out hit)) { targetPoint = hit.point; }
+        if (GameManager.Instance.UI_ReticleRaycast != null && GameManager.Instance.UI_ReticleRaycast.GetRaycastHit(out hit)) { targetPoint = hit.point; }
         else
         { // fallback: shoot straight forward
           targetPoint = spawn.position + spawn.forward * 50f;
