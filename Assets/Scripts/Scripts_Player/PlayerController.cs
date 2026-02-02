@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAttack PlayerAttack;
     public PlayerInput PlayerInput;
     public Animator animator;
+    public ShootingScript ShootingScript;
 
     private void Start()
     {
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public void OnLeftClick(InputAction.CallbackContext context)
     {
         PlayerAttack.OnSlash(context);
+        ShootingScript.CallShooting(context);
     }
 
     // === Movement Control Methods ===
