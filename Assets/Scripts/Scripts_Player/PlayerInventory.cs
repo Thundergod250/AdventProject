@@ -1,65 +1,47 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
-using System.Threading.Tasks;
-
 
 public class PlayerInventory : MonoBehaviour
 {
-    public GameObject InventoryPanel;
-    public GameObject SlotPrefab;
-    public GameObject PlayerInventoryUI;
-    public GameObject InventoryStatusUI;
+    public List<Item> items = new();
 
-    public int CurrentWeight;
-    public int MaxWeight;
+    [Header("Inventory Events")]
+    public UnityEvent EvtOnInventoryChanged; 
 
-    public void InventoryOnOpenInventory(InputAction.CallbackContext context) => PlayerInventoryUI.SetActive(!PlayerInventoryUI.activeSelf);
-
-    public void AddToInventory(GarbageObject garbageObject)
+    public void InventoryOnOpenInventory(InputAction.CallbackContext context) => GameManager.Instance.UIManager.ToggleUI(UIPanelType.Inventory);
+    
+    public void AddItem(Item item)
     {
-        if (garbageObject == null || garbageObject.ResourceData == null)
-            return;
+        // Check if stackable item already exists
+        foreach (var existing in items)
+        {
+            if (existing.IsSameType(item))
+            {
+                existing.amount += item.amount;
+                Debug.Log($"Stacked {item.itemName} x{item.amount} → Total: {existing.amount}");
+                EvtOnInventoryChanged?.Invoke();
+                Destroy(item.gameObject); // remove world object
+                return;
+            }
+        }
 
-        // Add weight from ScriptableObject
-        CurrentWeight += garbageObject.ResourceData.ObjectWeight;
-
-        // Create slot
-        Slot slot = Instantiate(SlotPrefab, InventoryPanel.transform).GetComponent<Slot>(); //CONVERT TO OBJECT POOLING
-
-        // Assign UI text from ScriptableObject data
-        slot.Garbage.text = garbageObject.ResourceData.ObjectName;
-        slot.GarbageDescription.text = garbageObject.ResourceData.ObjectDescription;
+        // If no match, add as new entry
+        items.Add(item);
+        Debug.Log($"Added new {item.itemName} x{item.amount} to inventory.");
+        EvtOnInventoryChanged?.Invoke();
     }
 
-
-    public void ShowInventoryPanel() => InventoryPanel.SetActive(!InventoryPanel.activeSelf);
-
-    public async void UITimerCall() => await InventoryStatusUITimer();
-
-    public async Task InventoryStatusUITimer()
+    public void RemoveItem(Item item)
     {
-        InventoryStatusUI.SetActive(true);
-        await Task.Delay(2 * 1000);
-        InventoryStatusUI.SetActive(false);
+        if (items.Contains(item))
+        {
+            items.Remove(item);
+            Debug.Log($"Removed {item.itemName} from inventory.");
+            EvtOnInventoryChanged?.Invoke();
+        }
     }
-
-    //public bool AddItem(GameObject itemPrefab)
-    //{
-    //    foreach(Transform SlotTransform in InventoryPanel.transform)
-    //    {
-    //        Slot slot = SlotTransform.GetComponent<Slot>();
-
-    //        if(slot != null && slot.currentItem == null)
-    //        {
-    //            GameObject newItem = Instantiate(itemPrefab, SlotTransform);
-    //            newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-    //            slot.currentItem = newItem;
-    //            return true;
-    //        }
-    //    }
-
-    //    return false;
-    //}
 }
+
+

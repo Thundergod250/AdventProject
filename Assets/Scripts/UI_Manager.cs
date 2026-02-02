@@ -3,37 +3,96 @@ using System.Collections.Generic;
 
 public class UI_Manager : MonoBehaviour
 {
-    public UI_Interaction UI_Interaction;
-    public UI_Gold UI_Gold;
-    public UI_TowerShop UI_TowerShop;
-    public UI_Grab_Tab UI_Grab_Tab;
+    private Dictionary<UIPanelType, GameObject> panelLookup = new();
+    private GameObject currentUI;
+    private GameObject previousUI;
 
-    [SerializeField] private GameObject mainUiGroup;
-    [SerializeField] private GameObject towerUpgrades;
-
-    private List<GameObject> uiGroups;
+    [SerializeField] private PlayerManipulator playerManipulator;
 
     private void Awake()
     {
-        uiGroups = new List<GameObject> { mainUiGroup, towerUpgrades };
-    }
-
-    public void FocusUI(GameObject targetGroup)
-    {
-        foreach (var group in uiGroups)
+        // Register all panels with identifiers
+        foreach (var identifier in GetComponentsInChildren<UIPanelIdentifier>(true))
         {
-            if (group != null)
-                group.SetActive(group == targetGroup);
+            if (!panelLookup.ContainsKey(identifier.PanelType))
+                panelLookup.Add(identifier.PanelType, identifier.gameObject);
+        }
+
+        // ✅ Default to MainUI as the initial panel
+        if (panelLookup.TryGetValue(UIPanelType.MainUI, out var mainUI))
+        {
+            previousUI = mainUI;
+            currentUI = mainUI;
+            mainUI.SetActive(true);
+
+            // Enable player control when starting on MainUI
+            playerManipulator?._EnableAllMovement();
+            //GameManager.Instance.PlayerController.PlayerInput.enabled = true;
         }
     }
 
-    public void FocusMainUIGroup() => FocusUI(mainUiGroup);
-
-    public void FocusTowerUpgrades() => FocusUI(towerUpgrades);
-    
-    public void RegisterUIGroup(GameObject newGroup)
+    public void OpenUI(UIPanelType type)
     {
-        if (newGroup != null && !uiGroups.Contains(newGroup))
-            uiGroups.Add(newGroup);
+        if (!panelLookup.TryGetValue(type, out var targetUI)) return;
+
+        // Activate only the target panel
+        foreach (var panel in panelLookup.Values)
+            panel.SetActive(panel == targetUI);
+
+        previousUI = currentUI;
+        currentUI = targetUI;
+
+        // 🔒 Lock or 🔓 unlock player depending on panel type
+        if (type == UIPanelType.MainUI)
+        {
+            playerManipulator?._EnableAllMovement();
+            //GameManager.Instance.PlayerController.PlayerInput.enabled = true;
+        }
+        else
+        {
+            playerManipulator?._DisableAllMovement();
+            //GameManager.Instance.PlayerController.PlayerInput.enabled = false;
+        }
     }
+
+    public void CloseCurrentUI()
+    {
+        if (currentUI != null)
+        {
+            currentUI.SetActive(false);
+            currentUI = null;
+
+            // 🔓 Always return to MainUI when closing
+            if (panelLookup.TryGetValue(UIPanelType.MainUI, out var mainUI))
+            {
+                mainUI.SetActive(true);
+                currentUI = mainUI;
+
+                playerManipulator?._EnableAllMovement();
+                GameManager.Instance.PlayerController.PlayerInput.enabled = true;
+            }
+        }
+    }
+
+    public void ToggleUI(UIPanelType type)
+    {
+        if (currentUI != null && GetPanelType(currentUI) == type)
+            CloseCurrentUI();
+        else
+            OpenUI(type);
+    }
+
+    public void GoBackToPreviousUI()
+    {
+        if (previousUI != null)
+            OpenUI(GetPanelType(previousUI));
+    }
+
+    private UIPanelType GetPanelType(GameObject panel)
+    {
+        var id = panel.GetComponent<UIPanelIdentifier>();
+        return id != null ? id.PanelType : UIPanelType.None;
+    }
+    
+    public bool IsUIBlockingGameplay() => GetPanelType(currentUI) != UIPanelType.MainUI;
 }

@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     public PlayerInteraction PlayerInteraction;
     public PlayerGrab PlayerGrab;
     public PlayerInventory PlayerInventory;
-    public PlayerAttack PlayerAttack; 
+    public PlayerAttack PlayerAttack;
+    public PlayerInput PlayerInput;
     public Animator animator;
 
     private void Start()
@@ -28,6 +29,12 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement.MovementOnJump(context);
     }
+    
+    public void OnLookJump(InputAction.CallbackContext context)
+    {
+        PlayerMovement.MovementOnLook(context);
+    }
+
 
     public void OnOpeninventory(InputAction.CallbackContext context)
     {
@@ -42,11 +49,11 @@ public class PlayerController : MonoBehaviour
     // === Movement Control Methods ===
     public void EnableMovement()
     {
-        PlayerMovement.SetCanMove(true);
+        //PlayerMovement.SetCanMove(true);
     }
 
     public void DisableMovement()
     {
-        PlayerMovement.DisableMovement();
+        //PlayerMovement.DisableMovement();
     }
 }
