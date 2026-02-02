@@ -423,7 +423,7 @@ Transform:
   m_GameObject: {fileID: 263098330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 226.45027, y: 19.006647, z: 52.82738}
+  m_LocalPosition: {x: 226.45027, y: 19.053646, z: 53.211384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2111,6 +2111,10 @@ PrefabInstance:
       propertyPath: ui_interactionTab
       value: 
       objectReference: {fileID: 1977973918}
+    - target: {fileID: 1127985473742766121, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: cameraPivot
+      value: 
+      objectReference: {fileID: 1851325825}
     - target: {fileID: 1367724001468933626, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2446,6 +2450,18 @@ PrefabInstance:
     - target: {fileID: 2103984203466088857, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
       propertyPath: m_Name
       value: RockResource
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294378290379975837, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294378290379975837, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294378290379975837, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.31
       objectReference: {fileID: 0}
     - target: {fileID: 5071859467968906915, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
       propertyPath: ResourcePrefab

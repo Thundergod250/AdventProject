@@ -20,10 +20,6 @@ public class ProjectileBase : MonoBehaviour
 
     private void Start()
     {
-        // Move forward immediately
-        //if (rb != null)
-        //    rb.linearVelocity = transform.forward * speed;
-
         // Auto-despawn after lifetime
         Destroy(gameObject, lifetime);
     }
@@ -33,7 +29,12 @@ public class ProjectileBase : MonoBehaviour
         moveDirection = (targetPoint - transform.position).normalized;
         
         rb.linearVelocity = moveDirection * speed;
-    
+
+        // Rotate projectile to face movement direction
+        if (moveDirection != Vector3.zero)
+        { 
+            transform.rotation = Quaternion.LookRotation(moveDirection); 
+        }
     }
 
     private void OnTriggerEnter(Collider other)
