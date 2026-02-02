@@ -30,8 +30,24 @@ public class PlayerAttack : MonoBehaviour
 
         if (bulletPrefab == null) yield break;
 
+
         Transform spawn = bulletSpawnPoint != null ? bulletSpawnPoint : transform;
-        Instantiate(bulletPrefab, spawn.position, spawn.rotation);
+
+        RaycastHit hit; 
+        Vector3 targetPoint;
+
+        if (GameManager.Instance.UI_ReticleRaycast != null && GameManager.Instance.UI_ReticleRaycast.GetRaycastHit(out hit)) { targetPoint = hit.point; }
+        else
+        { // fallback: shoot straight forward
+          targetPoint = spawn.position + spawn.forward * 50f;
+          
+        }
+
+        GameObject bulletObj = Instantiate(bulletPrefab, spawn.position, spawn.rotation);
+
+        ProjectileBase projectile = bulletObj.GetComponent<ProjectileBase>();
+
+        if (projectile != null) { projectile.SetTarget(targetPoint); }
     }
 
     private IEnumerator SlashCooldownRoutine()

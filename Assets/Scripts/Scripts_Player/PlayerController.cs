@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public PlayerAttack PlayerAttack;
     public PlayerInput PlayerInput;
     public Animator animator;
-    public ShootingScript ShootingScript;
 
     private void Start()
     {
