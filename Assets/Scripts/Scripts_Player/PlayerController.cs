@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
     public void OnLeftClick(InputAction.CallbackContext context)
     {
         PlayerAttack.OnSlash(context);
-        ShootingScript.CallShooting(context);
     }
 
     // === Movement Control Methods ===
