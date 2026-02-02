@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ProjectileBase : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] private float lifetime = 1.5f;
     [SerializeField] private GameObject explosionVFX; // optional prefab for impact effect
     [SerializeField] private float explosionLifetime = 1f; // how long the VFX stays before despawn
+    private Vector3 moveDirection;
+    public Vector3 direction;
 
     private Rigidbody rb;
 
@@ -18,11 +21,19 @@ public class ProjectileBase : MonoBehaviour
     private void Start()
     {
         // Move forward immediately
-        if (rb != null)
-            rb.linearVelocity = transform.forward * speed;
+        //if (rb != null)
+        //    rb.linearVelocity = transform.forward * speed;
 
         // Auto-despawn after lifetime
         Destroy(gameObject, lifetime);
+    }
+
+    public void SetTarget(Vector3 targetPoint) 
+    { 
+        moveDirection = (targetPoint - transform.position).normalized;
+        
+        rb.linearVelocity = moveDirection * speed;
+    
     }
 
     private void OnTriggerEnter(Collider other)
