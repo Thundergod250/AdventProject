@@ -369,7 +369,19 @@ MonoBehaviour:
     m_ActionId: 5e03f932-ef01-4466-affe-5d998ab9d734
     m_ActionName: 'Gameplay/Escape[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1127985473742766121}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: MovementOnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1f491e5b-3dcd-4f8b-a106-5595f26d5273
     m_ActionName: 'Gameplay/Look[/Mouse/delta]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -630,7 +642,7 @@ Transform:
   m_GameObject: {fileID: 4005880707316755248}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.43, z: -0.061}
+  m_LocalPosition: {x: 0, y: 0.477, z: 0.32300186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1538,6 +1550,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c0bbd31c5cebd4a46b747de812909651, type: 3}
       propertyPath: m_Name
       value: Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c0bbd31c5cebd4a46b747de812909651, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
