@@ -62,6 +62,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1771774407237545081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1019461963121739553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8366762143942310271}
+  m_Layer: 9
+  m_Name: Raycast Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8366762143942310271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019461963121739553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4555398377874908492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1132420322406756994
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +170,7 @@ Transform:
   - {fileID: 4555398377874908492}
   - {fileID: 2777153017964354028}
   - {fileID: 2944965602516896643}
-  - {fileID: 5455034275340039394}
+  - {fileID: 5168259841722526097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &991052777969328695
@@ -404,7 +435,7 @@ MonoBehaviour:
   lookSensitivity: 0.1
   jumpHeight: 2
   gravity: -19.62
-  cameraPivot: {fileID: 0}
+  cameraPivot: {fileID: 4555398377874908492}
   minPitch: -80
   maxPitch: 80
   groundCheck: {fileID: 2944965602516896643}
@@ -478,7 +509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4555398377874908492}
   m_Layer: 9
-  m_Name: Head
+  m_Name: Camera Tracking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,7 +527,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.43, z: -0.061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8366762143942310271}
   m_Father: {fileID: 2878381358046898893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3610988257724653628
@@ -619,38 +651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLockToTarget
   Damping: 0
---- !u!1 &4005880707316755248
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5455034275340039394}
-  m_Layer: 9
-  m_Name: FP Virtual Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5455034275340039394
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4005880707316755248}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.477, z: 0.32300186}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5168259841722526097}
-  m_Father: {fileID: 2878381358046898893}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4280118515374554605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,12 +1047,12 @@ Transform:
   m_GameObject: {fileID: 7828615938686485292}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.033283312, z: -0, w: 0.99944603}
-  m_LocalPosition: {x: 0.6060028, y: -0.71300006, z: 0.17799759}
-  m_LocalScale: {x: 0.30000007, y: 0.3, z: 2.4480608}
+  m_LocalPosition: {x: 0.6060028, y: -0.23600006, z: 0.50099945}
+  m_LocalScale: {x: 0.3000001, y: 0.3, z: 2.448061}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4815010637551691829}
-  m_Father: {fileID: 5455034275340039394}
+  m_Father: {fileID: 2878381358046898893}
   m_LocalEulerAnglesHint: {x: 0, y: -3.815, z: 0}
 --- !u!33 &5621289289063954908
 MeshFilter:
@@ -1380,24 +1380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c940b9b1370126249aff8e2172c8df85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
-  raycastPoints:
-  - {fileID: 7108050843616294094}
-  - {fileID: 98180233060554439}
-  - {fileID: 7652797421415775514}
-  - {fileID: 8518701730704853543}
-  - {fileID: 5065944868998712024}
-  - {fileID: 7249491806494146402}
-  - {fileID: 5305263013514897891}
-  - {fileID: 6832640403383537142}
-  - {fileID: 7329542901179605714}
-  - {fileID: 7264258142107821939}
-  - {fileID: 6013937590869365122}
-  - {fileID: 8303304199725245385}
-  rayLength: 2
-  RaycastPoint: {fileID: 7652797421415775514}
-  PlayerCamera: {fileID: 0}
-  boxSize: {x: 1.3, y: 2.5, z: 1}
-  boxOffset: {x: 0, y: -0.3, z: -0.51}
+  rayLength: 3
+  playerCamera: {fileID: 0}
+  boxSize: {x: 1, y: 1, z: 3}
+  boxOffset: {x: 0, y: 0.4, z: 1}
   interactableMask:
     serializedVersion: 2
     m_Bits: 4294967295
