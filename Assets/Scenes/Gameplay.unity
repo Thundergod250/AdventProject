@@ -1836,23 +1836,11 @@ MonoBehaviour:
       m_Calls: []
   EvtOnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1997664856}
-        m_TargetAssemblyTypeName: PlayerManipulator, Assembly-CSharp
-        m_MethodName: _DisablePlayerMovement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   EvtOnInteractWithObj:
     m_PersistentCalls:
       m_Calls: []
-  uiPanelToOpen: 0
+  uiPanelToOpen: 3
 --- !u!114 &1997664856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,6 +2366,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8029993384840231177, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029993384840231177, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029993384840231177, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[0].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029993384840231177, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[1].Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029993384840231177, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[0].Input.InputAction
       value: 
       objectReference: {fileID: 1955466932}
@@ -2389,11 +2393,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8792591631496446685, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9118702526061101030, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+    - {fileID: 8854205192699868940, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+    - {fileID: 8029993384840231177, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2937,15 +2940,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: RayLength
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: screenPos.x
-      value: 222.575
+      value: 204.49078
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: screenPos.y
-      value: 135
+      value: 124
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: PlayerCamera

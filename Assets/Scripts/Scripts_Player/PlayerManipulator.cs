@@ -22,12 +22,13 @@ public class PlayerManipulator : MonoBehaviour
     public void _EnablePlayerMovement()  => GameManager.Instance.PlayerController?.EnableMovement();
 
     // === Camera Control ===
-    public void _DisableCameraMovement() => GameManager.Instance.CameraManager?.DisableCamera();
-    public void _EnableCameraMovement()  => GameManager.Instance.CameraManager?.EnableCamera();
+    public void _DisableCameraMovement() => GameManager.Instance.PlayerController?.DisableCameraMovement();
+    public void _EnableCameraMovement()  => GameManager.Instance.PlayerController?.EnableCameraMovement();
 
     // === Combined Movement Control ===
     public void _DisableAllMovement()
     {
+        Debug.Log("Player All Movement Disabled");
         _DisablePlayerMovement();
         _DisableCameraMovement();
         _DisableInteraction();
@@ -35,6 +36,7 @@ public class PlayerManipulator : MonoBehaviour
 
     public void _EnableAllMovement()
     {
+        Debug.Log("Player All Movement Enabled");
         _EnablePlayerMovement();
         _EnableCameraMovement();
         _EnableInteraction();
