@@ -11,15 +11,15 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
 
     [Header("Camera Settings")]
-    [SerializeField] private Transform cameraPivot; // usually the camera or a parent
+    [SerializeField] private Transform cameraPivot;
     [SerializeField] private float minPitch = -80f;
     [SerializeField] private float maxPitch = 80f;
-    private float pitch; // current up/down angle
+    private float pitch;
 
     [Header("Ground Check")]
-    public Transform groundCheck;          // Empty GameObject at feet
-    public float groundRadius = 0.3f;      // Radius of overlap sphere
-    public LayerMask groundMask;           // Layers considered "ground"
+    public Transform groundCheck;
+    public float groundRadius = 0.3f;
+    public LayerMask groundMask;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -29,36 +29,57 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 lookInput;
     private bool jumpRequested;
 
+    // 👇 Control flags
+    private bool canMove = true;
+    private bool canLook = true;
+
     private void Awake() => controller = GetComponent<CharacterController>();
 
     private void Update()
     {
         HandleGroundCheck();
-        HandleMovement();
-        HandleLook();
-        HandleLookVertical();
-        HandleGravityAndJump();
+
+        if (canMove)
+        {
+            HandleMovement();
+            HandleGravityAndJump();
+        }
+
+        if (canLook)
+        {
+            HandleLook();
+            HandleLookVertical();
+        }
     }
 
     // === Called from PlayerController ===
-    public void MovementOnMove(InputAction.CallbackContext context) => moveInput = context.ReadValue<Vector2>();
+    public void MovementOnMove(InputAction.CallbackContext context)
+    {
+        if (canMove) moveInput = context.ReadValue<Vector2>();
+        else moveInput = Vector2.zero;
+    }
 
-    public void MovementOnLook(InputAction.CallbackContext context) => lookInput = context.ReadValue<Vector2>();
+    public void MovementOnLook(InputAction.CallbackContext context)
+    {
+        if (canLook) lookInput = context.ReadValue<Vector2>();
+        else lookInput = Vector2.zero;
+    }
 
     public void MovementOnJump(InputAction.CallbackContext context)
     {
-        if (context.performed) 
+        if (canMove && context.performed) 
             jumpRequested = true;
     }
+
+    // === Control toggles ===
+    public void SetCanMove(bool value) => canMove = value;
+    public void SetCanLook(bool value) => canLook = value;
 
     // === Internal Logic ===
     private void HandleGroundCheck()
     {
-        // Sphere check at feet
         isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
-
-        if (isGrounded && velocity.y < 0) 
-            velocity.y = -2f; // small downward force to keep grounded
+        if (isGrounded && velocity.y < 0) velocity.y = -2f;
     }
 
     private void HandleMovement()
@@ -69,20 +90,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleLook()
     {
+        // Horizontal rotation (yaw) — rotates the player body
         float mouseX = lookInput.x * lookSensitivity;
         transform.Rotate(Vector3.up * mouseX);
     }
 
     private void HandleLookVertical()
     {
+        // Vertical rotation (pitch) — rotates only the camera pivot
         float mouseY = lookInput.y * lookSensitivity;
 
-        // Invert if needed (FPS standard)
-        pitch -= mouseY;
-
-        // Clamp so player can't flip
+        pitch -= mouseY; // subtract to invert standard FPS controls
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
+        // 👇 Only rotate the camera pivot, not the body
         cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
@@ -97,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
-    
+
     private void OnDrawGizmosSelected()
     {
         if (groundCheck != null)

@@ -46,14 +46,23 @@ public class PlayerController : MonoBehaviour
         PlayerAttack.OnSlash(context);
     }
 
-    // === Movement Control Methods ===
     public void EnableMovement()
     {
-        //PlayerMovement.SetCanMove(true);
+        PlayerMovement.SetCanMove(true);
     }
 
     public void DisableMovement()
     {
-        //PlayerMovement.DisableMovement();
+        PlayerMovement.SetCanMove(false);
+    }
+
+    public void EnableCameraMovement()
+    {
+        PlayerMovement.SetCanLook(true);
+    }
+
+    public void DisableCameraMovement()
+    {
+        PlayerMovement.SetCanLook(false);
     }
 }
