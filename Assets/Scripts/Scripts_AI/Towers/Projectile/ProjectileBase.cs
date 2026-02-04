@@ -9,7 +9,6 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] private GameObject explosionVFX; // optional prefab for impact effect
     [SerializeField] private float explosionLifetime = 1f; // how long the VFX stays before despawn
     private Vector3 moveDirection;
-    public Vector3 direction;
 
     private Rigidbody rb;
 
@@ -24,11 +23,11 @@ public class ProjectileBase : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    public void SetTarget(Vector3 targetPoint) 
+    public void SetDirection(Vector3 direction) 
     { 
-        moveDirection = (targetPoint - transform.position).normalized;
-        
-        rb.linearVelocity = moveDirection * speed;
+        moveDirection = direction;
+
+        rb.linearVelocity = direction.normalized * speed;
 
         // Rotate projectile to face movement direction
         if (moveDirection != Vector3.zero)
