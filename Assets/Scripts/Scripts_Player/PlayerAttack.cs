@@ -40,20 +40,11 @@ public class PlayerAttack : MonoBehaviour
         {
             direction = GameManager.Instance.UI_ReticleRaycast.ray.direction;
         }
-        //if (GameManager.Instance.UI_ReticleRaycast != null && GameManager.Instance.UI_ReticleRaycast.GetRaycastHit(out hit)) 
-        //{ 
-        //    direction = hit.point; 
-        //}
-        //else
-        //{ // fallback: shoot straight forward
-        //  direction = spawn.position + spawn.forward * 50f;
-
-            //}
 
         GameObject bulletObj = Instantiate(
-            bulletPrefab, 
-            spawn.position, 
-            spawn.rotation
+            bulletPrefab,
+            bulletSpawnPoint.position,
+            Quaternion.LookRotation(direction)
         );
 
         ProjectileBase projectile = bulletObj.GetComponent<ProjectileBase>();

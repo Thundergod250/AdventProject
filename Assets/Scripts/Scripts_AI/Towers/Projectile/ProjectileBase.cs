@@ -23,16 +23,11 @@ public class ProjectileBase : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    private void Update()
-    {
-        transform.position += moveDirection * speed * Time.deltaTime;
-    }
-
     public void SetDirection(Vector3 direction) 
     { 
         moveDirection = direction;
-        
-        //rb.linearVelocity = moveDirection * speed;
+
+        rb.linearVelocity = direction.normalized * speed;
 
         // Rotate projectile to face movement direction
         if (moveDirection != Vector3.zero)
