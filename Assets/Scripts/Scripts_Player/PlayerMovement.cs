@@ -67,8 +67,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovementOnJump(InputAction.CallbackContext context)
     {
-        if (canMove && context.performed) 
+        if (!canMove) return;
+
+        if (context.performed)
+        {
             jumpRequested = true;
+        }
+        else if (context.canceled)
+        {
+            // Clear immediately when button is released
+            jumpRequested = false;
+        }
     }
 
     // === Control toggles ===
@@ -103,16 +112,20 @@ public class PlayerMovement : MonoBehaviour
         pitch -= mouseY; // subtract to invert standard FPS controls
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        // 👇 Only rotate the camera pivot, not the body
         cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
     private void HandleGravityAndJump()
     {
-        if (isGrounded && jumpRequested)
+        if (isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            jumpRequested = false;
+            if (jumpRequested)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                jumpRequested = false; // consume immediately
+            }
+            else if (velocity.y < 0) 
+                velocity.y = -2f; // keep grounded
         }
 
         velocity.y += gravity * Time.deltaTime;
