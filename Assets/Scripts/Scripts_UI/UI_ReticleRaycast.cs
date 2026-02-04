@@ -5,7 +5,7 @@ public class UI_ReticleRaycast : MonoBehaviour
     public Camera PlayerCamera;
     public RectTransform CrosshairUI;
     public float RayLength = 100f;
-    [SerializeField] private Ray ray;
+    public Ray ray;
     [SerializeField] private Vector2 screenPos;
 
     private void OnDrawGizmos()

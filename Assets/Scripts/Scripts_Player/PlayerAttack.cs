@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
 
+    public Vector3 direction;
     private bool canSlash = true;
 
     public void OnSlash(InputAction.CallbackContext context)
@@ -34,23 +35,30 @@ public class PlayerAttack : MonoBehaviour
         Transform spawn = bulletSpawnPoint != null ? bulletSpawnPoint : transform;
 
         RaycastHit hit; 
-        Vector3 targetPoint;
 
-        if (GameManager.Instance.UI_ReticleRaycast != null && GameManager.Instance.UI_ReticleRaycast.GetRaycastHit(out hit)) 
-        { 
-            targetPoint = hit.point; 
+        if (GameManager.Instance.UI_ReticleRaycast != null)
+        {
+            direction = GameManager.Instance.UI_ReticleRaycast.ray.direction;
         }
-        else
-        { // fallback: shoot straight forward
-          targetPoint = spawn.position + spawn.forward * 50f;
-          
-        }
+        //if (GameManager.Instance.UI_ReticleRaycast != null && GameManager.Instance.UI_ReticleRaycast.GetRaycastHit(out hit)) 
+        //{ 
+        //    direction = hit.point; 
+        //}
+        //else
+        //{ // fallback: shoot straight forward
+        //  direction = spawn.position + spawn.forward * 50f;
 
-        GameObject bulletObj = Instantiate(bulletPrefab, spawn.position, spawn.rotation);
+            //}
+
+        GameObject bulletObj = Instantiate(
+            bulletPrefab, 
+            spawn.position, 
+            spawn.rotation
+        );
 
         ProjectileBase projectile = bulletObj.GetComponent<ProjectileBase>();
 
-        if (projectile != null) { projectile.SetTarget(targetPoint); }
+        if (projectile != null) { projectile.SetDirection(direction); }
     }
 
     private IEnumerator SlashCooldownRoutine()
