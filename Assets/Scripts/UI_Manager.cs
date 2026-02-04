@@ -27,7 +27,7 @@ public class UI_Manager : MonoBehaviour
 
             // Enable player control when starting on MainUI
             playerManipulator?._EnableAllMovement();
-            //GameManager.Instance.PlayerController.PlayerInput.enabled = true;
+            SetCursorVisibility(false); // hide cursor in gameplay
         }
     }
 
@@ -46,12 +46,12 @@ public class UI_Manager : MonoBehaviour
         if (type == UIPanelType.MainUI)
         {
             playerManipulator?._EnableAllMovement();
-            //GameManager.Instance.PlayerController.PlayerInput.enabled = true;
+            SetCursorVisibility(false); // hide cursor
         }
         else
         {
             playerManipulator?._DisableAllMovement();
-            //GameManager.Instance.PlayerController.PlayerInput.enabled = false;
+            SetCursorVisibility(true); // show cursor
         }
     }
 
@@ -70,6 +70,7 @@ public class UI_Manager : MonoBehaviour
 
                 playerManipulator?._EnableAllMovement();
                 GameManager.Instance.PlayerController.PlayerInput.enabled = true;
+                SetCursorVisibility(false); // hide cursor
             }
         }
     }
@@ -95,4 +96,11 @@ public class UI_Manager : MonoBehaviour
     }
     
     public bool IsUIBlockingGameplay() => GetPanelType(currentUI) != UIPanelType.MainUI;
+
+    // === Cursor helper ===
+    private void SetCursorVisibility(bool visible)
+    {
+        Cursor.visible = visible;
+        Cursor.lockState = visible ? CursorLockMode.None : CursorLockMode.Locked;
+    }
 }
