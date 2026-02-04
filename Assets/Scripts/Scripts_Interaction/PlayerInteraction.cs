@@ -75,25 +75,25 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             // 📦 Fallback: OverlapBox
-            if (closest == null)
-            {
-                Vector3 boxCenter = transform.position + transform.TransformDirection(boxOffset);
-                Collider[] hits = Physics.OverlapBox(boxCenter, boxSize * 0.5f, transform.rotation, interactableMask);
+            //if (closest == null)
+            //{
+            //    Vector3 boxCenter = transform.position + transform.TransformDirection(boxOffset);
+            //    Collider[] hits = Physics.OverlapBox(boxCenter, boxSize * 0.5f, transform.rotation, interactableMask);
 
-                foreach (var col in hits)
-                {
-                    var interactable = col.GetComponent<Interactable>();
-                    if (interactable != null)
-                    {
-                        float dist = Vector3.Distance(transform.position, col.transform.position);
-                        if (dist < closestDistance)
-                        {
-                            closest = interactable;
-                            closestDistance = dist;
-                        }
-                    }
-                }
-            }
+            //    foreach (var col in hits)
+            //    {
+            //        var interactable = col.GetComponent<Interactable>();
+            //        if (interactable != null)
+            //        {
+            //            float dist = Vector3.Distance(transform.position, col.transform.position);
+            //            if (dist < closestDistance)
+            //            {
+            //                closest = interactable;
+            //                closestDistance = dist;
+            //            }
+            //        }
+            //    }
+            //}
 
             // 🔁 Update UI and focus
             if (closest != currentInteractable)
