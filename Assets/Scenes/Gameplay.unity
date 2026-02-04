@@ -2173,13 +2173,13 @@ MonoBehaviour:
   EvtOnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 1997664856}
+        m_TargetAssemblyTypeName: PlayerManipulator, Assembly-CSharp
+        m_MethodName: _DisablePlayerMovement
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2677,6 +2677,10 @@ PrefabInstance:
       propertyPath: ui_interactionTab
       value: 
       objectReference: {fileID: 1977973918}
+    - target: {fileID: 470234963840479240, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1367724001468933626, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2725,9 +2729,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3610988257724653628, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776256238046009556, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4815010637551691829, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396829018076357697, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876453005148010627, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227960159374706779, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291737622042820226, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474390583170362233, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479567635213040596, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654443470764623539, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8029993384840231177, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[0].Input.InputAction
@@ -2737,6 +2777,10 @@ PrefabInstance:
       propertyPath: m_ControllerManager.Controllers.Array.data[1].Input.InputAction
       value: 
       objectReference: {fileID: 789632233}
+    - target: {fileID: 8169893562700414110, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3285,16 +3329,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: screenPos.x
-      value: 69.55469
+      value: 204.49078
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: screenPos.y
-      value: 42
+      value: 124
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: PlayerCamera
       value: 
       objectReference: {fileID: 263098334}
+    - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: ui_interactionTab
+      value: 
+      objectReference: {fileID: 1977973918}
+    - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: interactableMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9192366198569973207, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: m_Name
       value: Player UI
