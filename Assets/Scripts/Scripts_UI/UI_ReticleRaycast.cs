@@ -93,7 +93,7 @@ public class UI_ReticleRaycast : MonoBehaviour
             float closestDistance = Mathf.Infinity;
 
             // 🔍 Primary: Camera Raycast (FPS view)
-            if (Physics.Raycast(CrosshairUI.transform.position, CrosshairUI.transform.forward, out RaycastHit hit, RayLength, interactableMask))
+            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out RaycastHit hit, RayLength, interactableMask))
             {
                 var interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
