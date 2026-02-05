@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
   m_PrefabInstance: {fileID: 7788687841394568305}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988083758}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbaf6ff85ee042446a19e09717c6a489, type: 3}
@@ -1755,7 +1755,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2205877847749605719, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
   m_PrefabInstance: {fileID: 3688964133521184811}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3688964133521184812}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c730f37f81d726340b9a852e8de4ee7a, type: 3}
@@ -1797,109 +1797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513275088dd673d42a9368c07e7f42aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Manager
---- !u!1 &1988083758 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4435502686182364996, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
-  m_PrefabInstance: {fileID: 7788687841394568305}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1988083762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988083758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 4f379d4a89ae7d545838884624e51e91, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c5bc773d-0006-4a64-8f4f-7b4e32260f04
-    m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 07dbfa22-c426-4a2b-994c-c0ea06a73644
-    m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
-    m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
-    m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1ea9afdf-f252-4665-854c-7893b3d18a71
-    m_ActionName: 'Gameplay/GoldIncrease[/Keyboard/ctrl,/Keyboard/rightBracket]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e47361a3-e910-468a-8453-9d95029071dc
-    m_ActionName: 'Gameplay/Inventory[/Keyboard/i]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a9485bf6-4f16-43f6-9065-6110faac3d90
-    m_ActionName: 'Gameplay/Chop__W[/Keyboard/w]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6ffb3aed-4af5-4a3c-a63f-f2a83d4c2373
-    m_ActionName: 'Gameplay/Chop_A[/Keyboard/a]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fe7460db-a7c4-49aa-b14c-c83c4191cb33
-    m_ActionName: 'Gameplay/Chop_S[/Keyboard/s]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5b264a82-a691-4932-8a5e-7356403609b7
-    m_ActionName: 'Gameplay/Chop__D[/Keyboard/d]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f6d59d2-a13c-4266-8e77-ca789e934c9f
-    m_ActionName: 'Gameplay/LeftClick[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3688964133521184812}
-        m_TargetAssemblyTypeName: UI_ReticleRaycast, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: fc6808a3-6fc6-4530-99a2-be2ca60cbcd9
-    m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5e03f932-ef01-4466-affe-5d998ab9d734
-    m_ActionName: 'Gameplay/Escape[/Keyboard/escape]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1f491e5b-3dcd-4f8b-a106-5595f26d5273
-    m_ActionName: 'Gameplay/Look[/Mouse/delta]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1997664851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1702161338850263453, guid: 939b46e81b28ef244bab88eccabb300a, type: 3}
@@ -1929,7 +1826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9904cccab47a4c4f931f3b927a97bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  interactName: Press F To Interact
+  interactName: 
   isInteractable: 1
   EvtOnFocus:
     m_PersistentCalls:
@@ -1939,46 +1836,10 @@ MonoBehaviour:
       m_Calls: []
   EvtOnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1997664853}
-        m_TargetAssemblyTypeName: Shop1, Assembly-CSharp
-        m_MethodName: Announce
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1997664856}
-        m_TargetAssemblyTypeName: PlayerManipulator, Assembly-CSharp
-        m_MethodName: _DisablePlayerMovement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   EvtOnInteractWithObj:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1997664853}
-        m_TargetAssemblyTypeName: Shop1, Assembly-CSharp
-        m_MethodName: Announce
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   uiPanelToOpen: 3
 --- !u!114 &1997664856
 MonoBehaviour:
@@ -2421,17 +2282,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632417819172464259, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1977973919}
-    - target: {fileID: 2205877847749605719, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: UI_ReticleRaycast
-      value: 
-      objectReference: {fileID: 1237927763}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 226.45027
@@ -2472,22 +2325,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1997664854}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Interact
-      objectReference: {fileID: 0}
-    - target: {fileID: 2962641263942207459, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Interactable, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 3610988257724653628, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2498,7 +2335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815010637551691829, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.87
       objectReference: {fileID: 0}
     - target: {fileID: 5396829018076357697, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_IsActive
@@ -2560,22 +2397,16 @@ PrefabInstance:
     - {fileID: 9118702526061101030, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
     - {fileID: 8854205192699868940, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
     - {fileID: 8029993384840231177, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-    - {fileID: 52962085420262557, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
---- !u!1 &3688964133521184812 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1367724001468933626, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-  m_PrefabInstance: {fileID: 3688964133521184811}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3688964133521184813 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6575858084935877479, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
   m_PrefabInstance: {fileID: 3688964133521184811}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3688964133521184812}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99352152eabbe7447b95b67ce1de4098, type: 3}
@@ -3113,11 +2944,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: screenPos.x
-      value: 179.9148
+      value: 204.49078
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: screenPos.y
-      value: 109
+      value: 124
       objectReference: {fileID: 0}
     - target: {fileID: 8407457693609682785, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: PlayerCamera
@@ -3138,10 +2969,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4435502686182364996, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1988083762}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
 --- !u!1001 &7801588977194844541
 PrefabInstance:

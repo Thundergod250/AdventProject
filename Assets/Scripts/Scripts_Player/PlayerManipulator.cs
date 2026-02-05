@@ -5,14 +5,14 @@ public class PlayerManipulator : MonoBehaviour
     // === Interaction Control ===
     public void _DisableInteraction()
     {
-        var interaction = GameManager.Instance.PlayerController.UI_ReticleRaycast;
+        var interaction = GameManager.Instance.PlayerController.PlayerInteraction;
         if (interaction != null) 
             interaction.enabled = false;
     }
 
     public void _EnableInteraction()
     {
-        var interaction = GameManager.Instance.PlayerController.UI_ReticleRaycast;
+        var interaction = GameManager.Instance.PlayerController.PlayerInteraction;
         if (interaction != null) 
             interaction.enabled = true;
     }

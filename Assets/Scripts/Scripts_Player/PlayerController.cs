@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerMovement PlayerMovement;
     public PlayerAnimation PlayerAnimation;
-    public UI_ReticleRaycast UI_ReticleRaycast;
+    public PlayerInteraction PlayerInteraction;
     public PlayerGrab PlayerGrab;
     public PlayerInventory PlayerInventory;
     public PlayerAttack PlayerAttack;
