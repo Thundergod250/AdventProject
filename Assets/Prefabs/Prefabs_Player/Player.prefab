@@ -241,7 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   PlayerMovement: {fileID: 1127985473742766121}
   PlayerAnimation: {fileID: 8407781069043861718}
-  PlayerInteraction: {fileID: 52962085420262557}
+  UI_ReticleRaycast: {fileID: 0}
   PlayerGrab: {fileID: 8430264172108288562}
   PlayerInventory: {fileID: 6575858084935877479}
   PlayerAttack: {fileID: 2132086252992222447}
@@ -1182,7 +1182,7 @@ Transform:
   m_GameObject: {fileID: 8169196871213554037}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9252173, z: -0, w: -0.37943777}
-  m_LocalPosition: {x: 0.01, y: 0, z: 0.5}
+  m_LocalPosition: {x: -0.25, y: 0, z: 0.502}
   m_LocalScale: {x: 2.7414382, y: 3.3333333, z: 0.4195884}
   m_ConstrainProportionsScale: 0
   m_Children: []
