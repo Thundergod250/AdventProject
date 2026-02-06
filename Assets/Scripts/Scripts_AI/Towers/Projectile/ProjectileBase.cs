@@ -37,7 +37,7 @@ public class ProjectileBase : MonoBehaviour
         //moveDirection = direction;
 
         //rb.linearVelocity = direction.normalized * speed;
-
+         
         //// Rotate projectile to face movement direction
         //if (moveDirection != Vector3.zero)
         //{ 
