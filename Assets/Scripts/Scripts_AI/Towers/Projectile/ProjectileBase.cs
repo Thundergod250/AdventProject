@@ -8,7 +8,11 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] private float lifetime = 1.5f;
     [SerializeField] private GameObject explosionVFX; // optional prefab for impact effect
     [SerializeField] private float explosionLifetime = 1f; // how long the VFX stays before despawn
+    [SerializeField] private float turnRate = 5f; // how fast the bullet curves
     private Vector3 moveDirection;
+
+    private Vector3 currentDirection;
+    private Vector3 targetDirection;
 
     private Rigidbody rb;
 
@@ -23,17 +27,36 @@ public class ProjectileBase : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    public void SetDirection(Vector3 direction) 
+    public void SetDirection(Vector3 initialDirection, Vector3 targetDir) 
+    {
+        currentDirection = initialDirection.normalized; 
+        targetDirection = targetDir.normalized; 
+
+        rb.linearVelocity = currentDirection * speed; 
+        transform.rotation = Quaternion.LookRotation(currentDirection);
+        //moveDirection = direction;
+
+        //rb.linearVelocity = direction.normalized * speed;
+         
+        //// Rotate projectile to face movement direction
+        //if (moveDirection != Vector3.zero)
+        //{ 
+        //    transform.rotation = Quaternion.LookRotation(moveDirection); 
+        //}
+    }
+
+    private void Update()
     { 
-        moveDirection = direction;
-
-        rb.linearVelocity = direction.normalized * speed;
-
-        // Rotate projectile to face movement direction
-        if (moveDirection != Vector3.zero)
-        { 
-            transform.rotation = Quaternion.LookRotation(moveDirection); 
-        }
+        // Gradually rotate currentDirection toward targetDirection
+        currentDirection = Vector3.RotateTowards( 
+            currentDirection, 
+            targetDirection, 
+            turnRate * Time.deltaTime, 
+            1f // max magnitude change
+        ); 
+        
+        rb.linearVelocity = currentDirection * speed; 
+        transform.rotation = Quaternion.LookRotation(currentDirection);
     }
 
     private void OnTriggerEnter(Collider other)
