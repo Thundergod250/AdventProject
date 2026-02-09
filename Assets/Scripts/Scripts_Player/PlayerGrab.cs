@@ -10,7 +10,7 @@ public class PlayerGrab : MonoBehaviour
         inventory = GameManager.Instance.PlayerController.PlayerInventory;
     }
 
-    public void GrabObject(Item item)
+    /*public void GrabObject(Item item)
     {
         if (item == null) return;
 
@@ -18,5 +18,5 @@ public class PlayerGrab : MonoBehaviour
 
         // Destroy the world object after pickup
         Destroy(item.gameObject);
-    }
+    }*/
 }

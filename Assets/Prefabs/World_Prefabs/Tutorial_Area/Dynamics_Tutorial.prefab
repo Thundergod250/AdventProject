@@ -196,7 +196,7 @@ MonoBehaviour:
   EvtOnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1617370447672804083}
         m_TargetAssemblyTypeName: MiningManager, Assembly-CSharp
         m_MethodName: StartMining
         m_Mode: 1

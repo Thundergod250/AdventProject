@@ -9829,8 +9829,8 @@ GameObject:
   - component: {fileID: 7145777823586653159}
   - component: {fileID: 7002138369905944064}
   - component: {fileID: 3046140517081157165}
-  - component: {fileID: -6599905774239323243}
-  - component: {fileID: 4795285503929865688}
+  - component: {fileID: 6139377783613549206}
+  - component: {fileID: 8517969599979319444}
   m_Layer: 0
   m_Name: Resources_Main_Rock
   m_TagString: Untagged
@@ -9972,7 +9972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9904cccab47a4c4f931f3b927a97bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  interactName: Grab
+  interactName: Small Rock
   isInteractable: 1
   EvtOnFocus:
     m_PersistentCalls:
@@ -10022,10 +10022,10 @@ MonoBehaviour:
   EvtOnInteractWithObj:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4795285503929865688}
-        m_TargetAssemblyTypeName: GrabManipulator, Assembly-CSharp
-        m_MethodName: _Grab
-        m_Mode: 0
+      - m_Target: {fileID: 6139377783613549206}
+        m_TargetAssemblyTypeName: Lootable, Assembly-CSharp
+        m_MethodName: _OnLooted
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10034,7 +10034,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-6599905774239323243
+  uiPanelToOpen: 0
+--- !u!114 &6139377783613549206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10043,13 +10044,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6601367754676294331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7436cdaddd5834eb089c6cded87c0c, type: 3}
+  m_Script: {fileID: 11500000, guid: bba6bb0d3ef80da47922c8ff2f80c4f2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Resource
-  itemName: Wood
-  amount: 1
-  resourceType: 0
---- !u!114 &4795285503929865688
+  m_EditorClassIdentifier: Assembly-CSharp::Lootable
+  maxLoots: 1
+  EvtOnLooted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8517969599979319444}
+        m_TargetAssemblyTypeName: MoneyManipulator, Assembly-CSharp
+        m_MethodName: _AddMoney
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8517969599979319444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10058,9 +10072,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6601367754676294331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7842c0f9522958e4183189877e6c26f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 940c4478967465e44a0db3fad70ad4e7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrabManipulator
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyManipulator
+  HasEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
+  DoesNotHaveEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7755832948106792604
 GameObject:
   m_ObjectHideFlags: 0

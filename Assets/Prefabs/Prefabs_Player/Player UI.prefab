@@ -2533,7 +2533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7226081028688384169
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3356,6 +3356,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Release
       objectReference: {fileID: 0}
+    - target: {fileID: 971007607985336758, guid: 5111b5b599ba9d34797265aea014058e, type: 3}
+      propertyPath: m_fontSize
+      value: 25.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3699236910836582060, guid: 5111b5b599ba9d34797265aea014058e, type: 3}
       propertyPath: m_Name
       value: Interaction Tab
@@ -3390,7 +3394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3835931845224568186, guid: 5111b5b599ba9d34797265aea014058e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 143.44
       objectReference: {fileID: 0}
     - target: {fileID: 3835931845224568186, guid: 5111b5b599ba9d34797265aea014058e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3426,7 +3430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3835931845224568186, guid: 5111b5b599ba9d34797265aea014058e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: -71.72
       objectReference: {fileID: 0}
     - target: {fileID: 3835931845224568186, guid: 5111b5b599ba9d34797265aea014058e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
