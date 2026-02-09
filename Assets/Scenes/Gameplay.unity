@@ -1747,6 +1747,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c730f37f81d726340b9a852e8de4ee7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &1864550117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+  m_PrefabInstance: {fileID: 6720083353953556391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4e33077c9b9844eab56445c61abdcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiningManager
 --- !u!1 &1934863771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,6 +2866,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial Area
       objectReference: {fileID: 0}
+    - target: {fileID: 1901571699762406226, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1864550117}
+    - target: {fileID: 3122511514641785683, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4567186530254124272, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2895,8 +2914,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5237579817977646070, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8709525885878396717, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 8709525885878396717, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 30.29
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6720129001594814847, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
