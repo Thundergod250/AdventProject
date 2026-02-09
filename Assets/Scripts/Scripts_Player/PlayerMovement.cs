@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Camera Settings")]
     [SerializeField] private Transform cameraTransform; // reference to Cinemachine camera
     public CinemachineInputAxisController lookController; // controls camera orbit
+    public float rotationSpeed = 10f; // how quickly player turns
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -92,11 +93,18 @@ public class PlayerMovement : MonoBehaviour
 
         // Movement relative to camera
         Vector3 move = camRight * moveInput.x + camForward * moveInput.y;
-        controller.Move(move * (moveSpeed * Time.deltaTime));
+        controller.Move(move * moveSpeed * Time.deltaTime);
 
-        // Rotate player to face movement direction
+        // Smoothly rotate player to face movement direction
         if (move != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(move);
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+        }
     }
 
     private void HandleGravityAndJump()
