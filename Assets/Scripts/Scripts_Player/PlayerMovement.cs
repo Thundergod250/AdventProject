@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpHeight = 2f;
     public float gravity = -9.81f;
+    [SerializeField] private float jumpSpeedMultiplier = 1.5f; // ✅ editable boost
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -16,12 +17,12 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     [Header("Camera Settings")]
-    [SerializeField] private Transform cameraTransform; // reference to Cinemachine camera
-    public CinemachineInputAxisController lookController; // controls camera orbit
-    public float rotationSpeed = 10f; // how quickly player turns
+    [SerializeField] private Transform cameraTransform;
+    public CinemachineInputAxisController lookController;
+    public float rotationSpeed = 10f;
 
     [Header("Animation")]
-    public PlayerAnimation playerAnimation; // reference to slime bounce animation
+    public PlayerAnimation playerAnimation;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -30,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private bool jumpRequested;
 
-    // Control flags
     private bool canMove = true;
     private bool canLook = true;
 
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canLook = value;
         if (lookController != null)
-            lookController.enabled = value; // enable/disable Cinemachine orbit input
+            lookController.enabled = value;
     }
 
     // === Internal Logic ===
@@ -83,9 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (cameraTransform == null) return;
+        if (!cameraTransform) return;
 
-        // Get camera forward/right projected onto ground plane
         Vector3 camForward = cameraTransform.forward;
         camForward.y = 0;
         camForward.Normalize();
@@ -94,11 +93,12 @@ public class PlayerMovement : MonoBehaviour
         camRight.y = 0;
         camRight.Normalize();
 
-        // Movement relative to camera
         Vector3 move = camRight * moveInput.x + camForward * moveInput.y;
-        controller.Move(move * moveSpeed * Time.deltaTime);
 
-        // Smoothly rotate player to face movement direction
+        // ✅ Apply jump speed boost if airborne
+        float currentSpeed = isGrounded ? moveSpeed : moveSpeed * jumpSpeedMultiplier;
+        controller.Move(move * (currentSpeed * Time.deltaTime));
+
         if (move != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move);
@@ -109,9 +109,8 @@ public class PlayerMovement : MonoBehaviour
             );
         }
 
-        // 🔔 Trigger animation bounce only when grounded
         bool isActuallyMoving = move.magnitude > 0.1f && isGrounded;
-        if (playerAnimation != null)
+        if (playerAnimation)
             playerAnimation.SetIsMoving(isActuallyMoving);
     }
 
@@ -131,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    public bool IsGrounded() => isGrounded; // ✅ expose grounded state
 
     private void OnDrawGizmosSelected()
     {

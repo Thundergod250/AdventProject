@@ -7,22 +7,23 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerAnimation playerAnimation;
 
+    private bool isAttacking = false;
+
     public void OnSlam(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (isAttacking) return; // prevent re-entry
+        if (!playerMovement.IsGrounded()) return; // ✅ only attack if grounded
 
-        // Disable movement
         playerMovement.SetCanMove(false);
-
-        // Trigger slam animation
         StartCoroutine(SlamRoutine());
     }
 
     private IEnumerator SlamRoutine()
     {
+        isAttacking = true;
         yield return StartCoroutine(playerAnimation.PlaySlam());
-
-        // Re-enable movement after slam finishes
         playerMovement.SetCanMove(true);
+        isAttacking = false;
     }
 }
