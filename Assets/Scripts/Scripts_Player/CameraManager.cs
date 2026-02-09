@@ -2,32 +2,27 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] private GameObject firstPersonCamera;
+    [SerializeField] private GameObject gameCamera;
 
     public void EnableCamera()
     {
-        if (firstPersonCamera != null)
-            firstPersonCamera.SetActive(true);
+        if (gameCamera != null)
+            gameCamera.SetActive(true);
     }
 
     public void DisableCamera()
     {
-        if (firstPersonCamera != null)
-            firstPersonCamera.SetActive(false);
+        if (gameCamera != null)
+            gameCamera.SetActive(false);
     }
 
     public void BillboardToCamera(GameObject caller)
     {
-        /*if (firstPersonCamera == null || caller == null) return;
+        if (caller == null || gameCamera == null) return;
 
-        Transform camTransform = firstPersonCamera.transform;
-        Vector3 direction = camTransform.position - caller.transform.position;
-        direction.y = 0f;
+        Transform camTransform = gameCamera.transform;
 
-        if (direction.sqrMagnitude > 0.001f)
-        {
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            caller.transform.rotation = lookRotation;
-        }*/
+        // Make caller face the camera
+        caller.transform.forward = camTransform.forward;
     }
 }
