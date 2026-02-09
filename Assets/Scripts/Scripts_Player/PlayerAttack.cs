@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
         if (GameManager.Instance.UIManager.IsUIBlockingGameplay())
             return;
 
-        GameManager.Instance.PlayerController.PlayerAnimation?.TriggerSlash();
+        //GameManager.Instance.PlayerController.PlayerAnimation?.TriggerSlash();
 
         StartCoroutine(DelayedSpawnBullet());
         StartCoroutine(SlashCooldownRoutine());

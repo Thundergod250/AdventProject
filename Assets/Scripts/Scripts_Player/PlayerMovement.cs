@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineInputAxisController lookController; // controls camera orbit
     public float rotationSpeed = 10f; // how quickly player turns
 
+    [Header("Animation")]
+    public PlayerAnimation playerAnimation; // reference to slime bounce animation
+
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
@@ -105,6 +108,11 @@ public class PlayerMovement : MonoBehaviour
                 rotationSpeed * Time.deltaTime
             );
         }
+
+        // 🔔 Trigger animation bounce only when grounded
+        bool isActuallyMoving = move.magnitude > 0.1f && isGrounded;
+        if (playerAnimation != null)
+            playerAnimation.SetIsMoving(isActuallyMoving);
     }
 
     private void HandleGravityAndJump()

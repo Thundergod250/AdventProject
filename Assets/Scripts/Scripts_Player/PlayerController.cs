@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public PlayerInventory PlayerInventory;
     public PlayerAttack PlayerAttack;
     public PlayerInput PlayerInput;
-    public Animator animator;
 
     private void Start()
     {

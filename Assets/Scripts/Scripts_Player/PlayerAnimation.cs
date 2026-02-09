@@ -2,66 +2,46 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [Header("Normal States")]
-    [SerializeField] private string idleState = "Idle";
-    [SerializeField] private string runState = "Walk";
-    [SerializeField] private string jumpState = "Jump";
+    [Header("Bounce Settings")]
+    [SerializeField] private Transform model; // child model to animate
+    [SerializeField] private float bounceHeight = 0.25f;
+    [SerializeField] private float bounceSpeed = 6f;
 
-    [Header("Action States")]
-    [SerializeField] private string grabState = "Basic Grab";
-    [SerializeField] private string slashState = "Slash";
+    private Vector3 initialLocalPos;
+    private float bounceTimer;
+    private bool isMoving;
 
-    private Animator animator;
-    private string currentState;
-
-    private void Start() => animator = GameManager.Instance.PlayerController.animator;
-
-    private void PlayState(string stateName, float crossFade = 0.05f)
+    private void Awake()
     {
-        if (animator == null || currentState == stateName) return;
+        if (model == null)
+            model = transform; // fallback if not assigned
 
-        animator.CrossFade(stateName, crossFade, 0);
-        currentState = stateName;
+        initialLocalPos = model.localPosition;
     }
 
-    public void UpdateMovementAnimation(float speed, bool isJumping)
+    private void Update()
     {
-        if (isJumping) return;
-
-        float blend = 0.05f;
-        PlayState(speed > 0.1f ? runState : idleState, blend);
-    }
-
-    public void TriggerJump() => PlayState(jumpState, 0.05f);
-
-    public void TriggerGrab() => PlayState(grabState, 0.1f);
-
-    public void TriggerSlash() => PlayState(slashState, 0.1f);
-
-    // Called via Animation Event at end of Slash animation
-    /*public void OnSlashAnimationEnd()
-    {
-        currentState = null;
-
-        var movement = GameManager.Instance.PlayerController.PlayerMovement;
-        if (movement != null)
+        if (isMoving)
         {
-            // ✅ Immediately resume movement animation
-            UpdateMovementAnimation(movement.CurrentSpeed, movement.IsJumping);
+            bounceTimer += Time.deltaTime * bounceSpeed;
+
+            // 👇 Use Mathf.Abs so the bounce is always upward
+            float offset = Mathf.Abs(Mathf.Sin(bounceTimer)) * bounceHeight;
+
+            model.localPosition = initialLocalPos + Vector3.up * offset;
+        }
+        else
+        {
+            // Reset smoothly when idle
+            model.localPosition = Vector3.Lerp(
+                model.localPosition,
+                initialLocalPos,
+                Time.deltaTime * bounceSpeed
+            );
+            bounceTimer = 0f;
         }
     }
 
-
-    // 🔑 Called via Animation Event at end of Grab animation
-    public void OnGrabAnimationEnd()
-    {
-        currentState = null; // reset so movement can take over
-
-        var movement = GameManager.Instance.PlayerController.PlayerMovement;
-        if (movement != null) 
-            UpdateMovementAnimation(movement.CurrentSpeed, movement.IsJumping);
-    }*/
-
-
-    public void ResetAnimations() => PlayState(idleState, 0.1f);
+    // Called by PlayerMovement
+    public void SetIsMoving(bool value) => isMoving = value;
 }
