@@ -9,8 +9,10 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private float bounceSpeed = 6f;
 
     [Header("Slam Settings")]
-    [SerializeField] private float slamLiftHeight = 1f;
-    [SerializeField] private float slamHoldTime = 1f;
+    [SerializeField] private float slamLiftHeight = 1.5f;
+    [SerializeField] private float slamHoldTime = 0.1f; // very short pause
+    [SerializeField] private float liftDuration = 0.2f; // quick rise
+    [SerializeField] private float slamDuration = 0.1f; // explosive slam
     public ParticleSystem slamVFX;
 
     private Vector3 initialLocalPos;
@@ -51,25 +53,27 @@ public class PlayerAnimation : MonoBehaviour
         isSlamming = true;
         isMoving = false;
 
-        // Lift up
         Vector3 liftedPos = initialLocalPos + Vector3.up * slamLiftHeight;
+
+        // Lift up quickly
         float t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime * 3f;
+            t += Time.deltaTime / liftDuration;
             model.localPosition = Vector3.Lerp(initialLocalPos, liftedPos, t);
             yield return null;
         }
 
-        // Hold
+        // Hold briefly
         yield return new WaitForSeconds(slamHoldTime);
 
-        // Slam down
+        // Slam down explosively
         t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime * 6f;
-            model.localPosition = Vector3.Lerp(liftedPos, initialLocalPos, t);
+            t += Time.deltaTime / slamDuration;
+            // SmoothStep exaggerates acceleration
+            model.localPosition = Vector3.Lerp(liftedPos, initialLocalPos, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
 
@@ -77,6 +81,19 @@ public class PlayerAnimation : MonoBehaviour
         if (slamVFX != null)
             slamVFX.Play();
 
+        // Optional squash/stretch
+        StartCoroutine(SquashStretch());
+
         isSlamming = false;
+    }
+
+    private IEnumerator SquashStretch()
+    {
+        Vector3 normalScale = model.localScale;
+        Vector3 squashedScale = new Vector3(normalScale.x * 1.2f, normalScale.y * 0.8f, normalScale.z * 1.2f);
+
+        model.localScale = squashedScale;
+        yield return new WaitForSeconds(0.1f);
+        model.localScale = normalScale;
     }
 }

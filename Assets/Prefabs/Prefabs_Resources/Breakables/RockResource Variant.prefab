@@ -307,6 +307,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8609434740572547929, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 5732009904321278121}
+    - targetCorrespondingSourceObject: {fileID: 8609434740572547929, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 846487022174334488}
     - targetCorrespondingSourceObject: {fileID: 3390425172205643668, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       insertIndex: -1
@@ -322,6 +325,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8609434740572547929, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
   m_PrefabInstance: {fileID: 7658372491074259648}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5732009904321278121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103984203466088857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be93f831ec15fe459aa9bad6d5358de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Proximity
+  proximityShow: 1
+  showDistance: 6
+  targetCanvas: {fileID: 4991453552586452308}
 --- !u!135 &846487022174334488
 SphereCollider:
   m_ObjectHideFlags: 0
