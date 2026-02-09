@@ -2,23 +2,29 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
+[RequireComponent(typeof(PlayerController))]
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerAnimation playerAnimation;
-
     [Header("Attack Settings")]
-    [SerializeField] private float slamRadius = 3f;       // area of effect
-    [SerializeField] private int slamDamage = 25;         // editable/upgradable damage
-    [SerializeField] private LayerMask damageMask;        // filter for enemies/harvestables
+    [SerializeField] private float slamRadius = 3f;   // area of effect
+    [SerializeField] private int slamDamage = 25;     // editable/upgradable damage
+    [SerializeField] private LayerMask damageMask;    // filter for enemies/harvestables
 
+    private PlayerMovement playerMovement;
+    private PlayerAnimation playerAnimation;
     private bool isAttacking = false;
+
+    private void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+        playerAnimation = GetComponent<PlayerAnimation>();
+    }
 
     public void OnSlam(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        if (isAttacking) return; // prevent re-entry
-        if (!playerMovement.IsGrounded()) return; // only attack if grounded
+        if (isAttacking) return; 
+        if (!playerMovement.IsGrounded()) return; 
 
         playerMovement.SetCanMove(false);
         StartCoroutine(SlamRoutine());
@@ -28,35 +34,35 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = true;
 
-        // Play slam animation coroutine
         yield return StartCoroutine(playerAnimation.PlaySlam());
 
-        // ✅ Apply damage after slam lands
         ApplySlamDamage();
 
-        // Re-enable movement after slam finishes
         playerMovement.SetCanMove(true);
         isAttacking = false;
     }
 
     private void ApplySlamDamage()
     {
-        // Find all colliders in radius
         Collider[] hits = Physics.OverlapSphere(transform.position, slamRadius, damageMask);
 
         foreach (var hit in hits)
         {
             Health health = hit.GetComponent<Health>();
-            if (health != null)
-            {
+            if (health) 
                 health.TakeDamage(slamDamage);
-            }
         }
 
         Debug.Log($"Slam hit {hits.Length} objects for {slamDamage} damage.");
     }
 
-    // Optional: visualize slam radius in editor
+    // ✅ Called by PlayerStats to sync values
+    public void SetAttackValues(int damage, int radius)
+    {
+        slamDamage = damage;
+        slamRadius = radius;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

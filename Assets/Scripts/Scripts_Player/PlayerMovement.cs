@@ -1,3 +1,4 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,8 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineInputAxisController lookController;
     public float rotationSpeed = 10f;
 
-    [Header("Animation")]
-    public PlayerAnimation playerAnimation;
+    private PlayerAnimation playerAnimation;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -34,7 +34,12 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     private bool canLook = true;
 
-    private void Awake() => controller = GetComponent<CharacterController>();
+    private void Start()
+    { 
+        controller = GetComponent<CharacterController>();
+        playerAnimation = GetComponent<PlayerAnimation>();
+    }
+
 
     private void Update()
     {
