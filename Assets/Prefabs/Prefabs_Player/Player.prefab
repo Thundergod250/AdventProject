@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 2658805747885236236}
   - component: {fileID: 2205877847749605719}
   - component: {fileID: 1632417819172464259}
+  - component: {fileID: 7262976255104573261}
   - component: {fileID: 1127985473742766121}
   - component: {fileID: 8430264172108288562}
   - component: {fileID: 1311181230335843113}
@@ -186,6 +187,7 @@ MonoBehaviour:
   PlayerInventory: {fileID: 6575858084935877479}
   PlayerAttack: {fileID: 2132086252992222447}
   PlayerInput: {fileID: 1632417819172464259}
+  PlayerStats: {fileID: 7262976255104573261}
 --- !u!114 &1632417819172464259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +358,23 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7262976255104573261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ba3ae869496b44aa4844ac5cf00943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  damage: 25
+  attackRange: 4
+  EvtOnStatChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1127985473742766121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +399,6 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   lookController: {fileID: 0}
   rotationSpeed: 20
-  playerAnimation: {fileID: 4859940245406709005}
 --- !u!114 &8430264172108288562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,8 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80ca29ff50cd3241b79c0b5ae821cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  playerMovement: {fileID: 1127985473742766121}
-  playerAnimation: {fileID: 4859940245406709005}
   slamRadius: 4
   slamDamage: 25
   damageMask:
@@ -470,6 +486,8 @@ MonoBehaviour:
   bounceSpeed: 15
   slamLiftHeight: 2
   slamHoldTime: 0.1
+  liftDuration: 0.2
+  slamDuration: 0.1
   slamVFX: {fileID: 5493503308199923385}
 --- !u!1 &2962931387159453308
 GameObject:
