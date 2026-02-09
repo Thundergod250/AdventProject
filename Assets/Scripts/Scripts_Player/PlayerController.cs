@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     
     public void OnLookJump(InputAction.CallbackContext context)
     {
-        PlayerMovement.MovementOnLook(context);
+        //PlayerMovement.MovementOnLook(context);
     }
 
 
