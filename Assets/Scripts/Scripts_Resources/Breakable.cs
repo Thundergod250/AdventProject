@@ -9,25 +9,8 @@ public class Breakable : MonoBehaviour
     [SerializeField] private GameObject resourceDropped;
 
     private Health health;
-
-    private void Awake()
-    {
-        health = GetComponent<Health>();
-        if (health != null) 
-            health.OnDeath.AddListener(HandleDeath);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out ProjectileBase projectile))
-        {
-            health?.TakeDamage(25); // adjust damage as needed
-            Destroy(projectile.gameObject);
-        }
-    }
-
     
-    private void HandleDeath()
+    public void HandleDeath()
     {
         // Spawn VFX
         if (explosionVFX != null)
