@@ -24,7 +24,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!context.performed) return;
         if (isAttacking) return; 
-        if (!playerMovement.IsGrounded()) return; 
+        if (!playerMovement.IsGrounded()) return;
+        if (!playerMovement.GetCanMove()) return;
+        if (!playerMovement.GetCanLook()) return;
 
         playerMovement.SetCanMove(false);
         StartCoroutine(SlamRoutine());

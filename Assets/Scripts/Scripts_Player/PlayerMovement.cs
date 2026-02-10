@@ -71,6 +71,10 @@ public class PlayerMovement : MonoBehaviour
 
     // === Control toggles ===
     public void SetCanMove(bool value) => canMove = value;
+    
+    public bool GetCanMove() => canMove;
+    public bool GetCanLook() => canLook;
+
 
     public void SetCanLook(bool value)
     {
