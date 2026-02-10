@@ -1,12 +1,18 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class MiningManager : MonoBehaviour
 {
     [Header("Prefabs & References")]
     [SerializeField] private GameObject rockPrefab;
     [SerializeField] private GameObject blockingWall;
+    [SerializeField] private TextMeshProUGUI uiMiningCountdown;
+
+    [Header("Upgrade UI")]
+    [SerializeField] private TextMeshProUGUI uiUpgradePriceText;
+    [SerializeField] private GameObject uiUpgradeLabelText; // optional, if you want to reference the "Upgrade" label
 
     [Header("Spawn Settings")]
     [SerializeField] private Vector2 planeSize = new Vector2(10f, 10f); // X/Z area
@@ -20,11 +26,44 @@ public class MiningManager : MonoBehaviour
     private List<GameObject> spawnedRocks = new List<GameObject>();
     private Coroutine miningRoutine;
 
+    [SerializeField] private int currentPrice;
+    [SerializeField] private int upgradePrice;
+    [Header("Temp Only")]
+    [SerializeField] private int gemstoneAmount;
+
+    private void Awake()
+    {
+        upgradePrice = currentPrice;
+    }
+
     // === Public Entry Point ===
     public void StartMining()
     {
         if (isMiningActive) return; // prevent re-entry while active
         miningRoutine = StartCoroutine(MiningSession());
+    }
+
+    // === Upgrade Button Entry Point ===
+    public void Upgrade() 
+    { 
+        if(gemstoneAmount >= upgradePrice)
+        {
+            upgradePrice += 1; // increment price
+            gemstoneAmount -= upgradePrice;
+            miningDuration += 10f;
+            UpdateUpgradePriceText();
+        }
+        else
+        {
+            StartCoroutine(ClearNotEnoughText());
+            return;
+        }
+    }
+
+    public void UpdateUpgradePriceText() 
+    { 
+        if (uiUpgradePriceText != null) 
+            uiUpgradePriceText.text = upgradePrice.ToString(); 
     }
 
     // === Core Mining Flow ===
@@ -44,8 +83,21 @@ public class MiningManager : MonoBehaviour
             spawnedRocks.Add(rock);
         }
 
-        // Wait for duration
-        yield return new WaitForSeconds(miningDuration);
+        //Countdown loop 
+         float remainingTime = miningDuration; 
+        
+        while (remainingTime > 0f) 
+        { 
+            if (uiMiningCountdown != null) uiMiningCountdown.text = Mathf.CeilToInt(remainingTime).ToString(); 
+            yield return null; 
+            
+            // wait one frame
+            remainingTime -= Time.deltaTime; 
+        } 
+        
+        // Clear UI text when finished
+        if (uiMiningCountdown != null) 
+            uiMiningCountdown.text = string.Empty;
 
         // Cleanup
         foreach (var rock in spawnedRocks)
@@ -60,6 +112,13 @@ public class MiningManager : MonoBehaviour
 
         isMiningActive = false;
         miningRoutine = null;
+    }
+
+    private IEnumerator ClearNotEnoughText()
+    {
+        uiUpgradeLabelText.SetActive(!uiUpgradeLabelText.activeSelf);
+        yield return new WaitForSeconds(1);
+        uiUpgradeLabelText.SetActive(!uiUpgradeLabelText.activeSelf);
     }
 
     // === Helpers ===

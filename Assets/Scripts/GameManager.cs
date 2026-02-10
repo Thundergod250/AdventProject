@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public DebugCheats DebugCheats;
     public PlayerInventory PlayerInventory;
     public UI_ReticleRaycast UI_ReticleRaycast;
+    public PlayerManipulator playerManipulator;
 
     private void Awake()
     {
