@@ -45,8 +45,6 @@ public class WoodChopping : MonoBehaviour
 
         await Task.Delay(1000); // 1 second
 
-        await CheckInputAsync();
-
         buttonUI.SetActive(false);
         WoodChoppingRoot.SetActive(false);
         GameManager.Instance.PlayerController.EnableMovement();
@@ -84,37 +82,6 @@ public class WoodChopping : MonoBehaviour
             {
                 Debug.LogError("Button prefab missing TextMeshProUGUI child!");
             }
-        }
-    }
-
-    async Task CheckInputAsync()
-    {
-        float timer = inputTime;
-        int index = 0;
-
-        while (timer > 0f && index < sequence.Count)
-        {
-            if (PlayerInteractionVar.IsCorrectInput(sequence[index]))
-            {
-                Debug.LogWarning("Succeeded");
-                index++; // move to next letter
-            }
-            else 
-            {
-                Debug.Log("Failed!");
-            }
-
-            timer -= Time.deltaTime;
-            await Task.Yield(); // replaces yield return null
-        }
-
-        if (index == sequence.Count)
-        {
-            Debug.Log("Success!");
-        }
-        else
-        {
-            Debug.Log("Failed (timeout)");
         }
     }
 }

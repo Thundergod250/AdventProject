@@ -3,20 +3,23 @@ using UnityEngine.UI;
 
 public class UI_Health : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Image healthBar;
-    [SerializeField] private Health healthSource; // 👈 reference to the Health component
+    [SerializeField] private Health healthSource;
 
-    private void Awake()
+    private void Start()
     {
         if (healthSource != null)
         {
             // Subscribe to health events
             healthSource.OnDamaged.AddListener(UpdateHealthBar);
             healthSource.OnDeath.AddListener(HideHealthBar);
-        }
 
-        // Initialize bar
-        UpdateHealthBar(healthSource.GetCurrentHealth());
+            // Initialize bar
+            UpdateHealthBar(healthSource.GetCurrentHealth());
+        }
+        else
+            Debug.LogWarning($"{name}: HealthSource not assigned!");
     }
 
     private void UpdateHealthBar(int currentHealth)

@@ -16,8 +16,8 @@ TagManager:
   - Resources
   - Player
   - Enemy
-  - 
-  - 
+  - Ground
+  - PlayerIgnore
   - 
   - 
   - 

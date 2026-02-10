@@ -13,9 +13,9 @@ public class DebugCheats : MonoBehaviour
         Debug.Log("Noclip toggled: " + noclipEnabled);
 
         // Hook into PlayerMovement
-        if (GameManager.Instance != null && GameManager.Instance.PlayerController != null)
+        /*if (GameManager.Instance != null && GameManager.Instance.PlayerController != null)
         {
             GameManager.Instance.PlayerController.PlayerMovement.SetNoclip(noclipEnabled);
-        }
+        }*/
     }
 }

@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 7974068705800889386}
   - component: {fileID: -1709761594023938275}
   - component: {fileID: -7329184570797048345}
-  - component: {fileID: 9062324137019405639}
   - component: {fileID: 1808754899696988085}
   - component: {fileID: 6888964352577595338}
   m_Layer: 10
@@ -164,7 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   Health: {fileID: 7974068705800889386}
   Movement: {fileID: -1709761594023938275}
-  EnemyAttack: {fileID: 9062324137019405639}
 --- !u!114 &7974068705800889386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,26 +221,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &9062324137019405639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344026505566252955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9672d8d0f5fb2b8498bdb7a85fa6b0ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  startMode: 1
-  attackType: 1
-  detectionRadius: 8
-  attackRange: 2
-  attackInterval: 1.5
-  attackDamage: 10
-  projectilePrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
-  projectileSpeed: 10
 --- !u!114 &1808754899696988085
 MonoBehaviour:
   m_ObjectHideFlags: 0

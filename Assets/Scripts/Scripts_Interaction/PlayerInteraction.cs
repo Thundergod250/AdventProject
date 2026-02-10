@@ -4,13 +4,10 @@ using System.Collections;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Raycast Settings")]
-    [SerializeField] private Transform[] raycastPoints;
-    [SerializeField] private float rayLength = 5f;
-
-    [Header("OverlapBox Fallback")]
-    [SerializeField] private Vector3 boxSize = new Vector3(1f, 1f, 1f);
-    [SerializeField] private Vector3 boxOffset = Vector3.zero;
+    [Header("OverlapBox Settings")]
+    [SerializeField] private float checkInterval = 0.1f;
+    [SerializeField] private Vector3 boxSize = new Vector3(1.5f, 1.5f, 1.5f);
+    [SerializeField] private Vector3 boxOffset = new Vector3(0f, 0.5f, 1.5f); // forward offset
 
     [Header("General Settings")]
     [SerializeField] private LayerMask interactableMask;
@@ -18,33 +15,27 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float enableDelay = 0.1f;
 
     private Interactable currentInteractable;
-    private Coroutine raycastRoutine;
+    private Coroutine overlapRoutine;
     private Coroutine enableRoutine;
-    private WaitForSeconds raycastInterval = new WaitForSeconds(0.1f);
+    private WaitForSeconds intervalWait;
 
-    [Header("Minigame Inputs (WASD)")]
-    public InputActionReference inputW;
-    public InputActionReference inputA;
-    public InputActionReference inputS;
-    public InputActionReference inputD;
+    private void Awake()
+    {
+        intervalWait = new WaitForSeconds(checkInterval);
+    }
 
     private void OnEnable()
     {
         if (enableRoutine == null)
             enableRoutine = StartCoroutine(EnableWithDelay());
-
-        inputW?.action.Enable();
-        inputA?.action.Enable();
-        inputS?.action.Enable();
-        inputD?.action.Enable();
     }
 
     private void OnDisable()
     {
-        if (raycastRoutine != null)
+        if (overlapRoutine != null)
         {
-            StopCoroutine(raycastRoutine);
-            raycastRoutine = null;
+            StopCoroutine(overlapRoutine);
+            overlapRoutine = null;
         }
 
         if (enableRoutine != null)
@@ -58,54 +49,33 @@ public class PlayerInteraction : MonoBehaviour
     {
         yield return new WaitForSeconds(enableDelay);
 
-        if (raycastRoutine == null)
-            raycastRoutine = StartCoroutine(RaycastRoutine());
+        if (overlapRoutine == null)
+            overlapRoutine = StartCoroutine(OverlapRoutine());
 
         enableRoutine = null;
     }
 
-    private IEnumerator RaycastRoutine()
+    private IEnumerator OverlapRoutine()
     {
         while (true)
         {
             Interactable closest = null;
             float closestDistance = Mathf.Infinity;
 
-            // 🔍 Primary: Raycast
-            foreach (Transform point in raycastPoints)
-            {
-                if (Physics.Raycast(point.position, point.forward, out RaycastHit hit, rayLength, interactableMask))
-                {
-                    var interactable = hit.collider.GetComponent<Interactable>();
-                    if (interactable != null)
-                    {
-                        float dist = Vector3.Distance(transform.position, hit.point);
-                        if (dist < closestDistance)
-                        {
-                            closest = interactable;
-                            closestDistance = dist;
-                        }
-                    }
-                }
-            }
+            // 📦 OverlapBox in front of player
+            Vector3 boxCenter = transform.position + transform.TransformDirection(boxOffset);
+            Collider[] hits = Physics.OverlapBox(boxCenter, boxSize * 0.5f, transform.rotation, interactableMask);
 
-            // 📦 Fallback: OverlapBox
-            if (closest == null)
+            foreach (var col in hits)
             {
-                Vector3 boxCenter = transform.position + transform.TransformDirection(boxOffset);
-                Collider[] hits = Physics.OverlapBox(boxCenter, boxSize * 0.5f, transform.rotation, interactableMask);
-
-                foreach (var col in hits)
+                var interactable = col.GetComponent<Interactable>();
+                if (interactable != null)
                 {
-                    var interactable = col.GetComponent<Interactable>();
-                    if (interactable != null)
+                    float dist = Vector3.Distance(transform.position, col.transform.position);
+                    if (dist < closestDistance)
                     {
-                        float dist = Vector3.Distance(transform.position, col.transform.position);
-                        if (dist < closestDistance)
-                        {
-                            closest = interactable;
-                            closestDistance = dist;
-                        }
+                        closest = interactable;
+                        closestDistance = dist;
                     }
                 }
             }
@@ -131,7 +101,7 @@ public class PlayerInteraction : MonoBehaviour
                 currentInteractable.Focus();
             }
 
-            yield return raycastInterval;
+            yield return intervalWait;
         }
     }
 
@@ -145,30 +115,8 @@ public class PlayerInteraction : MonoBehaviour
         ui_interactionTab.Hide();
     }
 
-    public bool IsCorrectInput(WASDKey key)
-    {
-        return key switch
-        {
-            WASDKey.W => inputW.action.WasPressedThisFrame(),
-            WASDKey.A => inputA.action.WasPressedThisFrame(),
-            WASDKey.S => inputS.action.WasPressedThisFrame(),
-            WASDKey.D => inputD.action.WasPressedThisFrame(),
-            _ => false
-        };
-    }
-
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.cyan;
-        if (raycastPoints != null)
-        {
-            foreach (Transform point in raycastPoints)
-            {
-                if (point != null)
-                    Gizmos.DrawRay(point.position, point.forward * rayLength);
-            }
-        }
-
         Gizmos.color = Color.yellow;
         Vector3 boxCenter = transform.position + transform.TransformDirection(boxOffset);
         Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, boxSize);

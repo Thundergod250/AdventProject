@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     public UnityEvent EvtOnFocusExit;         
     public UnityEvent EvtOnInteract;          
     public UnityEvent<GameObject> EvtOnInteractWithObj; 
-
+    [SerializeField] private UIPanelType uiPanelToOpen;
 
     // Called by PlayerInteraction when this is the current target
     public void Focus()
@@ -35,10 +35,15 @@ public class Interactable : MonoBehaviour
 
         EvtOnInteract?.Invoke();
         EvtOnInteractWithObj?.Invoke(gameObject);
+        
+        if (uiPanelToOpen != UIPanelType.None) 
+            _OpenUI(uiPanelToOpen);
     }
 
     public bool GetIsInteractable() => isInteractable;
     public void _EnableInteraction() => isInteractable = true;
-
     public void _DisableInteraction() => isInteractable = false;
+
+    // 👇 Helper method for UnityEvents
+    public void _OpenUI(UIPanelType type) => GameManager.Instance.UIManager.OpenUI(type);
 }

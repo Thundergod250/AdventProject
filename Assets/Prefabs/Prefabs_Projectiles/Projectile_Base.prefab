@@ -9845,8 +9845,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f06993e1478e146ab6ce557a3b796a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileBase
-  lifetime: 5
+  speed: 15
+  lifetime: 10
   explosionVFX: {fileID: 8561264910821484625, guid: 45869b61cb96e064b92a8b02bd38a7f9, type: 3}
+  explosionLifetime: 1
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &4047507747977847433
 GameObject:
   m_ObjectHideFlags: 0
