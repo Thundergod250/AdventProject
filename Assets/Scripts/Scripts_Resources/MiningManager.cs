@@ -28,8 +28,6 @@ public class MiningManager : MonoBehaviour
 
     [SerializeField] private int currentPrice;
     [SerializeField] private int upgradePrice;
-    [Header("Temp Only")]
-    [SerializeField] private int gemstoneAmount;
 
     private void Awake()
     {
@@ -45,17 +43,17 @@ public class MiningManager : MonoBehaviour
 
     // === Upgrade Button Entry Point ===
     public void Upgrade() 
-    { 
-        if(gemstoneAmount >= upgradePrice)
-        {
-            upgradePrice += 1; // increment price
-            gemstoneAmount -= upgradePrice;
+    {
+        if (GameManager.Instance.GoldManager.playerGold >= upgradePrice)
+        { 
+            GameManager.Instance.GoldManager.playerGold -= upgradePrice;
+            upgradePrice += 30; // increment price
             miningDuration += 10f;
             UpdateUpgradePriceText();
         }
         else
-        {
-            StartCoroutine(ClearNotEnoughText());
+        { 
+            StartCoroutine(ClearNotEnoughText());      
             return;
         }
     }
