@@ -407,7 +407,43 @@ MonoBehaviour:
   EvtOnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4286682385663956946}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerManipulator, Assembly-CSharp
+        m_MethodName: _DisableAllMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+        m_MethodName: _ToggleCursor
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1617370447672804083}
+        m_TargetAssemblyTypeName: MiningManager, Assembly-CSharp
+        m_MethodName: UpdateUpgradePriceText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -440,13 +476,13 @@ MonoBehaviour:
   uiMiningCountdown: {fileID: 0}
   uiUpgradePriceText: {fileID: 0}
   uiUpgradeLabelText: {fileID: 0}
+  ui_Main_TimerObject: {fileID: 0}
   planeSize: {x: 51.97, y: 42.41}
   rockCount: 10
   groundY: -0.18
   miningDuration: 10
-  currentPrice: 0
+  currentPrice: 30
   upgradePrice: 0
-  gemstoneAmount: 0
 --- !u!1 &2887613746221829829
 GameObject:
   m_ObjectHideFlags: 0

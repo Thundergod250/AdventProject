@@ -1536,7 +1536,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1310955234775898911}
     - targetCorrespondingSourceObject: {fileID: 4718793157968152038, guid: 39365e37f437514498eadc08b9660592, type: 3}
-      insertIndex: 22
+      insertIndex: -1
       addedObject: {fileID: 4705576253698986978}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39365e37f437514498eadc08b9660592, type: 3}
@@ -2199,10 +2199,6 @@ PrefabInstance:
       value: Background
       objectReference: {fileID: 0}
     - target: {fileID: 1617370447672804083, guid: e16f201da3e06334e8760414febc3c42, type: 3}
-      propertyPath: currentPrice
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1617370447672804083, guid: e16f201da3e06334e8760414febc3c42, type: 3}
       propertyPath: gemstoneAmount
       value: 3
       objectReference: {fileID: 0}
@@ -2210,6 +2206,18 @@ PrefabInstance:
       propertyPath: uiMiningCountdown
       value: 
       objectReference: {fileID: 171223331987616026}
+    - target: {fileID: 1617370447672804083, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: uiUpgradeLabelText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617370447672804083, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: uiUpgradePriceText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617370447672804083, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: ui_Main_TimerObject
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4286682385663956946, guid: e16f201da3e06334e8760414febc3c42, type: 3}
       propertyPath: m_IsActive
       value: 1

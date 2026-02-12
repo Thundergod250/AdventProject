@@ -13,6 +13,7 @@ public class MiningManager : MonoBehaviour
     [Header("Upgrade UI")]
     [SerializeField] private TextMeshProUGUI uiUpgradePriceText;
     [SerializeField] private GameObject uiUpgradeLabelText; // optional, if you want to reference the "Upgrade" label
+    [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
 
     [Header("Spawn Settings")]
     [SerializeField] private Vector2 planeSize = new Vector2(10f, 10f); // X/Z area
@@ -69,6 +70,7 @@ public class MiningManager : MonoBehaviour
     {
         isMiningActive = true;
 
+        ui_Main_TimerObject.MineTimePanel.SetActive(true);
         // Enable wall
         if (blockingWall != null)
             blockingWall.SetActive(true);
@@ -108,6 +110,7 @@ public class MiningManager : MonoBehaviour
         if (blockingWall != null)
             blockingWall.SetActive(false);
 
+        ui_Main_TimerObject.MineTimePanel.SetActive(false);
         isMiningActive = false;
         miningRoutine = null;
     }
