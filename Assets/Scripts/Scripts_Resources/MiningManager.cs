@@ -8,70 +8,57 @@ public class MiningManager : MonoBehaviour
     [Header("Prefabs & References")]
     [SerializeField] private GameObject rockPrefab;
     [SerializeField] private GameObject blockingWall;
-    [SerializeField] private TextMeshProUGUI uiMiningCountdown;
+    [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
 
     [Header("Upgrade UI")]
     [SerializeField] private TextMeshProUGUI uiUpgradePriceText;
-    [SerializeField] private GameObject uiUpgradeLabelText; // optional, if you want to reference the "Upgrade" label
-    [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
+    [SerializeField] private GameObject uiUpgradeLabelText;
 
     [Header("Spawn Settings")]
-    [SerializeField] private Vector2 planeSize = new Vector2(10f, 10f); // X/Z area
-    [SerializeField] private int rockCount = 10; // how many rocks to spawn
-    [SerializeField] private float groundY = 0f; // fixed ground height
+    [SerializeField] private Vector2 planeSize = new Vector2(10f, 10f);
+    [SerializeField] private int rockCount = 10;
+    [SerializeField] private float groundY = 0f;
 
     [Header("Game Settings")]
-    [SerializeField] private float miningDuration = 10f; // seconds
-    private bool isMiningActive = false;
+    [SerializeField] private float miningDuration = 10f;
 
-    private List<GameObject> spawnedRocks = new List<GameObject>();
+    [Header("Upgrade Settings")]
+    [SerializeField] private int currentPrice;
+    [SerializeField] private int upgradePriceIncrease = 30;
+
+    private bool isMiningActive = false;
     private Coroutine miningRoutine;
 
-    [SerializeField] private int currentPrice;
-    [SerializeField] private int upgradePrice;
+    private List<GameObject> spawnedRocks = new List<GameObject>();
+    private int upgradePrice;
 
     private void Awake()
     {
         upgradePrice = currentPrice;
+        UpdateUpgradePriceText();
     }
 
-    // === Public Entry Point ===
+    // =====================================================
+    // PUBLIC ENTRY POINT
+    // =====================================================
     public void StartMining()
     {
-        if (isMiningActive) return; // prevent re-entry while active
+        if (isMiningActive) return;
+
         miningRoutine = StartCoroutine(MiningSession());
     }
 
-    // === Upgrade Button Entry Point ===
-    public void Upgrade() 
-    {
-        if (GameManager.Instance.GoldManager.playerGold >= upgradePrice)
-        { 
-            GameManager.Instance.GoldManager.playerGold -= upgradePrice;
-            upgradePrice += 30; // increment price
-            miningDuration += 10f;
-            UpdateUpgradePriceText();
-        }
-        else
-        { 
-            StartCoroutine(ClearNotEnoughText());      
-            return;
-        }
-    }
-
-    public void UpdateUpgradePriceText() 
-    { 
-        if (uiUpgradePriceText != null) 
-            uiUpgradePriceText.text = upgradePrice.ToString(); 
-    }
-
-    // === Core Mining Flow ===
+    // =====================================================
+    // CORE MINING FLOW
+    // =====================================================
     private IEnumerator MiningSession()
     {
         isMiningActive = true;
 
-        ui_Main_TimerObject.MineTimePanel.SetActive(true);
-        // Enable wall
+        // Start UI timer
+        ui_Main_TimerObject.StartTimer((int)miningDuration);
+
+        // Enable blocking wall
         if (blockingWall != null)
             blockingWall.SetActive(true);
 
@@ -83,57 +70,75 @@ public class MiningManager : MonoBehaviour
             spawnedRocks.Add(rock);
         }
 
-        //Countdown loop 
-         float remainingTime = miningDuration; 
-        
-        while (remainingTime > 0f) 
-        { 
-            if (uiMiningCountdown != null) uiMiningCountdown.text = Mathf.CeilToInt(remainingTime).ToString(); 
-            yield return null; 
-            
-            // wait one frame
-            remainingTime -= Time.deltaTime; 
-        } 
-        
-        // Clear UI text when finished
-        if (uiMiningCountdown != null) 
-            uiMiningCountdown.text = string.Empty;
+        // Wait for mining duration
+        yield return new WaitForSeconds(miningDuration);
 
-        // Cleanup
+        // Cleanup rocks
         foreach (var rock in spawnedRocks)
         {
             if (rock != null)
                 Destroy(rock);
         }
+
         spawnedRocks.Clear();
 
+        // Disable blocking wall
         if (blockingWall != null)
             blockingWall.SetActive(false);
 
-        ui_Main_TimerObject.MineTimePanel.SetActive(false);
         isMiningActive = false;
         miningRoutine = null;
     }
 
-    private IEnumerator ClearNotEnoughText()
+    // =====================================================
+    // UPGRADE LOGIC
+    // =====================================================
+    public void Upgrade()
     {
-        uiUpgradeLabelText.SetActive(!uiUpgradeLabelText.activeSelf);
-        yield return new WaitForSeconds(1);
-        uiUpgradeLabelText.SetActive(!uiUpgradeLabelText.activeSelf);
+        if (GameManager.Instance.GoldManager.playerGold >= upgradePrice)
+        {
+            GameManager.Instance.GoldManager.playerGold -= upgradePrice;
+
+            miningDuration += 10f;
+            upgradePrice += upgradePriceIncrease;
+
+            UpdateUpgradePriceText();
+        }
+        else
+        {
+            StartCoroutine(ClearNotEnoughText());
+        }
     }
 
-    // === Helpers ===
+    private void UpdateUpgradePriceText()
+    {
+        if (uiUpgradePriceText != null)
+            uiUpgradePriceText.text = upgradePrice.ToString();
+    }
+
+    private IEnumerator ClearNotEnoughText()
+    {
+        if (uiUpgradeLabelText == null) yield break;
+
+        uiUpgradeLabelText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        uiUpgradeLabelText.SetActive(false);
+    }
+
+    // =====================================================
+    // HELPER METHODS
+    // =====================================================
     private Vector3 GetRandomGroundPosition()
     {
         float x = Random.Range(-planeSize.x * 0.5f, planeSize.x * 0.5f);
         float z = Random.Range(-planeSize.y * 0.5f, planeSize.y * 0.5f);
 
-        // Offset by MiningManager's transform position
         return transform.position + new Vector3(x, groundY, z);
     }
 
-
-    // === Gizmos ===
+    // =====================================================
+    // GIZMOS
+    // =====================================================
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
