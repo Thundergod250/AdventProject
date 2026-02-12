@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 7631741033931240485}
   - component: {fileID: 5629360681750767613}
   - component: {fileID: 1617370447672804083}
+  - component: {fileID: 5766542088145615619}
   m_Layer: 0
   m_Name: Mine Interactable
   m_TagString: Untagged
@@ -407,7 +408,7 @@ MonoBehaviour:
   EvtOnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5766542088145615619}
         m_TargetAssemblyTypeName: PlayerManipulator, Assembly-CSharp
         m_MethodName: _DisableAllMovement
         m_Mode: 1
@@ -443,10 +444,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1617370447672804083}
+        m_TargetAssemblyTypeName: MiningManager, Assembly-CSharp
+        m_MethodName: SetUI
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -473,16 +474,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MiningManager
   rockPrefab: {fileID: 2103984203466088857, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
   blockingWall: {fileID: 2897286984662596331}
-  uiMiningCountdown: {fileID: 0}
+  ui_Main_TimerObject: {fileID: 0}
+  ui_MiningObject: {fileID: 0}
   uiUpgradePriceText: {fileID: 0}
   uiUpgradeLabelText: {fileID: 0}
-  ui_Main_TimerObject: {fileID: 0}
   planeSize: {x: 51.97, y: 42.41}
   rockCount: 10
   groundY: -0.18
   miningDuration: 10
   currentPrice: 30
-  upgradePrice: 0
+  upgradePriceIncrease: 30
+--- !u!114 &5766542088145615619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619209841532591515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9c8720df4f2ed4fa681e0502319cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManipulator
 --- !u!1 &2887613746221829829
 GameObject:
   m_ObjectHideFlags: 0

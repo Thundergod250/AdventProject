@@ -9,6 +9,7 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private GameObject rockPrefab;
     [SerializeField] private GameObject blockingWall;
     [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
+    [SerializeField] private UI_Mining ui_MiningObject;
 
     [Header("Upgrade UI")]
     [SerializeField] private TextMeshProUGUI uiUpgradePriceText;
@@ -36,6 +37,11 @@ public class MiningManager : MonoBehaviour
     {
         upgradePrice = currentPrice;
         UpdateUpgradePriceText();
+    }
+
+    public void SetUI()
+    {
+        ui_MiningObject.ToggleMiningUI();
     }
 
     // =====================================================

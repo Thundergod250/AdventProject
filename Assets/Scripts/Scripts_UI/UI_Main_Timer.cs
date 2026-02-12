@@ -36,4 +36,6 @@ public class UI_Main_Timer : MonoBehaviour
         MineTimePanel.SetActive(false);
         timerRoutine = null;
     }
+
+    
 }
