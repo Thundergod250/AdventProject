@@ -65,6 +65,12 @@ public class PlayerAttack : MonoBehaviour
         slamRadius = radius;
     }
 
+    public void AddAttackValues(int damage, int radius)
+    {
+        slamDamage += damage;
+        slamRadius += radius;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

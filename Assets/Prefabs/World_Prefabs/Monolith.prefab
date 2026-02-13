@@ -42,15 +42,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 219.01
+      value: 223.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.2
+      value: 14.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 67
+      value: 50.28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
       propertyPath: m_LocalRotation.w
@@ -102,13 +102,101 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1524491691254783632}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7344096843684239131}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1495768812355637158}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7533614524057559419}
   m_SourcePrefab: {fileID: 100100000, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
 --- !u!4 &1444715646810413890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
   m_PrefabInstance: {fileID: 1406829820245458089}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2253903821176898040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ae23bf649e10ba47809a630eed37360, type: 3}
+  m_PrefabInstance: {fileID: 1406829820245458089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7344096843684239131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253903821176898040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9904cccab47a4c4f931f3b927a97bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactName: Press F to Upgrade Player Attack Range and Damage
+  isInteractable: 1
+  EvtOnFocus:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnFocusExit:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1495768812355637158}
+        m_TargetAssemblyTypeName: UpgradePlayerStats, Assembly-CSharp
+        m_MethodName: UpgradeStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnInteractWithObj:
+    m_PersistentCalls:
+      m_Calls: []
+  uiPanelToOpen: 0
+--- !u!114 &1495768812355637158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253903821176898040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2a3ac3c1cf2e04bbc1bc0d626984e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  damage: 5
+  radius: 2
+--- !u!65 &7533614524057559419
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253903821176898040}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.605158, y: 5.4978895, z: 3.1723385}
+  m_Center: {x: 0.3768705, y: 0.66086924, z: -0.013347566}
 --- !u!1001 &1681728790829369121
 PrefabInstance:
   m_ObjectHideFlags: 0
