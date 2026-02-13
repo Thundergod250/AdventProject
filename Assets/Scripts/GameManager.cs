@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public PlayerInventory PlayerInventory;
     public UI_ReticleRaycast UI_ReticleRaycast;
     public FreeLookCamControl FreeLookCamControl;
+    public MiningManager MiningManager;
 
     private void Awake()
     {

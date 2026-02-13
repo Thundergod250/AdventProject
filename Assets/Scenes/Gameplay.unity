@@ -1139,6 +1139,7 @@ MonoBehaviour:
   PlayerInventory: {fileID: 3688964133521184813}
   UI_ReticleRaycast: {fileID: 1237927763}
   FreeLookCamControl: {fileID: 1934863778}
+  MiningManager: {fileID: 1256144781}
 --- !u!4 &698444993
 Transform:
   m_ObjectHideFlags: 0

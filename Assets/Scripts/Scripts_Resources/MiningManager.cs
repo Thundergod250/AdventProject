@@ -116,6 +116,36 @@ public class MiningManager : MonoBehaviour
         }
     }
 
+    // =====================================================
+    // STOP MINING FUNCTION
+    // =====================================================
+    public void StopMining()
+    {
+        if (miningRoutine != null)
+        {
+            StopCoroutine(miningRoutine);
+            miningRoutine = null;
+        }
+
+        // Cleanup rocks
+        foreach (var rock in spawnedRocks)
+        {
+            if (rock != null)
+                Destroy(rock);
+        }
+        spawnedRocks.Clear();
+
+        // Disable blocking wall
+        if (blockingWall != null)
+            blockingWall.SetActive(false);
+
+        // Reset UI timer if needed
+        if (ui_Main_TimerObject != null)
+            ui_Main_TimerObject.StopTimer(); // assuming your timer has a Stop method
+
+        isMiningActive = false;
+    }
+
     private void UpdateUpgradePriceText()
     {
         if (uiUpgradePriceText != null)

@@ -37,5 +37,22 @@ public class UI_Main_Timer : MonoBehaviour
         timerRoutine = null;
     }
 
-    
+    // =====================================================
+    // STOP TIMER FUNCTION
+    // =====================================================
+    public void StopTimer()
+    {
+        if (timerRoutine != null)
+        {
+            StopCoroutine(timerRoutine);
+            timerRoutine = null;
+        }
+
+        // Reset UI
+        if (timerText != null)
+            timerText.text = "0";
+
+        if (MineTimePanel != null)
+            MineTimePanel.SetActive(false);
+    }
 }

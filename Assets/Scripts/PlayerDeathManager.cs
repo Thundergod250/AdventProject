@@ -18,21 +18,23 @@ public class PlayerDeathManager : MonoBehaviour
             GameManager.Instance.FreeLookCamControl.DisableCameraMovement();
         }
 
+        GameManager.Instance.MiningManager.StopMining();
+
         Debug.Log("Player has been disabled after trigger collision.");
     }
 
     // Handles player respawn logic
     public void HandlePlayerRespawn()
     {
-        // Re-enable the player
-        Player.gameObject.SetActive(true);
-
         // Move player to spawn point if assigned
         if (SpawnPoint != null)
         {
             Player.transform.position = SpawnPoint.transform.position;
             Player.transform.rotation = SpawnPoint.transform.rotation;
         }
+
+        // Re-enable the player
+        Player.gameObject.SetActive(true);
 
         // Enable camera movement through your GameManager reference
         if (GameManager.Instance != null && GameManager.Instance.FreeLookCamControl != null)
