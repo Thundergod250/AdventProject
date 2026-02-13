@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     // Global references
     public PlayerController PlayerController;
+    public PlayerDeathManager PlayerDeathManager;
     public CameraManager CameraManager;
     public UI_Manager UIManager;
     public GoldManager GoldManager;
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     public DebugCheats DebugCheats;
     public PlayerInventory PlayerInventory;
     public UI_ReticleRaycast UI_ReticleRaycast;
-    public PlayerManipulator playerManipulator;
+    public FreeLookCamControl FreeLookCamControl;
 
     private void Awake()
     {
