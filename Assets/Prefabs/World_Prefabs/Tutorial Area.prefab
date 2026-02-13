@@ -2194,6 +2194,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 850500675757508958, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 866061087271762169, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1269147202663054127, guid: e16f201da3e06334e8760414febc3c42, type: 3}
       propertyPath: m_Name
       value: Background
@@ -2218,12 +2226,44 @@ PrefabInstance:
       propertyPath: ui_Main_TimerObject
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1849170321365877862, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517154453210012012, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475719918585182897, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684759203828716045, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4286682385663956946, guid: e16f201da3e06334e8760414febc3c42, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4478744803487777456, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5629360681750767613, guid: e16f201da3e06334e8760414febc3c42, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5740114496730252211, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801889201370279213, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883828959956058931, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+      propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7398709249212898443, guid: e16f201da3e06334e8760414febc3c42, type: 3}
@@ -2270,7 +2310,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5157245927307099160, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 7328955738444057015, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 459318241703880445, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 6113225918115299866, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 2852489964322746967, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 1025497572636356255, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 6290359798895376904, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 564085152934566247, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 3307236348045282881, guid: e16f201da3e06334e8760414febc3c42, type: 3}
+    - {fileID: 9217038285645551721, guid: e16f201da3e06334e8760414febc3c42, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4286682385663956946, guid: e16f201da3e06334e8760414febc3c42, type: 3}
     m_AddedGameObjects: []

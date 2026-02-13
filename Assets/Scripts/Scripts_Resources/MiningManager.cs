@@ -7,6 +7,7 @@ public class MiningManager : MonoBehaviour
 {
     [Header("Prefabs & References")]
     [SerializeField] private GameObject rockPrefab;
+    [SerializeField] private GameObject enemyPrefab;          // enemy prefab
     [SerializeField] private GameObject blockingWall;
     [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
     [SerializeField] private UI_Mining ui_MiningObject;
@@ -20,6 +21,9 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private int rockCount = 10;
     [SerializeField] private float groundY = 0f;
 
+    [Header("Enemy Settings")]
+    [SerializeField] private Transform[] enemySpawnPoints;    // assign spawn points in Inspector
+
     [Header("Game Settings")]
     [SerializeField] private float miningDuration = 10f;
 
@@ -31,6 +35,7 @@ public class MiningManager : MonoBehaviour
     private Coroutine miningRoutine;
 
     private List<GameObject> spawnedRocks = new List<GameObject>();
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
     private int upgradePrice;
 
     private void Awake()
@@ -76,24 +81,66 @@ public class MiningManager : MonoBehaviour
             spawnedRocks.Add(rock);
         }
 
+        // Spawn enemies at each spawn point
+        foreach (Transform spawnPoint in enemySpawnPoints)
+        {
+            if (enemyPrefab != null && spawnPoint != null)
+            {
+                GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+                spawnedEnemies.Add(enemy);
+            }
+        }
+
         // Wait for mining duration
         yield return new WaitForSeconds(miningDuration);
 
+        Cleanup();
+
+        isMiningActive = false;
+        miningRoutine = null;
+    }
+
+    // =====================================================
+    // STOP MINING FUNCTION
+    // =====================================================
+    public void StopMining()
+    {
+        if (miningRoutine != null)
+        {
+            StopCoroutine(miningRoutine);
+            miningRoutine = null;
+        }
+
+        Cleanup();
+        isMiningActive = false;
+    }
+
+    // =====================================================
+    // CLEANUP FUNCTION
+    // =====================================================
+    private void Cleanup()
+    {
         // Cleanup rocks
         foreach (var rock in spawnedRocks)
         {
-            if (rock != null)
-                Destroy(rock);
+            if (rock != null) Destroy(rock);
         }
-
         spawnedRocks.Clear();
+
+        // Cleanup enemies
+        foreach (var enemy in spawnedEnemies)
+        {
+            if (enemy != null) Destroy(enemy);
+        }
+        spawnedEnemies.Clear();
 
         // Disable blocking wall
         if (blockingWall != null)
             blockingWall.SetActive(false);
 
-        isMiningActive = false;
-        miningRoutine = null;
+        // Reset UI timer
+        if (ui_Main_TimerObject != null)
+            ui_Main_TimerObject.StopTimer();
     }
 
     // =====================================================
@@ -114,36 +161,6 @@ public class MiningManager : MonoBehaviour
         {
             StartCoroutine(ClearNotEnoughText());
         }
-    }
-
-    // =====================================================
-    // STOP MINING FUNCTION
-    // =====================================================
-    public void StopMining()
-    {
-        if (miningRoutine != null)
-        {
-            StopCoroutine(miningRoutine);
-            miningRoutine = null;
-        }
-
-        // Cleanup rocks
-        foreach (var rock in spawnedRocks)
-        {
-            if (rock != null)
-                Destroy(rock);
-        }
-        spawnedRocks.Clear();
-
-        // Disable blocking wall
-        if (blockingWall != null)
-            blockingWall.SetActive(false);
-
-        // Reset UI timer if needed
-        if (ui_Main_TimerObject != null)
-            ui_Main_TimerObject.StopTimer(); // assuming your timer has a Stop method
-
-        isMiningActive = false;
     }
 
     private void UpdateUpgradePriceText()
