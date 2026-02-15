@@ -1,12 +1,24 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum Faction
+{
+    Player,
+    Enemy,
+    Ally,
+    Neutral
+}
+
 public class Health : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
 
+    [Header("Faction Settings")]
+    [SerializeField] private Faction faction;
+    public Faction GetFaction() => faction;
+    
     [Header("Events")]
     public UnityEvent<int> OnDamaged;   // passes remaining health
     public UnityEvent OnDeath;          // triggered when health <= 0

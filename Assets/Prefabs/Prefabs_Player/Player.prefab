@@ -457,6 +457,7 @@ MonoBehaviour:
   damageMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  attackableFactions: 01000000
 --- !u!114 &5574663765866507622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 10
   currentHealth: 0
+  faction: 0
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []

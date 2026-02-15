@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(PlayerController))]
 public class PlayerAttack : MonoBehaviour
@@ -10,6 +11,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private int slamDamage = 25;     // editable/upgradable damage
     [SerializeField] private LayerMask damageMask;    // filter for enemies/harvestables
 
+    [Header("Target Settings")] 
+    [SerializeField] private List<Faction> attackableFactions;
+    
     private PlayerMovement playerMovement;
     private PlayerAnimation playerAnimation;
     private bool isAttacking = false;
@@ -51,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
         foreach (var hit in hits)
         {
             Health health = hit.GetComponent<Health>();
-            if (health) 
+            if (health && attackableFactions.Contains(health.GetFaction())) 
                 health.TakeDamage(slamDamage);
         }
 

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss_SapGuardian : MonoBehaviour
@@ -25,6 +26,9 @@ public class Boss_SapGuardian : MonoBehaviour
     [SerializeField] private float pauseDuration = 1f;     // recovery time
     [SerializeField] private float recenterDuration = 2f;  // time to move back
 
+    [Header("Target Settings")] 
+    [SerializeField] private List<Faction> attackableFactions;
+    
     [Header("Attack Settings")]
     [SerializeField] private float dashSpeed = 10f;
 
@@ -158,5 +162,13 @@ public class Boss_SapGuardian : MonoBehaviour
 
         // After recentering, resume loop
         StartCoroutine(BossLoop());
+    }
+
+    // === Collision with Player ===
+    private void OnTriggerEnter(Collider other)
+    {
+        Health health = other.GetComponent<Health>();
+        if (health && attackableFactions.Contains(health.GetFaction()))
+            health.TakeDamage(1);
     }
 }
