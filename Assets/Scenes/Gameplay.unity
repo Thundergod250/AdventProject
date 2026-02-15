@@ -3541,10 +3541,6 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1977973919}
-    - target: {fileID: 2132086252992222447, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: slamDamage
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.77
@@ -3584,10 +3580,6 @@ PrefabInstance:
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7262976255104573261, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: damage
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5104,8 +5096,8 @@ SceneRoots:
   - {fileID: 263098335}
   - {fileID: 1934863777}
   - {fileID: 7788687841394568305}
-  - {fileID: 1573334864}
   - {fileID: 3688964133521184811}
+  - {fileID: 1573334864}
   - {fileID: 2251729366965443598}
   - {fileID: 435144752}
   - {fileID: 3971589712687983088}

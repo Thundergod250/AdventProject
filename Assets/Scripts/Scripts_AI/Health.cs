@@ -43,6 +43,8 @@ public class Health : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentHealth = startSetHealth;
+        
+        OnDamaged?.Invoke(currentHealth);
     }
 
     public void TakeDamage(int amount)
