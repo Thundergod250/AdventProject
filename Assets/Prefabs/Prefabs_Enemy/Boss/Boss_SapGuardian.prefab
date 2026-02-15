@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &331919619154187429
 Transform:
   m_ObjectHideFlags: 0
@@ -70,6 +70,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Boss_SapGuardian
   appearance: {fileID: 1815792297637429849}
   bossHealth: {fileID: 0}
+  bossBodyPartSet1:
+  - {fileID: 674835350492455292}
+  bossBodyPartSet2:
+  - {fileID: 1859549869176433656}
+  - {fileID: 7396656602119190099}
   bobHeight: 0.5
   bobSpeed: 20
   player: {fileID: 0}
@@ -240,6 +245,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8728612049776979199}
   m_SourcePrefab: {fileID: 100100000, guid: effa7265ba92bb34a9c437cbb84301d9, type: 3}
+--- !u!1 &674835350492455292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3342965464141639959, guid: effa7265ba92bb34a9c437cbb84301d9, type: 3}
+  m_PrefabInstance: {fileID: 2826543462650024043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1859549869176433656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4537258484170210195, guid: effa7265ba92bb34a9c437cbb84301d9, type: 3}
+  m_PrefabInstance: {fileID: 2826543462650024043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2356331693159774080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: effa7265ba92bb34a9c437cbb84301d9, type: 3}
@@ -298,3 +313,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &7396656602119190099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4728733086587135544, guid: effa7265ba92bb34a9c437cbb84301d9, type: 3}
+  m_PrefabInstance: {fileID: 2826543462650024043}
+  m_PrefabAsset: {fileID: 0}

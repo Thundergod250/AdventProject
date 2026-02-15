@@ -452,8 +452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80ca29ff50cd3241b79c0b5ae821cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  slamRadius: 4
-  slamDamage: 25
   damageMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -506,6 +504,7 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   faction: 0
+  damageMode: 0
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []

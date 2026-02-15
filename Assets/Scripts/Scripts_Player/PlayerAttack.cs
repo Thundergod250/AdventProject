@@ -7,13 +7,13 @@ using System.Collections.Generic;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
-    [SerializeField] private float slamRadius = 3f;   // area of effect
-    [SerializeField] private int slamDamage = 25;     // editable/upgradable damage
     [SerializeField] private LayerMask damageMask;    // filter for enemies/harvestables
 
     [Header("Target Settings")] 
     [SerializeField] private List<Faction> attackableFactions;
     
+    private float slamRadius = 3f;   // area of effect
+    private int slamDamage = 25;     // editable/upgradable damage
     private PlayerMovement playerMovement;
     private PlayerAnimation playerAnimation;
     private bool isAttacking = false;

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Boss_SapGuardian : MonoBehaviour
 {
-    private enum BossState { Targeting, Attacking, Paused, Recenter, Stunned }
+    private enum BossState { Targeting, Attacking, Paused, Recenter, Stunned, Dead }
 
     [Header("Boss Reference")]
-    [SerializeField] private Transform appearance; // mesh only, not colliders
+    [SerializeField] private Transform appearance; 
     [SerializeField] private UI_BossHealth bossHealth;
-    
+
+    [Header("Appearance Sets")]
+    [SerializeField] private GameObject[] bossBodyPartSet1; // corrupted
+    [SerializeField] private GameObject[] bossBodyPartSet2; // purified
 
     [Header("Bobbing Settings")]
     [SerializeField] private float bobHeight = 0.5f;
@@ -19,15 +22,15 @@ public class Boss_SapGuardian : MonoBehaviour
     [SerializeField] private Transform player;
 
     [Header("Arena Settings")]
-    [SerializeField] private Transform arenaCenter;       // empty object at arena center
-    [SerializeField] private float maxDistanceFromCenter = 20f; // limit radius
+    [SerializeField] private Transform arenaCenter;       
+    [SerializeField] private float maxDistanceFromCenter = 20f;
 
     [Header("State Durations")]
-    [SerializeField] private float targetingDuration = 3f; // build-up time
-    [SerializeField] private float attackingDuration = 2f; // dash time
-    [SerializeField] private float pauseDuration = 1f;     // recovery time
-    [SerializeField] private float recenterDuration = 2f;  // time to move back
-    [SerializeField] private float stunnedDuration = 3f;   // immobilized time
+    [SerializeField] private float targetingDuration = 3f;
+    [SerializeField] private float attackingDuration = 2f;
+    [SerializeField] private float pauseDuration = 1f;
+    [SerializeField] private float recenterDuration = 2f;
+    [SerializeField] private float stunnedDuration = 3f;
 
     [Header("Target Settings")] 
     [SerializeField] private List<Faction> attackableFactions;
@@ -54,7 +57,9 @@ public class Boss_SapGuardian : MonoBehaviour
         thisBoxCollider = GetComponent<Collider>();
 
         bossHealth.OnActivate(health);
-        
+
+        health.OnDeath.AddListener(OnDeath);
+
         basePosition = appearance.localPosition;
         StartCoroutine(BossLoop());
     }
@@ -71,7 +76,24 @@ public class Boss_SapGuardian : MonoBehaviour
             HandleAggressiveBobbing();
             if (isDashing) HandleDash();
         }
-        // Stunned state → no movement, no bobbing
+        // Stunned/Dead → no movement, no bobbing
+    }
+    
+    // === Collision ===
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<HittingBoulder>())
+        {
+            StopAllCoroutines();
+            isDashing = false;
+            if (currentState != BossState.Dead)
+                StartCoroutine(Stunned());
+            return;
+        }
+
+        Health targetHealth = other.GetComponent<Health>();
+        if (targetHealth && attackableFactions.Contains(targetHealth.GetFaction()))
+            targetHealth.TakeDamage(1);
     }
 
     // === Bobbing ===
@@ -91,7 +113,7 @@ public class Boss_SapGuardian : MonoBehaviour
     private void FacePlayer()
     {
         Vector3 direction = player.position - transform.position;
-        direction.y = 0f; // ✅ horizontal only
+        direction.y = 0f;
 
         if (direction.sqrMagnitude > 0.01f)
         {
@@ -123,39 +145,36 @@ public class Boss_SapGuardian : MonoBehaviour
         FaceDashDirection();
         Vector3 pos = transform.position;
         pos += dashDirection * (dashSpeed * Time.deltaTime);
-        pos.y = arenaCenter.position.y; // ✅ keep grounded
+        pos.y = arenaCenter.position.y;
         transform.position = pos;
 
-        // Check arena limit
         float dist = Vector3.Distance(new Vector3(transform.position.x, arenaCenter.position.y, transform.position.z), arenaCenter.position);
         if (dist > maxDistanceFromCenter)
         {
             Debug.Log("Boss went out of bounds → recentering.");
             isDashing = false;
             StopAllCoroutines();
-            StartCoroutine(Recenter());
+            if (currentState != BossState.Dead)
+                StartCoroutine(Recenter());
         }
     }
 
     // === State Machine ===
     private IEnumerator BossLoop()
     {
-        while (true)
+        while (currentState != BossState.Dead)
         {
-            // Targeting
             currentState = BossState.Targeting;
             yield return new WaitForSeconds(targetingDuration);
 
-            // Attacking
             currentState = BossState.Attacking;
             dashDirection = (player.position - transform.position);
-            dashDirection.y = 0f; // ✅ horizontal only
+            dashDirection.y = 0f;
             dashDirection.Normalize();
             isDashing = true;
             yield return new WaitForSeconds(attackingDuration);
             isDashing = false;
 
-            // Pause
             currentState = BossState.Paused;
             yield return new WaitForSeconds(pauseDuration);
         }
@@ -166,22 +185,23 @@ public class Boss_SapGuardian : MonoBehaviour
     {
         currentState = BossState.Recenter;
         Vector3 start = transform.position;
-        Vector3 end = new Vector3(arenaCenter.position.x, arenaCenter.position.y, arenaCenter.position.z);
+        Vector3 end = arenaCenter.position;
         float t = 0;
 
         while (t < 1f)
         {
             t += Time.deltaTime / recenterDuration;
             Vector3 pos = Vector3.Lerp(start, end, t);
-            pos.y = arenaCenter.position.y; // ✅ lock Y
+            pos.y = arenaCenter.position.y;
             transform.position = pos;
             yield return null;
         }
 
-        // After recentering, resume loop
-        if (thisBoxCollider) thisBoxCollider.enabled = true; // ✅ restore collision
-        StartCoroutine(BossLoop());
+        if (thisBoxCollider) thisBoxCollider.enabled = true;
 
+        // Only restart loop if not dead
+        if (currentState != BossState.Dead)
+            StartCoroutine(BossLoop());
     }
 
     // === Stunned ===
@@ -192,55 +212,88 @@ public class Boss_SapGuardian : MonoBehaviour
 
         Debug.Log("Boss stunned!");
 
-        // Smoothly fall over
         Quaternion startRot = transform.localRotation;
         Quaternion fallenRot = Quaternion.Euler(-90f, startRot.eulerAngles.y, startRot.eulerAngles.z);
         float t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime / 0.5f; // fall duration
+            t += Time.deltaTime / 0.5f;
             transform.localRotation = Quaternion.Slerp(startRot, fallenRot, t);
             yield return null;
         }
 
-        // Stay stunned
         yield return new WaitForSeconds(stunnedDuration);
 
-        // Disable collider before standing up (immunity)
         if (thisBoxCollider) thisBoxCollider.enabled = false;
 
-        // Smoothly stand back up
         t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime / 0.5f; // stand-up duration
+            t += Time.deltaTime / 0.5f;
             transform.localRotation = Quaternion.Slerp(fallenRot, Quaternion.identity, t);
             yield return null;
         }
 
         health.SetDamageMode(DamageMode.Fortified);
 
-        // Resume by recentering
-        StartCoroutine(Recenter());
+        if (currentState != BossState.Dead)
+            StartCoroutine(Recenter());
+    }
+    
+    private void OnDeath()
+    {
+        Debug.Log("Boss defeated!");
+        StopAllCoroutines();
+        currentState = BossState.Dead;
+
+        if (thisBoxCollider) thisBoxCollider.enabled = false;
+
+        StartCoroutine(DeathSequence());
     }
 
 
-
-    // === Collision ===
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator DeathSequence()
     {
-        // If hit by a boulder → stunned
-        if (other.GetComponent<HittingBoulder>())
+        // ✅ Always stand upright with X=0, Y=-220
+        Quaternion startRot = transform.localRotation;
+        Quaternion targetRot = Quaternion.Euler(0f, -220f, 0f);
+        float t = 0f;
+        while (t < 1f)
         {
-            StopAllCoroutines();
-            isDashing = false;
-            StartCoroutine(Stunned());
-            return;
+            t += Time.deltaTime / 0.5f; // stand-up duration
+            transform.localRotation = Quaternion.Slerp(startRot, targetRot, t);
+            yield return null;
         }
 
-        // Otherwise damage player/targets
-        Health health = other.GetComponent<Health>();
-        if (health && attackableFactions.Contains(health.GetFaction()))
-            health.TakeDamage(1);
+        // Now recenter
+        yield return StartCoroutine(RecenterOnDeath());
+
+        // Swap appearances
+        foreach (var part in bossBodyPartSet1)
+            if (part) part.SetActive(false);
+
+        foreach (var part in bossBodyPartSet2)
+            if (part) part.SetActive(true);
+
+        Debug.Log("Boss transformed to purified form.");
+    }
+
+    
+    private IEnumerator RecenterOnDeath()
+    {
+        Vector3 start = transform.position;
+        Vector3 end = arenaCenter.position;
+        float t = 0;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / recenterDuration;
+            Vector3 pos = Vector3.Lerp(start, end, t);
+            pos.y = arenaCenter.position.y;
+            transform.position = pos;
+            yield return null;
+        }
+
+        // ✅ No restart of BossLoop here
     }
 }
