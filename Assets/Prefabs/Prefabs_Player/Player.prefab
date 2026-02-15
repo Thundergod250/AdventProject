@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 10
+  maxHealth: 3
   currentHealth: 0
   faction: 0
   damageMode: 0
@@ -511,7 +511,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  startSetHealth: 5
+  startSetHealth: 3
 --- !u!1 &2962931387159453308
 GameObject:
   m_ObjectHideFlags: 0
@@ -5883,7 +5883,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 44f8cec1572631a4f9194f1c74500663, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 63c1ccc2cdba22d4f83879fd4f7e5277, type: 2}
+      objectReference: {fileID: 2100000, guid: faabbabd41e70674a90af10ee9d41997, type: 2}
     - target: {fileID: -7511558181221131132, guid: 44f8cec1572631a4f9194f1c74500663, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
