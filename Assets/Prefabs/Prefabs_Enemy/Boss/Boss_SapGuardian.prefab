@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &331919619154187429
 Transform:
   m_ObjectHideFlags: 0
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss_SapGuardian
   appearance: {fileID: 1815792297637429849}
+  bossHealth: {fileID: 0}
   bobHeight: 0.5
   bobSpeed: 20
   player: {fileID: 0}
@@ -78,6 +79,7 @@ MonoBehaviour:
   attackingDuration: 1.2
   pauseDuration: 1
   recenterDuration: 2
+  stunnedDuration: 3
   attackableFactions: 00000000
   dashSpeed: 20
 --- !u!114 &7297437076865929446

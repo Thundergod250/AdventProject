@@ -6,9 +6,9 @@ public class UI_BossHealth : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject bossHealthBarPanel; // Panel holding the health bar UI
     [SerializeField] private Image healthBar;               // The fill image for the health bar
-    [SerializeField] private Health health;                 // Reference to Boss's Health
-
-    private void OnEnable()
+    private Health health;                 // Reference to Boss's Health
+    
+    /*private void OnEnable()
     {
         if (health != null)
         {
@@ -18,10 +18,37 @@ public class UI_BossHealth : MonoBehaviour
             // Sync immediately on enable
             UpdateHealthUI(health.GetCurrentHealth());
         }
-    }
+    }*/
 
     private void OnDisable()
     {
+        bossHealthBarPanel.SetActive(false);
+        
+        if (health != null)
+        {
+            health.OnDamaged.RemoveListener(UpdateHealthUI);
+            health.OnDeath.RemoveListener(HandleDeath);
+        }
+    }
+
+    public void OnActivate(Health hp)
+    {
+        Debug.Log("Boss Health Bar Activated");
+        health = hp; 
+        bossHealthBarPanel.SetActive(true);
+            
+        health.OnDamaged.AddListener(UpdateHealthUI);
+        health.OnDeath.AddListener(HandleDeath);
+
+        // Sync immediately on enable
+        UpdateHealthUI(health.GetCurrentHealth());
+    }
+
+    public void OnDeactivate()
+    {
+        Debug.Log("Boss Health Bar Deactivated");
+        bossHealthBarPanel.SetActive(false);
+        
         if (health != null)
         {
             health.OnDamaged.RemoveListener(UpdateHealthUI);
@@ -38,10 +65,5 @@ public class UI_BossHealth : MonoBehaviour
         }
     }
 
-    public void HandleDeath()
-    {
-        // Hide the boss health bar panel when boss dies
-        if (bossHealthBarPanel != null) 
-            bossHealthBarPanel.SetActive(false);
-    }
+    public void HandleDeath() => OnDeactivate();
 }

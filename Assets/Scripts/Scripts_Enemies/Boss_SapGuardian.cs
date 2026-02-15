@@ -8,6 +8,8 @@ public class Boss_SapGuardian : MonoBehaviour
 
     [Header("Boss Reference")]
     [SerializeField] private Transform appearance; // mesh only, not colliders
+    [SerializeField] private UI_BossHealth bossHealth;
+    
 
     [Header("Bobbing Settings")]
     [SerializeField] private float bobHeight = 0.5f;
@@ -34,12 +36,13 @@ public class Boss_SapGuardian : MonoBehaviour
     [SerializeField] private float dashSpeed = 10f;
 
     private Health health;
+    private Collider thisBoxCollider;
     private Vector3 basePosition;
     private BossState currentState = BossState.Targeting;
     private Vector3 dashDirection;
     private bool isDashing = false;
 
-    private void Start()
+    private void OnEnable()
     {
         if (appearance == null || player == null || arenaCenter == null)
         {
@@ -48,7 +51,10 @@ public class Boss_SapGuardian : MonoBehaviour
         }
         
         health = GetComponent<Health>();
+        thisBoxCollider = GetComponent<Collider>();
 
+        bossHealth.OnActivate(health);
+        
         basePosition = appearance.localPosition;
         StartCoroutine(BossLoop());
     }
@@ -173,7 +179,9 @@ public class Boss_SapGuardian : MonoBehaviour
         }
 
         // After recentering, resume loop
+        if (thisBoxCollider) thisBoxCollider.enabled = true; // ✅ restore collision
         StartCoroutine(BossLoop());
+
     }
 
     // === Stunned ===
@@ -181,20 +189,42 @@ public class Boss_SapGuardian : MonoBehaviour
     {
         currentState = BossState.Stunned;
         health.SetDamageMode(DamageMode.Normal);
-        // Flip appearance to look fallen
-        gameObject.transform.localRotation = Quaternion.Euler(-90f, appearance.localRotation.eulerAngles.y, appearance.localRotation.eulerAngles.z);
 
         Debug.Log("Boss stunned!");
 
+        // Smoothly fall over
+        Quaternion startRot = transform.localRotation;
+        Quaternion fallenRot = Quaternion.Euler(-90f, startRot.eulerAngles.y, startRot.eulerAngles.z);
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / 0.5f; // fall duration
+            transform.localRotation = Quaternion.Slerp(startRot, fallenRot, t);
+            yield return null;
+        }
+
+        // Stay stunned
         yield return new WaitForSeconds(stunnedDuration);
 
-        // Stand back up
-        gameObject.transform.localRotation = Quaternion.identity;
+        // Disable collider before standing up (immunity)
+        if (thisBoxCollider) thisBoxCollider.enabled = false;
+
+        // Smoothly stand back up
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / 0.5f; // stand-up duration
+            transform.localRotation = Quaternion.Slerp(fallenRot, Quaternion.identity, t);
+            yield return null;
+        }
+
         health.SetDamageMode(DamageMode.Fortified);
 
         // Resume by recentering
         StartCoroutine(Recenter());
     }
+
+
 
     // === Collision ===
     private void OnTriggerEnter(Collider other)

@@ -1483,10 +1483,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4861450478997841532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 560, y: -29.024227}
+  m_SizeDelta: {x: 1120, y: 58.048454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6788394659493078387
 CanvasRenderer:
@@ -1867,10 +1867,10 @@ RectTransform:
   - {fileID: 3859126195995236440}
   m_Father: {fileID: 4861450478997841532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 560, y: -68.65784}
+  m_SizeDelta: {x: 1120, y: 21.218758}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1355678627977626489
 CanvasRenderer:
@@ -4062,7 +4062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8999983973408385527
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6406,7 +6406,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_BossHealth
   bossHealthBarPanel: {fileID: 5856518366880871135}
   healthBar: {fileID: 7327399409597858694}
-  health: {fileID: 0}
 --- !u!1 &9220951167696337825
 GameObject:
   m_ObjectHideFlags: 0
