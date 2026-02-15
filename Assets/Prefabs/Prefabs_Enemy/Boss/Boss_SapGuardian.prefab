@@ -95,7 +95,7 @@ MonoBehaviour:
   maxHealth: 300
   currentHealth: 300
   faction: 1
-  damageMode: 0
+  damageMode: 2
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Boss_SapGuardian : MonoBehaviour
 {
-    private enum BossState { Targeting, Attacking, Paused, Recenter }
+    private enum BossState { Targeting, Attacking, Paused, Recenter, Stunned }
 
-    [Header("Appearance Reference")]
+    [Header("Boss Reference")]
     [SerializeField] private Transform appearance; // mesh only, not colliders
 
     [Header("Bobbing Settings")]
@@ -25,6 +25,7 @@ public class Boss_SapGuardian : MonoBehaviour
     [SerializeField] private float attackingDuration = 2f; // dash time
     [SerializeField] private float pauseDuration = 1f;     // recovery time
     [SerializeField] private float recenterDuration = 2f;  // time to move back
+    [SerializeField] private float stunnedDuration = 3f;   // immobilized time
 
     [Header("Target Settings")] 
     [SerializeField] private List<Faction> attackableFactions;
@@ -32,6 +33,7 @@ public class Boss_SapGuardian : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] private float dashSpeed = 10f;
 
+    private Health health;
     private Vector3 basePosition;
     private BossState currentState = BossState.Targeting;
     private Vector3 dashDirection;
@@ -44,6 +46,8 @@ public class Boss_SapGuardian : MonoBehaviour
             Debug.LogError("Boss appearance, player, or arenaCenter not assigned!");
             return;
         }
+        
+        health = GetComponent<Health>();
 
         basePosition = appearance.localPosition;
         StartCoroutine(BossLoop());
@@ -61,6 +65,7 @@ public class Boss_SapGuardian : MonoBehaviour
             HandleAggressiveBobbing();
             if (isDashing) HandleDash();
         }
+        // Stunned state → no movement, no bobbing
     }
 
     // === Bobbing ===
@@ -80,7 +85,7 @@ public class Boss_SapGuardian : MonoBehaviour
     private void FacePlayer()
     {
         Vector3 direction = player.position - transform.position;
-        direction.y = 0;
+        direction.y = 0f; // ✅ horizontal only
 
         if (direction.sqrMagnitude > 0.01f)
         {
@@ -110,10 +115,13 @@ public class Boss_SapGuardian : MonoBehaviour
     private void HandleDash()
     {
         FaceDashDirection();
-        transform.position += dashDirection * (dashSpeed * Time.deltaTime);
+        Vector3 pos = transform.position;
+        pos += dashDirection * (dashSpeed * Time.deltaTime);
+        pos.y = arenaCenter.position.y; // ✅ keep grounded
+        transform.position = pos;
 
         // Check arena limit
-        float dist = Vector3.Distance(transform.position, arenaCenter.position);
+        float dist = Vector3.Distance(new Vector3(transform.position.x, arenaCenter.position.y, transform.position.z), arenaCenter.position);
         if (dist > maxDistanceFromCenter)
         {
             Debug.Log("Boss went out of bounds → recentering.");
@@ -134,7 +142,9 @@ public class Boss_SapGuardian : MonoBehaviour
 
             // Attacking
             currentState = BossState.Attacking;
-            dashDirection = (player.position - transform.position).normalized; // snapshot direction
+            dashDirection = (player.position - transform.position);
+            dashDirection.y = 0f; // ✅ horizontal only
+            dashDirection.Normalize();
             isDashing = true;
             yield return new WaitForSeconds(attackingDuration);
             isDashing = false;
@@ -150,13 +160,15 @@ public class Boss_SapGuardian : MonoBehaviour
     {
         currentState = BossState.Recenter;
         Vector3 start = transform.position;
-        Vector3 end = arenaCenter.position;
+        Vector3 end = new Vector3(arenaCenter.position.x, arenaCenter.position.y, arenaCenter.position.z);
         float t = 0;
 
         while (t < 1f)
         {
             t += Time.deltaTime / recenterDuration;
-            transform.position = Vector3.Lerp(start, end, t);
+            Vector3 pos = Vector3.Lerp(start, end, t);
+            pos.y = arenaCenter.position.y; // ✅ lock Y
+            transform.position = pos;
             yield return null;
         }
 
@@ -164,9 +176,39 @@ public class Boss_SapGuardian : MonoBehaviour
         StartCoroutine(BossLoop());
     }
 
-    // === Collision with Player ===
+    // === Stunned ===
+    private IEnumerator Stunned()
+    {
+        currentState = BossState.Stunned;
+        health.SetDamageMode(DamageMode.Normal);
+        // Flip appearance to look fallen
+        gameObject.transform.localRotation = Quaternion.Euler(-90f, appearance.localRotation.eulerAngles.y, appearance.localRotation.eulerAngles.z);
+
+        Debug.Log("Boss stunned!");
+
+        yield return new WaitForSeconds(stunnedDuration);
+
+        // Stand back up
+        gameObject.transform.localRotation = Quaternion.identity;
+        health.SetDamageMode(DamageMode.Fortified);
+
+        // Resume by recentering
+        StartCoroutine(Recenter());
+    }
+
+    // === Collision ===
     private void OnTriggerEnter(Collider other)
     {
+        // If hit by a boulder → stunned
+        if (other.GetComponent<HittingBoulder>())
+        {
+            StopAllCoroutines();
+            isDashing = false;
+            StartCoroutine(Stunned());
+            return;
+        }
+
+        // Otherwise damage player/targets
         Health health = other.GetComponent<Health>();
         if (health && attackableFactions.Contains(health.GetFaction()))
             health.TakeDamage(1);
