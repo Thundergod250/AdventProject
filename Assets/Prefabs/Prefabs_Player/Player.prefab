@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 2132086252992222447}
   - component: {fileID: 5574663765866507622}
   - component: {fileID: 4859940245406709005}
+  - component: {fileID: 5338218344644504175}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -489,6 +490,27 @@ MonoBehaviour:
   liftDuration: 0.2
   slamDuration: 0.1
   slamVFX: {fileID: 5493503308199923385}
+--- !u!114 &5338218344644504175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 10
+  currentHealth: 0
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  startSetHealth: 5
 --- !u!1 &2962931387159453308
 GameObject:
   m_ObjectHideFlags: 0

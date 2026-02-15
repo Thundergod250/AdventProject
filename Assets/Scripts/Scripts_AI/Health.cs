@@ -36,8 +36,8 @@ public class Health : MonoBehaviour
             Die();
         }
     }
-    
-    public void Die()
+
+    private void Die()
     {
         if (isDead) return;
 
