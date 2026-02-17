@@ -8,6 +8,7 @@ public enum UIPanelType
     Shop1,
     Gacha,
     Mine,
+    Monolith,
     BlackCanvas
 }
 
