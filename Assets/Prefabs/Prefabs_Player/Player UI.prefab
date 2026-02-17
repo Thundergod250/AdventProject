@@ -727,7 +727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &761632769187477605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8518,6 +8518,7 @@ GameObject:
   - component: {fileID: 4077854619140247699}
   - component: {fileID: 4649319203853903791}
   - component: {fileID: 4299359520764027537}
+  - component: {fileID: 2004697726333436446}
   m_Layer: 5
   m_Name: Player UI
   m_TagString: Untagged
@@ -8799,7 +8800,23 @@ MonoBehaviour:
   damageText: {fileID: 0}
   rangeText: {fileID: 0}
   upgradeButtonText: {fileID: 0}
+  addStatsButton: {fileID: 0}
   notEnoughGoldText: {fileID: 0}
+--- !u!114 &2004697726333436446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192366198569973207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e8f8c5d87dcb448ba27b8f8cb5958e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_PlayerStats
+  playerDamage: {fileID: 7582895516974387132}
+  playerAttackRadius: {fileID: 7872196260362808592}
+  playerStats: {fileID: 0}
 --- !u!1 &9217394648753457927
 GameObject:
   m_ObjectHideFlags: 0
