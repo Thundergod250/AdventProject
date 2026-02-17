@@ -71,6 +71,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void AddAttackValues(int damage, int radius)
     {
+        Debug.LogWarning("AddAttackvalues Called");
         slamDamage += damage;
         slamRadius += radius;
     }

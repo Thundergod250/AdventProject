@@ -12,6 +12,11 @@ public class UpgradePlayerStats : MonoBehaviour
 
     [SerializeField] private UI_MonolithUpgrade ui_MonolithUpgrade;
 
+    private void Awake()
+    {
+        ui_MonolithUpgrade.SetUpgradePrice(upgradePrice);
+    }
+
     public void SetUI()
     {
         ui_MonolithUpgrade.ToggleMonolithUpgradeUI();
@@ -21,8 +26,8 @@ public class UpgradePlayerStats : MonoBehaviour
     // Function to upgrade player stats
     public void UpgradeStats()
     {
-        // Upgrade player attack values
-        GameManager.Instance.PlayerController.PlayerAttack.AddAttackValues(damage, radius);
+        PlayerStats playerStats = GameManager.Instance.PlayerController.PlayerStats;
+        playerStats.UpgradeStats(playerStats.damage + damage, playerStats.attackRange + radius);
 
         // Update UI
         ui_MonolithUpgrade.SetStats(damage, radius);
@@ -43,14 +48,14 @@ public class UpgradePlayerStats : MonoBehaviour
             // Increase upgrade price
             upgradePrice += upgradePriceIncrease;
 
-            // Apply new stats to player attack
-
             // Update UI
             ui_MonolithUpgrade.SetStats(damage, radius);
+            ui_MonolithUpgrade.SetUpgradePrice(upgradePrice);
         }
         else
         {
-            Debug.Log("Not enough gold to upgrade!");
+            // Show "Not enough Gold" feedback
+            ui_MonolithUpgrade.ShowNotEnoughGold();
         }
     }
 }
