@@ -51,6 +51,7 @@ public class UpgradePlayerStats : MonoBehaviour
             // Update UI
             ui_MonolithUpgrade.SetStats(damage, radius);
             ui_MonolithUpgrade.SetUpgradePrice(upgradePrice);
+            UpgradeStats();
         }
         else
         {
