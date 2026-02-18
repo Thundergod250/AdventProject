@@ -19,6 +19,7 @@ public class PlayerAnimation : MonoBehaviour
     private float bounceTimer;
     private bool isMoving;
     private bool isSlamming;
+    private bool canAnimate = true;
 
     private void Awake()
     {
@@ -30,7 +31,13 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (isSlamming) return; // freeze bounce during slam
+        if (!canAnimate) 
+        {
+            model.localPosition = initialLocalPos; // reset to idle
+            return;
+        }
+
+        if (isSlamming) return;
 
         if (isMoving)
         {
@@ -45,6 +52,7 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    public void SetCanAnimate(bool value) => canAnimate = value;
     public void SetIsMoving(bool value) => isMoving = value;
 
     // Slam coroutine
