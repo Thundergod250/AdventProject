@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -10,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 2f;
     public float gravity = -9.81f;
     [SerializeField] private float jumpSpeedMultiplier = 1.5f;
+
+    [Header("NoClip Settings")]
+    [SerializeField] private float noClipSpeed = 15f; 
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -71,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Space = ascend
             if (context.performed)
-                velocity.y = moveSpeed;
+                velocity.y = noClipSpeed;
             else if (context.canceled)
                 velocity.y = 0f;
         }
@@ -92,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Ctrl = descend
             if (context.performed)
-                velocity.y = -moveSpeed;
+                velocity.y = -noClipSpeed;
             else if (context.canceled)
                 velocity.y = 0f;
         }
@@ -193,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = camRight * moveInput.x + camForward * moveInput.y;
 
-        Vector3 finalMove = move * moveSpeed + new Vector3(0f, velocity.y, 0f);
+        Vector3 finalMove = move * noClipSpeed + new Vector3(0f, velocity.y, 0f);
         transform.position += finalMove * Time.deltaTime;
 
         if (move != Vector3.zero)

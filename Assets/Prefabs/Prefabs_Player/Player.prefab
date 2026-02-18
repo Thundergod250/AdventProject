@@ -396,6 +396,7 @@ MonoBehaviour:
   jumpHeight: 2
   gravity: -29.43
   jumpSpeedMultiplier: 1.5
+  noClipSpeed: 50
   groundCheck: {fileID: 2944965602516896643}
   groundRadius: 0.1
   groundMask:

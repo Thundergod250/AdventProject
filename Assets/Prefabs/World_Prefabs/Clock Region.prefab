@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clock_Model_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1997017326331862951, guid: d989d367474055f40a761045461f17c9, type: 3}
+      propertyPath: timeMultiplier
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
