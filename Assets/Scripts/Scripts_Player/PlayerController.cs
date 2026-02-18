@@ -35,6 +35,15 @@ public class PlayerController : MonoBehaviour
         //PlayerMovement.MovementOnLook(context);
     }
 
+    public void OnNoClip(InputAction.CallbackContext context)
+    {
+        PlayerMovement.MovementOnNoClip(context);
+    }
+    
+    public void OnCtrl(InputAction.CallbackContext context)
+    {
+        PlayerMovement.MovementOnCtrl(context);
+    }
 
     public void OnOpeninventory(InputAction.CallbackContext context)
     {

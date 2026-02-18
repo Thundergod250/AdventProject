@@ -3713,18 +3713,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7262976255104573261, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: EvtOnStatChange.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7262976255104573261, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: EvtOnStatChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1406011454}
-    - target: {fileID: 7262976255104573261, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      propertyPath: EvtOnStatChange.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
