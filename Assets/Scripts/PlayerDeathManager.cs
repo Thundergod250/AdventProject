@@ -12,11 +12,8 @@ public class PlayerDeathManager : MonoBehaviour
         // Disable the player
         Player.gameObject.SetActive(false);
 
-        // Stop camera movement through your GameManager reference
-        if (GameManager.Instance != null && GameManager.Instance.FreeLookCamControl != null)
-        {
-            GameManager.Instance.FreeLookCamControl.DisableCameraMovement();
-        }
+        // Disable all movement via PlayerManipulator on Player
+        Player.GetComponent<PlayerManipulator>()._DisableAllMovement();
 
         GameManager.Instance.MiningManager.StopMining();
 
@@ -36,15 +33,12 @@ public class PlayerDeathManager : MonoBehaviour
         // Re-enable the player
         Player.gameObject.SetActive(true);
 
-        // Enable camera movement through your GameManager reference
-        if (GameManager.Instance != null && GameManager.Instance.FreeLookCamControl != null)
-        {
-            GameManager.Instance.FreeLookCamControl.EnableCameraMovement();
-        }
+        // Enable all movement via PlayerManipulator on Player
+        Player.GetComponent<PlayerManipulator>()._EnableAllMovement();
 
         GameManager.Instance.GoldManager.DivideGold(2);
 
-        Debug.Log("Player has respawned and camera movement re-enabled.");
+        Debug.Log("Player has respawned and all movement re-enabled.");
     }
 
     public void CallDeathAndRespawnRoutine()
