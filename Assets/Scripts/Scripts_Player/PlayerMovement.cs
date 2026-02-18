@@ -10,7 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpHeight = 2f;
     public float gravity = -9.81f;
-    [SerializeField] private float jumpSpeedMultiplier = 1.5f; // ✅ editable boost
+    [SerializeField] private float jumpSpeedMultiplier = 1.5f;
+
+    [Header("NoClip Settings")]
+    [SerializeField] private float noClipSpeed = 15f; 
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -23,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 10f;
 
     private PlayerAnimation playerAnimation;
-
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
@@ -34,18 +36,24 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     private bool canLook = true;
 
+    // === NoClip ===
+    private bool noClipEnabled = false;
+
     private void Start()
-    { 
+    {
         controller = GetComponent<CharacterController>();
         playerAnimation = GetComponent<PlayerAnimation>();
     }
-
 
     private void Update()
     {
         HandleGroundCheck();
 
-        if (canMove)
+        if (noClipEnabled)
+        {
+            HandleNoClipMovement();
+        }
+        else if (canMove)
         {
             HandleMovement();
             HandleGravityAndJump();
@@ -63,29 +71,65 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canMove) return;
 
+        if (noClipEnabled)
+        {
+            // Space = ascend
+            if (context.performed)
+                velocity.y = noClipSpeed;
+            else if (context.canceled)
+                velocity.y = 0f;
+        }
+        else
+        {
+            if (context.performed)
+                jumpRequested = true;
+            else if (context.canceled)
+                jumpRequested = false;
+        }
+    }
+
+    public void MovementOnCtrl(InputAction.CallbackContext context)
+    {
+        if (!canMove) return;
+
+        if (noClipEnabled)
+        {
+            // Ctrl = descend
+            if (context.performed)
+                velocity.y = -noClipSpeed;
+            else if (context.canceled)
+                velocity.y = 0f;
+        }
+    }
+
+    public void MovementOnNoClip(InputAction.CallbackContext context)
+    {
         if (context.performed)
-            jumpRequested = true;
-        else if (context.canceled)
-            jumpRequested = false;
+        {
+            noClipEnabled = !noClipEnabled;
+
+            controller.enabled = !noClipEnabled; // disable collider when NoClip
+            velocity = Vector3.zero; // reset velocity
+        }
     }
 
     // === Control toggles ===
     public void SetCanMove(bool value) => canMove = value;
-    
     public bool GetCanMove() => canMove;
     public bool GetCanLook() => canLook;
-
 
     public void SetCanLook(bool value)
     {
         canLook = value;
-        if (lookController != null)
+        if (lookController)
             lookController.enabled = value;
     }
 
     // === Internal Logic ===
     private void HandleGroundCheck()
     {
+        if (noClipEnabled) { isGrounded = false; return; }
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
         if (isGrounded && velocity.y < 0) velocity.y = -2f;
     }
@@ -104,7 +148,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = camRight * moveInput.x + camForward * moveInput.y;
 
-        // ✅ Apply jump speed boost if airborne
         float currentSpeed = isGrounded ? moveSpeed : moveSpeed * jumpSpeedMultiplier;
         controller.Move(move * (currentSpeed * Time.deltaTime));
 
@@ -140,7 +183,35 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    public bool IsGrounded() => isGrounded; // ✅ expose grounded state
+    private void HandleNoClipMovement()
+    {
+        if (!cameraTransform) return;
+
+        Vector3 camForward = cameraTransform.forward;
+        camForward.y = 0;
+        camForward.Normalize();
+
+        Vector3 camRight = cameraTransform.right;
+        camRight.y = 0;
+        camRight.Normalize();
+
+        Vector3 move = camRight * moveInput.x + camForward * moveInput.y;
+
+        Vector3 finalMove = move * noClipSpeed + new Vector3(0f, velocity.y, 0f);
+        transform.position += finalMove * Time.deltaTime;
+
+        if (move != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+        }
+    }
+
+    public bool IsGrounded() => isGrounded;
 
     private void OnDrawGizmosSelected()
     {
