@@ -39,9 +39,9 @@ public class ClockHands : MonoBehaviour
         float hourRotation = (hours * 30f) + (minutes * 0.5f);
 
         if (longHand != null)
-            longHand.transform.localRotation = Quaternion.Euler(0f, 0f, -minuteRotation);
+            longHand.transform.localRotation = Quaternion.Euler(0f, -minuteRotation, 0f);
 
         if (shortHand != null)
-            shortHand.transform.localRotation = Quaternion.Euler(0f, 0f, -hourRotation);
+            shortHand.transform.localRotation = Quaternion.Euler(0f, -hourRotation, 0f);
     }
 }
