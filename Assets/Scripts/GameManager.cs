@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     // Global references
     public PlayerController PlayerController;
     public PlayerDeathManager PlayerDeathManager;
+    public MonolithManager MonolithManager;
     public CameraManager CameraManager;
     public UI_Manager UIManager;
     public GoldManager GoldManager;
