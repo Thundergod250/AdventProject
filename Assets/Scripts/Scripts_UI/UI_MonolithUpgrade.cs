@@ -10,7 +10,7 @@ public class UI_MonolithUpgrade : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rangeText;    // assign in Inspector
 
     [Header("Upgrade Button")]
-    [SerializeField] private TextMeshProUGUI upgradeButtonText; // assign in Inspector
+    [SerializeField] private TextMeshProUGUI costButtonText; // assign in Inspector
     [SerializeField] private Button addStatsButton;             // assign in Inspector
 
     [Header("Feedback Text")]
@@ -34,8 +34,8 @@ public class UI_MonolithUpgrade : MonoBehaviour
     // Call this to update the button text with the current price
     public void SetUpgradePrice(int price)
     {
-        if (upgradeButtonText != null)
-            upgradeButtonText.text = $"Cost: ({price} Gold)";
+        if (costButtonText != null)
+            costButtonText.text = $"Cost:{price}";
     }
 
     // Coroutine to show "Not enough Gold" feedback
@@ -51,14 +51,22 @@ public class UI_MonolithUpgrade : MonoBehaviour
         if (addStatsButton != null)
             addStatsButton.interactable = false;
 
-        // Show feedback text
-        notEnoughGoldText.gameObject.SetActive(true);
+        // Change button text to "Not Enough Gems" and set color to red
+        if (notEnoughGoldText != null)
+        {
+            notEnoughGoldText.text = "Not Enough Gems";
+            notEnoughGoldText.color = Color.red;
+        }
 
         // Wait for 2 seconds
         yield return new WaitForSeconds(2f);
 
-        // Hide feedback text
-        notEnoughGoldText.gameObject.SetActive(false);
+        // Revert button text back to "Buy Upgrade" and set color to black
+        if (notEnoughGoldText != null)
+        {
+            notEnoughGoldText.text = "Buy Upgrade";
+            notEnoughGoldText.color = Color.black;
+        }
 
         // Re-enable the Add Stats button
         if (addStatsButton != null)
