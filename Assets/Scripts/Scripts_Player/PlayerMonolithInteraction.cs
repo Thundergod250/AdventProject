@@ -6,7 +6,6 @@ public class PlayerMonolithInteraction : MonoBehaviour
 
     private void Awake()
     {
-        monolithManager = GameManager.Instance.MonolithManager;
     }
 
     // Call this when player interacts with a monolith

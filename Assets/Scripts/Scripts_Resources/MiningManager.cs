@@ -11,6 +11,7 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private GameObject blockingWall;
     [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
     [SerializeField] private UI_Mining ui_MiningObject;
+    public GameObject Player; // assign Player in Inspector
 
     [Header("Upgrade UI")]
     [SerializeField] private TextMeshProUGUI uiUpgradePriceText;
