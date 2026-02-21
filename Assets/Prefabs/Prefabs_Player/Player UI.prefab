@@ -531,21 +531,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7214417882162235751}
-        m_TargetAssemblyTypeName: UI_Mining, Assembly-CSharp
-        m_MethodName: ToggleMiningUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MiningManager, Assembly-CSharp
-        m_MethodName: StartMining
+      - m_Target: {fileID: 4299359520764027537}
+        m_TargetAssemblyTypeName: UI_MonolithUpgrade, Assembly-CSharp
+        m_MethodName: ToggleMonolithUpgradeUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -566,6 +554,7 @@ GameObject:
   - component: {fileID: 2200607093428528932}
   - component: {fileID: 2131965221003110770}
   - component: {fileID: 7504963093088947212}
+  - component: {fileID: 8803883930151907861}
   m_Layer: 5
   m_Name: Gold Ui for Mining
   m_TagString: Untagged
@@ -694,6 +683,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8803883930151907861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674789506525892071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46e6e635a3a72242919a0ca14abdc36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Gold
 --- !u!1 &675084400725091132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,6 +2717,7 @@ GameObject:
   - component: {fileID: 946890904165474025}
   - component: {fileID: 1857599031900703316}
   - component: {fileID: 1352896277593769176}
+  - component: {fileID: 5305536328539680146}
   m_Layer: 5
   m_Name: Player Money
   m_TagString: Untagged
@@ -2844,6 +2846,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5305536328539680146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140742557723216231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46e6e635a3a72242919a0ca14abdc36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Gold
 --- !u!1 &2280972679057262039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3659,8 +3673,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MiningManager, Assembly-CSharp
-        m_MethodName: Upgrade
+        m_TargetAssemblyTypeName: UpgradePlayerStats, Assembly-CSharp
+        m_MethodName: UpgradeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4151,7 +4165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Damage Value
+  m_text: Range Value
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7371,8 +7385,9 @@ GameObject:
   - component: {fileID: 8351066550069294629}
   - component: {fileID: 2310855505804337346}
   - component: {fileID: 1882497424955741143}
+  - component: {fileID: 7730386176372436237}
   m_Layer: 5
-  m_Name: Gold Ui for Main Group
+  m_Name: Player Money UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7425,9 +7440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '100
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec43e042a4c9a5e4b9353900566d2807, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: ec43e042a4c9a5e4b9353900566d2807, type: 2}
@@ -7454,7 +7467,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 89.5
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7499,6 +7512,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7730386176372436237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811504966839266346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46e6e635a3a72242919a0ca14abdc36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Gold
 --- !u!1 &7904508696084619079
 GameObject:
   m_ObjectHideFlags: 0
@@ -8954,7 +8979,6 @@ GameObject:
   - component: {fileID: 615888349467617691}
   - component: {fileID: 2353821745081310539}
   - component: {fileID: 8146144091608364486}
-  - component: {fileID: 5015922429744412463}
   - component: {fileID: 5736558282638693868}
   - component: {fileID: 5760158420434567212}
   - component: {fileID: 8493503043001192505}
@@ -9101,22 +9125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_Interaction
   interactionTabPrefab: {fileID: 3699236910836582060, guid: 5111b5b599ba9d34797265aea014058e, type: 3}
   interactionGroup: {fileID: 7913902849793716080}
---- !u!114 &5015922429744412463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9192366198569973207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e46e6e635a3a72242919a0ca14abdc36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Gold
-  goldTextForMonolith: {fileID: 0}
-  goldTextForMainUi: {fileID: 0}
-  goldTextForMiningUi: {fileID: 0}
-  goldManager: {fileID: 0}
 --- !u!114 &5736558282638693868
 MonoBehaviour:
   m_ObjectHideFlags: 0

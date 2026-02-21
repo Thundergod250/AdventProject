@@ -36,10 +36,10 @@ public class UpgradePlayerStats : MonoBehaviour
     // Function for the Upgrade button in the UI
     public void UpgradeButton()
     {
-        if (GameManager.Instance.GoldManager.playerGold >= upgradePrice)
+        if (GameManager.Instance.GoldManager.HasEnoughGold(upgradePrice))
         {
             // Deduct gold
-            GameManager.Instance.GoldManager.playerGold -= upgradePrice;
+            GameManager.Instance.GoldManager.SpendGold(upgradePrice);
 
             // Increase stats
             damage += 5;

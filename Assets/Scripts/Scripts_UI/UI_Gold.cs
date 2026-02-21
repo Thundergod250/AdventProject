@@ -1,23 +1,49 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class UI_Gold : MonoBehaviour
 {
-    [SerializeField] private GoldManager goldManager;
-    [SerializeField] private TextMeshProUGUI[] goldTexts; // assign all gold text fields in Inspector
+    private TextMeshProUGUI goldText;
 
-    private void Update()
+    private void Start()
     {
-        if (goldManager != null)
+        goldText = GetComponent<TextMeshProUGUI>();
+        if (goldText == null) 
+            Debug.LogError($"UI_Gold on {gameObject.name} requires a TextMeshProUGUI component.");
+        
+        if (GameManager.Instance == null)
         {
-            string goldValue = goldManager.PlayerGold.ToString();
-
-            // Update all gold text fields in one loop
-            foreach (var goldText in goldTexts)
-            {
-                if (goldText != null)
-                    goldText.text = goldValue;
-            }
+            Debug.LogError("GameManager.Instance is null. UI_Gold cannot subscribe to gold updates.");
+            return;
         }
+        
+        if (GameManager.Instance.GoldManager == null)
+        {
+            Debug.LogError("GoldManager is missing in GameManager. UI_Gold cannot subscribe to gold updates.");
+            return;
+        }
+        
+        if (GameManager.Instance.GoldManager.EvtOnGoldChanged == null)
+        {
+            Debug.LogError("EvtOnGoldChanged UnityEvent is not initialized in GoldManager.");
+            return;
+        }
+        
+        GameManager.Instance.GoldManager.EvtOnGoldChanged.AddListener(UpdateGoldText);
+        
+        UpdateGoldText(GameManager.Instance.GoldManager.PlayerGold);
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.GoldManager != null) 
+            GameManager.Instance.GoldManager.EvtOnGoldChanged.RemoveListener(UpdateGoldText);
+    }
+
+    private void UpdateGoldText(int value)
+    {
+        if (goldText != null)
+            goldText.text = value.ToString();
     }
 }
