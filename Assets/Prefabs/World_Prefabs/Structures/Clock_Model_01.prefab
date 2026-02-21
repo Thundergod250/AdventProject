@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8861164101506143662}
   - component: {fileID: 14031231626174156}
+  - component: {fileID: 4726140817607427029}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -47,12 +48,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4726140817607427029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5503755160785334366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38030e92513ada74583730de8ff3b6c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageCollider
 --- !u!1001 &248289922527720827
 PrefabInstance:
   m_ObjectHideFlags: 0
