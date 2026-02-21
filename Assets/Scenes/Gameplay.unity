@@ -2672,6 +2672,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1792789550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1882497424955741143, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+  m_PrefabInstance: {fileID: 7788687841394568305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &1811346353 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2205877847749605719, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
@@ -5047,6 +5058,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Range Value
       objectReference: {fileID: 0}
+    - target: {fileID: 974161663569078193, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2004697726333436446, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: playerStats
       value: 
@@ -5139,6 +5154,34 @@ PrefabInstance:
       propertyPath: goldManager
       value: 
       objectReference: {fileID: 1282708373}
+    - target: {fileID: 5015922429744412463, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: goldTextForMainUi
+      value: 
+      objectReference: {fileID: 1792789550}
+    - target: {fileID: 5015922429744412463, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: goldTextForMiningUi
+      value: 
+      objectReference: {fileID: 7788687841394568306}
+    - target: {fileID: 5015922429744412463, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: goldTextForMonolith
+      value: 
+      objectReference: {fileID: 96428886}
+    - target: {fileID: 5015922429744412463, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: goldTexts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015922429744412463, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: 'goldTexts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1792789550}
+    - target: {fileID: 5015922429744412463, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: 'goldTexts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7788687841394568306}
+    - target: {fileID: 5015922429744412463, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: 'goldTexts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 96428886}
     - target: {fileID: 5760158420434567212, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: playerInventory
       value: 
@@ -5408,6 +5451,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+--- !u!114 &7788687841394568306 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7504963093088947212, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+  m_PrefabInstance: {fileID: 7788687841394568305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &7788687841394568307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8074802444996945483, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
