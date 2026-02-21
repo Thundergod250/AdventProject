@@ -200,11 +200,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dedcacaae8d1bd2448d0b27bed2bb0f2, type: 3}
---- !u!1 &52760492 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2253903821176898040, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
-  m_PrefabInstance: {fileID: 7650058162159832360}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &76859795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Player: {fileID: 1406011454}
-  SpawnPoint: {fileID: 0}
+  SpawnPoint: {fileID: 1147128302}
 --- !u!114 &698444996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2762,7 +2757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2779,7 +2774,7 @@ PrefabInstance:
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 3688964133521184836}
+      objectReference: {fileID: 1842083265}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -2806,7 +2801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: InteractWithMonolith
+      value: SetAsRespawnPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2822,7 +2817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: PlayerMonolithInteraction, Assembly-CSharp
+      value: Monolith, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -2843,7 +2838,7 @@ PrefabInstance:
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1842083265}
+      objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
@@ -2854,7 +2849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Monolith, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3945,10 +3940,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1367724001468933626, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3688964133521184836}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
 --- !u!114 &3688964133521184812 stripped
 MonoBehaviour:
@@ -4032,18 +4024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ba3ae869496b44aa4844ac5cf00943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
---- !u!114 &3688964133521184836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406011454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68c7e39bde3c0eb4fb0ae32268a1456d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1001 &3971589712687983088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4934,7 +4914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4951,7 +4931,7 @@ PrefabInstance:
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 3688964133521184836}
+      objectReference: {fileID: 7650058162159832367}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -4978,7 +4958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: InteractWithMonolith
+      value: SetAsRespawnPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4994,7 +4974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: PlayerMonolithInteraction, Assembly-CSharp
+      value: Monolith, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -5015,7 +4995,7 @@ PrefabInstance:
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 7650058162159832367}
+      objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
@@ -5026,45 +5006,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7344096843684239131, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Monolith, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2253903821176898040, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7650058162159832367}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
 --- !u!114 &7650058162159832361 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1495768812355637158, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
   m_PrefabInstance: {fileID: 7650058162159832360}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52760492}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f2a3ac3c1cf2e04bbc1bc0d626984e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!4 &7650058162159832362 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4825634235925161731, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
+--- !u!114 &7650058162159832367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3221760541625963727, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
   m_PrefabInstance: {fileID: 7650058162159832360}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7650058162159832367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52760492}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3900f195d6dd6f04aae6748688224cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  spawnPoint: {fileID: 7650058162159832362}
 --- !u!1001 &7788687841394568305
 PrefabInstance:
   m_ObjectHideFlags: 0
