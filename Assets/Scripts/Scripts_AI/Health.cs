@@ -42,7 +42,7 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
-        currentHealth = startSetHealth;
+        if (startSetHealth > 0) currentHealth = startSetHealth;
         
         OnDamaged?.Invoke(currentHealth);
     }
@@ -54,29 +54,53 @@ public class Health : MonoBehaviour
         switch (damageMode)
         {
             case DamageMode.Invincible:
-                // No damage taken
                 return;
 
             case DamageMode.Fortified:
-                // All damage reduced to 1
                 amount = 1;
                 break;
 
             case DamageMode.Normal:
-                // Use amount as-is
                 break;
         }
 
+        ApplyDamage(amount);
+    }
+    
+    public void TakePercentageDamage(float percentage)
+    {
+        if (isDead) return;
+
+        // Clamp percentage between 0 and 1
+        percentage = Mathf.Clamp01(percentage);
+
+        int amount = Mathf.RoundToInt(maxHealth * percentage);
+
+        switch (damageMode)
+        {
+            case DamageMode.Invincible:
+                return;
+
+            case DamageMode.Fortified:
+                amount = 1;
+                break;
+
+            case DamageMode.Normal:
+                break;
+        }
+
+        ApplyDamage(amount);
+    }
+
+    private void ApplyDamage(int amount)
+    {
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        // Trigger damage event
         OnDamaged?.Invoke(currentHealth);
 
-        if (currentHealth <= 0)
-        {
+        if (currentHealth <= 0) 
             Die();
-        }
     }
 
     private void Die()
@@ -87,7 +111,6 @@ public class Health : MonoBehaviour
         OnDeath?.Invoke();
 
         Debug.Log($"{gameObject.name} has died.");
-        // Optional: Destroy(gameObject); or disable
     }
 
     public void Heal(int amount)
@@ -95,6 +118,7 @@ public class Health : MonoBehaviour
         if (isDead) return;
 
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        OnDamaged?.Invoke(currentHealth);
     }
 
     public int GetCurrentHealth() => currentHealth;

@@ -149,9 +149,9 @@ public class MiningManager : MonoBehaviour
     // =====================================================
     public void Upgrade()
     {
-        if (GameManager.Instance.GoldManager.playerGold >= upgradePrice)
+        if (GameManager.Instance.GoldManager.HasEnoughGold(upgradePrice))
         {
-            GameManager.Instance.GoldManager.playerGold -= upgradePrice;
+            GameManager.Instance.GoldManager.SpendGold(upgradePrice);
 
             miningDuration += 10f;
             upgradePrice += upgradePriceIncrease;

@@ -3,60 +3,60 @@ using System.Collections;
 
 public class PlayerDeathManager : MonoBehaviour
 {
+    [Header("References")]
     public GameObject Player;
     public GameObject SpawnPoint;
 
-    // Handles player death logic
-    public void HandlePlayerDeath()
-    {
-        // Disable the player
-        Player.gameObject.SetActive(false);
+    [Header("Death Settings")]
+    [SerializeField] private float oceanHeightThreshold = -3f; //OCEAN HEIGHT
+    [SerializeField] private float respawnDelay = 3f;
 
-        // Disable all movement via PlayerManipulator on Player
+    private bool isRespawning = false;
+
+    public void CallDeathAndRespawnRoutine() => StartCoroutine(DeathAndRespawnRoutine());
+
+    private void Update()
+    {
+        // Continuously check if player has fallen below threshold
+        if (!isRespawning && Player != null && Player.transform.position.y < oceanHeightThreshold)
+        {
+            Debug.Log("Player fell below lava threshold.");
+            StartCoroutine(DeathAndRespawnRoutine());
+        }
+    }
+
+    private void HandlePlayerDeath()
+    {
+        Player.gameObject.SetActive(false);
         Player.GetComponent<PlayerManipulator>()._DisableAllMovement();
 
         GameManager.Instance.MiningManager.StopMining();
 
-        Debug.Log("Player has been disabled after trigger collision.");
+        Debug.Log("Player has been disabled after trigger collision or lava fall.");
     }
 
-    // Handles player respawn logic
-    public void HandlePlayerRespawn()
+    private void HandlePlayerRespawn()
     {
-        // Move player to spawn point if assigned
         if (SpawnPoint != null)
         {
             Player.transform.position = SpawnPoint.transform.position;
             Player.transform.rotation = SpawnPoint.transform.rotation;
         }
 
-        // Re-enable the player
         Player.gameObject.SetActive(true);
-
-        // Enable all movement via PlayerManipulator on Player
         Player.GetComponent<PlayerManipulator>()._EnableAllMovement();
-
-        GameManager.Instance.GoldManager.DivideGold(2);
+        GameManager.Instance.GoldManager.ReduceGoldPercentage(0.5f);
 
         Debug.Log("Player has respawned and all movement re-enabled.");
     }
 
-    public void CallDeathAndRespawnRoutine()
+    private IEnumerator DeathAndRespawnRoutine()
     {
-        StartCoroutine(DeathAndRespawnRoutine());
-    }
-
-    // Coroutine to handle death and respawn sequence
-    public IEnumerator DeathAndRespawnRoutine()
-    {
-        // Call death handler
+        isRespawning = true;
         HandlePlayerDeath();
-
-        // Wait for the specified delay
-        yield return new WaitForSeconds(3f);
-
+        yield return new WaitForSeconds(respawnDelay);
         Debug.Log("HandlePlayerRespawn");
-        // Call respawn handler
         HandlePlayerRespawn();
+        isRespawning = false;
     }
 }
