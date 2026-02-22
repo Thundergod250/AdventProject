@@ -8,20 +8,19 @@ public class GoldManager : MonoBehaviour
     public int PlayerGold => playerGold;
 
     [Header("Events")]
-    public UnityEvent<int> EvtOnGoldChanged; // passes new gold value
+    public UnityEvent<int> EvtOnGoldChanged;
 
     public void AddGold(int amount)
     {
         playerGold += Mathf.Max(0, amount);
         EvtOnGoldChanged?.Invoke(playerGold);
     }
-
+    
     public bool SpendGold(int amount)
     {
         if (HasEnoughGold(amount))
         {
-            playerGold -= amount;
-            EvtOnGoldChanged?.Invoke(playerGold);
+            ReduceGold(amount);
             return true;
         }
         return false;
@@ -36,16 +35,32 @@ public class GoldManager : MonoBehaviour
     }
 
     public bool HasEnoughGold(int amount) => playerGold >= amount;
-
+    
     public void ReduceGold(int amount)
     {
         playerGold = Mathf.Max(0, playerGold - amount);
         EvtOnGoldChanged?.Invoke(playerGold);
     }
-
-    public void DivideGold(int amount)
+    
+    public bool SpendGoldPercentage(float percentage)
     {
-        playerGold = Mathf.Max(0, playerGold / amount);
+        percentage = Mathf.Clamp01(percentage);
+        int amount = Mathf.RoundToInt(playerGold * percentage);
+
+        if (HasEnoughGold(amount))
+        {
+            ReduceGold(amount);
+            return true;
+        }
+        return false;
+    }
+    
+    public void ReduceGoldPercentage(float percentage)
+    {
+        percentage = Mathf.Clamp01(percentage);
+        int amount = Mathf.RoundToInt(playerGold * percentage);
+
+        playerGold = Mathf.Max(0, playerGold - amount);
         EvtOnGoldChanged?.Invoke(playerGold);
     }
 }
