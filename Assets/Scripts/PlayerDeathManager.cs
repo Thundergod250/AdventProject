@@ -8,7 +8,7 @@ public class PlayerDeathManager : MonoBehaviour
     public GameObject SpawnPoint;
 
     [Header("Death Settings")]
-    [SerializeField] private float lavaHeightThreshold = -3f; //OCEAN HEIGHT
+    [SerializeField] private float oceanHeightThreshold = -3f; //OCEAN HEIGHT
     [SerializeField] private float respawnDelay = 3f;
 
     private bool isRespawning = false;
@@ -18,7 +18,7 @@ public class PlayerDeathManager : MonoBehaviour
     private void Update()
     {
         // Continuously check if player has fallen below threshold
-        if (!isRespawning && Player != null && Player.transform.position.y < lavaHeightThreshold)
+        if (!isRespawning && Player != null && Player.transform.position.y < oceanHeightThreshold)
         {
             Debug.Log("Player fell below lava threshold.");
             StartCoroutine(DeathAndRespawnRoutine());
