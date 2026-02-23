@@ -35,16 +35,18 @@ public class NewEnemyMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        // Check if collided with player
-        if (collision.gameObject.GetComponent<PlayerMovement>())
+        // Check if the trigger was the player
+        if (other.gameObject.GetComponent<PlayerMovement>())
         {
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(2); // call player's Health script
-                Debug.Log("Enemy collided with player. Damage applied.");
+                Debug.Log("Enemy triggered with player. Damage applied.");
+                Destroy(this.gameObject);
             }
         }
     }
+
 }
