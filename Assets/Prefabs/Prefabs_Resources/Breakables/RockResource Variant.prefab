@@ -292,6 +292,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8589393842477880194, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: resourcePrefab
+      value: 
+      objectReference: {fileID: 8943704049594194540, guid: 54246c2e423ee8e4e965622f65d10aa5, type: 3}
+    - target: {fileID: 8589393842477880194, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       propertyPath: resourceDropped
       value: 
       objectReference: {fileID: 6601367754676294331, guid: 26bdfc8dbb0989745a10ed6ee522b0d1, type: 3}

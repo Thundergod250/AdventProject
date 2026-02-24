@@ -4336,6 +4336,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1406011454}
     - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: levelUp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 29410035390614187, guid: 6c0e1def7156798499b9c7ce3c0177b5, type: 3}
@@ -4370,7 +4374,7 @@ PrefabInstance:
     - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: 'rockPrefabs.Array.data[1]'
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 57d71b8a93a68a34ab42483c672d1f0a, type: 3}
+      objectReference: {fileID: 3065502443422450566, guid: 459d003c0311d0541ae7a41648133602, type: 3}
     - target: {fileID: 6299116826749529228, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

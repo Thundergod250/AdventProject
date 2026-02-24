@@ -31,6 +31,7 @@ public class MiningManager : MonoBehaviour
     [Header("Upgrade Settings")]
     [SerializeField] private int currentPrice;
     [SerializeField] private int upgradePriceIncrease = 30;
+    [SerializeField] private int levelUp = 1; // tracks current mining level
 
     private bool isMiningActive = false;
     private Coroutine miningRoutine;
@@ -75,8 +76,16 @@ public class MiningManager : MonoBehaviour
             {
                 GameObject rock = Instantiate(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity);
                 spawnedRocks.Add(rock);
+
+                // If rock has Breakable script, assign levelUp
+                Breakable breakable = rock.GetComponent<Breakable>();
+                if (breakable != null)
+                {
+                    breakable.SpawnResourceAmount(levelUp);
+                }
             }
         }
+
 
         // Spawn enemies
         foreach (Transform spawnPoint in enemySpawnPoints)
@@ -142,7 +151,8 @@ public class MiningManager : MonoBehaviour
             if (currentRockIndex < rockPrefabs.Count - 1)
             {
                 currentRockIndex++;
-                Debug.Log($"Rock type upgraded to index {currentRockIndex}");
+                levelUp++; // increase mining level
+                Debug.Log($"Rock type upgraded to index {currentRockIndex}, level {levelUp}");
             }
 
             UpdateUpgradePriceText();
@@ -152,6 +162,7 @@ public class MiningManager : MonoBehaviour
             StartCoroutine(ClearNotEnoughText());
         }
     }
+
 
     private void UpdateUpgradePriceText()
     {
