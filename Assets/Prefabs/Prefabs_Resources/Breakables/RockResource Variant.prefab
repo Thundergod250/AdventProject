@@ -152,6 +152,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4072581693049083769, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072581693049083769, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

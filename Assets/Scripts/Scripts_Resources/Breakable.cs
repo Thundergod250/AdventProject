@@ -26,4 +26,9 @@ public class Breakable : MonoBehaviour
         // Destroy this breakable object
         Destroy(gameObject);
     }
+
+    public void GiveGems()
+    {
+        GameManager.Instance.GoldManager.AddGold(2);
+    }
 }

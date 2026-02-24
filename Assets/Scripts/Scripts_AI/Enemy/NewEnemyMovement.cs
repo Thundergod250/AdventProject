@@ -44,9 +44,7 @@ public class NewEnemyMovement : MonoBehaviour
             {
                 playerHealth.TakeDamage(2); // call player's Health script
                 Debug.Log("Enemy triggered with player. Damage applied.");
-                Destroy(this.gameObject);
             }
         }
     }
-
 }
