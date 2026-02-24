@@ -7,7 +7,6 @@ public class MiningManager : MonoBehaviour
 {
     [Header("Prefabs & References")]
     [SerializeField] private List<GameObject> rockPrefabs; // assign multiple rock prefabs in Inspector
-    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject blockingWall;
     [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
     [SerializeField] private UI_Mining ui_MiningObject;
@@ -23,7 +22,10 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private float groundY = 0f;
 
     [Header("Enemy Settings")]
+    [SerializeField] private List<GameObject> enemyPrefabs; // assign multiple enemy prefabs in Inspector
     [SerializeField] private Transform[] enemySpawnPoints;
+
+    private int currentEnemyIndex = 0; // tracks which enemy prefab to use
 
     [Header("Game Settings")]
     [SerializeField] private float miningDuration = 10f;
@@ -31,7 +33,7 @@ public class MiningManager : MonoBehaviour
     [Header("Upgrade Settings")]
     [SerializeField] private int currentPrice;
     [SerializeField] private int upgradePriceIncrease = 30;
-    [SerializeField] private int levelUp = 1; // tracks current mining level
+    public int MineLevel = 1; // tracks current mining level
 
     private bool isMiningActive = false;
     private Coroutine miningRoutine;
@@ -76,23 +78,15 @@ public class MiningManager : MonoBehaviour
             {
                 GameObject rock = Instantiate(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity);
                 spawnedRocks.Add(rock);
-
-                // If rock has Breakable script, assign levelUp
-                Breakable breakable = rock.GetComponent<Breakable>();
-                if (breakable != null)
-                {
-                    breakable.SpawnResourceAmount(levelUp);
-                }
             }
         }
-
 
         // Spawn enemies
         foreach (Transform spawnPoint in enemySpawnPoints)
         {
-            if (enemyPrefab != null && spawnPoint != null)
+            if (enemyPrefabs.Count > 0 && currentEnemyIndex < enemyPrefabs.Count && spawnPoint != null)
             {
-                GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+                GameObject enemy = Instantiate(enemyPrefabs[currentEnemyIndex], spawnPoint.position, spawnPoint.rotation);
                 spawnedEnemies.Add(enemy);
             }
         }
@@ -151,8 +145,15 @@ public class MiningManager : MonoBehaviour
             if (currentRockIndex < rockPrefabs.Count - 1)
             {
                 currentRockIndex++;
-                levelUp++; // increase mining level
-                Debug.Log($"Rock type upgraded to index {currentRockIndex}, level {levelUp}");
+                MineLevel++;
+                Debug.Log($"Rock type upgraded to index {currentRockIndex}, level {MineLevel}");
+            }
+
+            // Move to next enemy prefab if available
+            if (currentEnemyIndex < enemyPrefabs.Count - 1)
+            {
+                currentEnemyIndex++;
+                Debug.Log($"Enemy type upgraded to index {currentEnemyIndex}");
             }
 
             UpdateUpgradePriceText();
@@ -162,6 +163,7 @@ public class MiningManager : MonoBehaviour
             StartCoroutine(ClearNotEnoughText());
         }
     }
+
 
 
     private void UpdateUpgradePriceText()

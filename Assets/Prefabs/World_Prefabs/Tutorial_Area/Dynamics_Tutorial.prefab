@@ -585,16 +585,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4e33077c9b9844eab56445c61abdcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiningManager
-  rockPrefab: {fileID: 2103984203466088857, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
-  enemyPrefab: {fileID: 0}
+  rockPrefabs:
+  - {fileID: 2103984203466088857, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
+  - {fileID: 3065502443422450566, guid: 459d003c0311d0541ae7a41648133602, type: 3}
   blockingWall: {fileID: 2897286984662596331}
   ui_Main_TimerObject: {fileID: 0}
   ui_MiningObject: {fileID: 0}
+  Player: {fileID: 0}
   uiUpgradePriceText: {fileID: 0}
   uiUpgradeLabelText: {fileID: 0}
   planeSize: {x: 51.97, y: 42.41}
   rockCount: 10
   groundY: -0.18
+  enemyPrefabs:
+  - {fileID: 29410035390614187, guid: 6c0e1def7156798499b9c7ce3c0177b5, type: 3}
+  - {fileID: 1486057460327448443, guid: 1560fb0be9dd65d4abe5d3120943691a, type: 3}
   enemySpawnPoints:
   - {fileID: 8416021997016498102}
   - {fileID: 2395062275552947089}
@@ -607,8 +612,9 @@ MonoBehaviour:
   - {fileID: 6789013815827367199}
   - {fileID: 8486231508062732518}
   miningDuration: 10
-  currentPrice: 30
+  currentPrice: 10
   upgradePriceIncrease: 30
+  MineLevel: 1
 --- !u!114 &5766542088145615619
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4363,18 +4363,6 @@ PrefabInstance:
       propertyPath: ui_Main_TimerObject
       value: 
       objectReference: {fileID: 7788687841394568310}
-    - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      propertyPath: rockPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      propertyPath: 'rockPrefabs.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2103984203466088857, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
-    - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      propertyPath: 'rockPrefabs.Array.data[1]'
-      value: 
-      objectReference: {fileID: 3065502443422450566, guid: 459d003c0311d0541ae7a41648133602, type: 3}
     - target: {fileID: 6299116826749529228, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

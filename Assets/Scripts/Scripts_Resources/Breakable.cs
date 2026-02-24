@@ -23,7 +23,7 @@ public class Breakable : MonoBehaviour
         }
 
         // Drop resources using SetResourceLevel
-        SpawnResourceAmount(resourceLevel);
+        SpawnResourceAmount(GameManager.Instance.MiningManager.MineLevel);
 
         // Destroy this breakable object
         Destroy(gameObject);
@@ -41,7 +41,7 @@ public class Breakable : MonoBehaviour
 
         if (resourcePrefab != null)
         {
-            for (int i = 0; i < resourceLevel; i++)
+            for (int i = 0; i < level; i++)
             {
                 Instantiate(resourcePrefab, transform.position, Quaternion.identity);
             }
