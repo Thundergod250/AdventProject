@@ -6,10 +6,13 @@ public class Breakable : MonoBehaviour
     [Header("Breakable Settings")]
     [SerializeField] private GameObject explosionVFX;
     [SerializeField] private float explosionLifetime = 1f;
-    [SerializeField] private GameObject resourceDropped;
+
+    [Header("Resource Drop")]
+    [SerializeField] private GameObject resourcePrefab; // single prefab
+    private int resourceLevel = 0;
 
     private Health health;
-    
+
     public void HandleDeath()
     {
         // Spawn VFX
@@ -19,11 +22,29 @@ public class Breakable : MonoBehaviour
             Destroy(vfx, explosionLifetime);
         }
 
-        // Drop resource
-        if (resourceDropped != null) 
-            Instantiate(resourceDropped, transform.position, Quaternion.identity);
+        // Drop resources using SetResourceLevel
+        SpawnResourceAmount(GameManager.Instance.MiningManager.MineLevel);
 
         // Destroy this breakable object
         Destroy(gameObject);
+    }
+
+    public void GiveGems()
+    {
+        GameManager.Instance.GoldManager.AddGold(2);
+    }
+
+    // Function to spawn resources based on level
+    public void SpawnResourceAmount(int level)
+    {
+        resourceLevel = level;
+
+        if (resourcePrefab != null)
+        {
+            for (int i = 0; i < level; i++)
+            {
+                Instantiate(resourcePrefab, transform.position, Quaternion.identity);
+            }
+        }
     }
 }

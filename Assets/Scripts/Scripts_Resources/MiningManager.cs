@@ -6,8 +6,7 @@ using TMPro;
 public class MiningManager : MonoBehaviour
 {
     [Header("Prefabs & References")]
-    [SerializeField] private GameObject rockPrefab;
-    [SerializeField] private GameObject enemyPrefab;          // enemy prefab
+    [SerializeField] private List<GameObject> rockPrefabs; // assign multiple rock prefabs in Inspector
     [SerializeField] private GameObject blockingWall;
     [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
     [SerializeField] private UI_Mining ui_MiningObject;
@@ -23,7 +22,10 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private float groundY = 0f;
 
     [Header("Enemy Settings")]
-    [SerializeField] private Transform[] enemySpawnPoints;    // assign spawn points in Inspector
+    [SerializeField] private List<GameObject> enemyPrefabs; // assign multiple enemy prefabs in Inspector
+    [SerializeField] private Transform[] enemySpawnPoints;
+
+    private int currentEnemyIndex = 0; // tracks which enemy prefab to use
 
     [Header("Game Settings")]
     [SerializeField] private float miningDuration = 10f;
@@ -31,6 +33,7 @@ public class MiningManager : MonoBehaviour
     [Header("Upgrade Settings")]
     [SerializeField] private int currentPrice;
     [SerializeField] private int upgradePriceIncrease = 30;
+    public int MineLevel { get; private set; } = 1;
 
     private bool isMiningActive = false;
     private Coroutine miningRoutine;
@@ -38,6 +41,8 @@ public class MiningManager : MonoBehaviour
     private List<GameObject> spawnedRocks = new List<GameObject>();
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     private int upgradePrice;
+
+    private int currentRockIndex = 0; // tracks which rock prefab to use
 
     private void Awake()
     {
@@ -50,27 +55,24 @@ public class MiningManager : MonoBehaviour
         ui_MiningObject.ToggleMiningUI();
     }
 
-    // =====================================================
-    // PUBLIC ENTRY POINT
-    // =====================================================
     public void StartMining()
     {
         if (isMiningActive) return;
-
         miningRoutine = StartCoroutine(MiningSession());
     }
+    private GameObject SpawnPrefab(GameObject prefab, Vector3 position, Quaternion rotation, List<GameObject> list)
+    {
+        GameObject obj = Instantiate(prefab, position, rotation);
+        list.Add(obj);
+        return obj;
+    }
 
-    // =====================================================
-    // CORE MINING FLOW
-    // =====================================================
     private IEnumerator MiningSession()
     {
         isMiningActive = true;
 
-        // Start UI timer
         ui_Main_TimerObject.StartTimer((int)miningDuration);
 
-        // Enable blocking wall
         if (blockingWall != null)
             blockingWall.SetActive(true);
 
@@ -78,21 +80,21 @@ public class MiningManager : MonoBehaviour
         for (int i = 0; i < rockCount; i++)
         {
             Vector3 spawnPos = GetRandomGroundPosition();
-            GameObject rock = Instantiate(rockPrefab, spawnPos, Quaternion.identity);
-            spawnedRocks.Add(rock);
-        }
-
-        // Spawn enemies at each spawn point
-        foreach (Transform spawnPoint in enemySpawnPoints)
-        {
-            if (enemyPrefab != null && spawnPoint != null)
+            if (rockPrefabs.Count > 0 && currentRockIndex < rockPrefabs.Count)
             {
-                GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-                spawnedEnemies.Add(enemy);
+                SpawnPrefab(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity, spawnedRocks);
             }
         }
 
-        // Wait for mining duration
+        // Spawn enemies
+        foreach (Transform spawnPoint in enemySpawnPoints)
+        {
+            if (enemyPrefabs.Count > 0 && currentEnemyIndex < enemyPrefabs.Count && spawnPoint != null)
+            {
+                SpawnPrefab(enemyPrefabs[currentEnemyIndex], spawnPoint.position, spawnPoint.rotation, spawnedEnemies);
+            }
+        }
+
         yield return new WaitForSeconds(miningDuration);
 
         Cleanup();
@@ -101,9 +103,6 @@ public class MiningManager : MonoBehaviour
         miningRoutine = null;
     }
 
-    // =====================================================
-    // STOP MINING FUNCTION
-    // =====================================================
     public void StopMining()
     {
         if (miningRoutine != null)
@@ -116,37 +115,18 @@ public class MiningManager : MonoBehaviour
         isMiningActive = false;
     }
 
-    // =====================================================
-    // CLEANUP FUNCTION
-    // =====================================================
     private void Cleanup()
     {
-        // Cleanup rocks
-        foreach (var rock in spawnedRocks)
-        {
-            if (rock != null) Destroy(rock);
-        }
-        spawnedRocks.Clear();
+        DestroyAll(spawnedRocks);
+        DestroyAll(spawnedEnemies);
 
-        // Cleanup enemies
-        foreach (var enemy in spawnedEnemies)
-        {
-            if (enemy != null) Destroy(enemy);
-        }
-        spawnedEnemies.Clear();
-
-        // Disable blocking wall
         if (blockingWall != null)
             blockingWall.SetActive(false);
 
-        // Reset UI timer
-        if (ui_Main_TimerObject != null)
-            ui_Main_TimerObject.StopTimer();
+        ui_Main_TimerObject?.StopTimer();
     }
 
-    // =====================================================
-    // UPGRADE LOGIC
-    // =====================================================
+
     public void Upgrade()
     {
         if (GameManager.Instance.GoldManager.HasEnoughGold(upgradePrice))
@@ -156,12 +136,44 @@ public class MiningManager : MonoBehaviour
             miningDuration += 10f;
             upgradePrice += upgradePriceIncrease;
 
+            UpgradeRocks();
+            UpgradeEnemies();
+
             UpdateUpgradePriceText();
         }
         else
         {
             StartCoroutine(ClearNotEnoughText());
         }
+    }
+
+
+    private void UpgradeRocks()
+    {
+        if (currentRockIndex < rockPrefabs.Count - 1)
+        {
+            currentRockIndex++;
+            MineLevel++;
+            Debug.Log($"Rock type upgraded to index {currentRockIndex}, level {MineLevel}");
+        }
+    }
+
+    private void UpgradeEnemies()
+    {
+        if (currentEnemyIndex < enemyPrefabs.Count - 1)
+        {
+            currentEnemyIndex++;
+            Debug.Log($"Enemy type upgraded to index {currentEnemyIndex}");
+        }
+    }
+
+    private void DestroyAll(List<GameObject> list)
+    {
+        foreach (var obj in list)
+        {
+            if (obj != null) Destroy(obj);
+        }
+        list.Clear();
     }
 
     private void UpdateUpgradePriceText()
@@ -179,9 +191,6 @@ public class MiningManager : MonoBehaviour
         uiUpgradeLabelText.SetActive(false);
     }
 
-    // =====================================================
-    // HELPER METHODS
-    // =====================================================
     private Vector3 GetRandomGroundPosition()
     {
         float x = Random.Range(-planeSize.x * 0.5f, planeSize.x * 0.5f);
@@ -190,9 +199,6 @@ public class MiningManager : MonoBehaviour
         return transform.position + new Vector3(x, groundY, z);
     }
 
-    // =====================================================
-    // GIZMOS
-    // =====================================================
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
