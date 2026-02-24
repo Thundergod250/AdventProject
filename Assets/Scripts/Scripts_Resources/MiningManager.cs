@@ -33,7 +33,7 @@ public class MiningManager : MonoBehaviour
     [Header("Upgrade Settings")]
     [SerializeField] private int currentPrice;
     [SerializeField] private int upgradePriceIncrease = 30;
-    public int MineLevel = 1; // tracks current mining level
+    public int MineLevel { get; private set; } = 1;
 
     private bool isMiningActive = false;
     private Coroutine miningRoutine;
@@ -60,6 +60,12 @@ public class MiningManager : MonoBehaviour
         if (isMiningActive) return;
         miningRoutine = StartCoroutine(MiningSession());
     }
+    private GameObject SpawnPrefab(GameObject prefab, Vector3 position, Quaternion rotation, List<GameObject> list)
+    {
+        GameObject obj = Instantiate(prefab, position, rotation);
+        list.Add(obj);
+        return obj;
+    }
 
     private IEnumerator MiningSession()
     {
@@ -70,14 +76,13 @@ public class MiningManager : MonoBehaviour
         if (blockingWall != null)
             blockingWall.SetActive(true);
 
-        // Spawn rocks using current prefab
+        // Spawn rocks
         for (int i = 0; i < rockCount; i++)
         {
             Vector3 spawnPos = GetRandomGroundPosition();
             if (rockPrefabs.Count > 0 && currentRockIndex < rockPrefabs.Count)
             {
-                GameObject rock = Instantiate(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity);
-                spawnedRocks.Add(rock);
+                SpawnPrefab(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity, spawnedRocks);
             }
         }
 
@@ -86,8 +91,7 @@ public class MiningManager : MonoBehaviour
         {
             if (enemyPrefabs.Count > 0 && currentEnemyIndex < enemyPrefabs.Count && spawnPoint != null)
             {
-                GameObject enemy = Instantiate(enemyPrefabs[currentEnemyIndex], spawnPoint.position, spawnPoint.rotation);
-                spawnedEnemies.Add(enemy);
+                SpawnPrefab(enemyPrefabs[currentEnemyIndex], spawnPoint.position, spawnPoint.rotation, spawnedEnemies);
             }
         }
 
@@ -113,24 +117,15 @@ public class MiningManager : MonoBehaviour
 
     private void Cleanup()
     {
-        foreach (var rock in spawnedRocks)
-        {
-            if (rock != null) Destroy(rock);
-        }
-        spawnedRocks.Clear();
-
-        foreach (var enemy in spawnedEnemies)
-        {
-            if (enemy != null) Destroy(enemy);
-        }
-        spawnedEnemies.Clear();
+        DestroyAll(spawnedRocks);
+        DestroyAll(spawnedEnemies);
 
         if (blockingWall != null)
             blockingWall.SetActive(false);
 
-        if (ui_Main_TimerObject != null)
-            ui_Main_TimerObject.StopTimer();
+        ui_Main_TimerObject?.StopTimer();
     }
+
 
     public void Upgrade()
     {
@@ -141,20 +136,8 @@ public class MiningManager : MonoBehaviour
             miningDuration += 10f;
             upgradePrice += upgradePriceIncrease;
 
-            // Move to next rock prefab if available
-            if (currentRockIndex < rockPrefabs.Count - 1)
-            {
-                currentRockIndex++;
-                MineLevel++;
-                Debug.Log($"Rock type upgraded to index {currentRockIndex}, level {MineLevel}");
-            }
-
-            // Move to next enemy prefab if available
-            if (currentEnemyIndex < enemyPrefabs.Count - 1)
-            {
-                currentEnemyIndex++;
-                Debug.Log($"Enemy type upgraded to index {currentEnemyIndex}");
-            }
+            UpgradeRocks();
+            UpgradeEnemies();
 
             UpdateUpgradePriceText();
         }
@@ -165,6 +148,33 @@ public class MiningManager : MonoBehaviour
     }
 
 
+    private void UpgradeRocks()
+    {
+        if (currentRockIndex < rockPrefabs.Count - 1)
+        {
+            currentRockIndex++;
+            MineLevel++;
+            Debug.Log($"Rock type upgraded to index {currentRockIndex}, level {MineLevel}");
+        }
+    }
+
+    private void UpgradeEnemies()
+    {
+        if (currentEnemyIndex < enemyPrefabs.Count - 1)
+        {
+            currentEnemyIndex++;
+            Debug.Log($"Enemy type upgraded to index {currentEnemyIndex}");
+        }
+    }
+
+    private void DestroyAll(List<GameObject> list)
+    {
+        foreach (var obj in list)
+        {
+            if (obj != null) Destroy(obj);
+        }
+        list.Clear();
+    }
 
     private void UpdateUpgradePriceText()
     {
