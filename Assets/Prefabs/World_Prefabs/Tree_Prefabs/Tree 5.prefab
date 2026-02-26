@@ -11,10 +11,7 @@ GameObject:
   - component: {fileID: 3747278015499388373}
   - component: {fileID: 7916227170042002023}
   - component: {fileID: 8293166587411372744}
-  - component: {fileID: 5854273912347345676}
   - component: {fileID: 3082931560941560549}
-  - component: {fileID: 6180653902456085367}
-  - component: {fileID: 2525860721588990591}
   m_Layer: 0
   m_Name: Tree 5
   m_TagString: Untagged
@@ -95,25 +92,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!205 &5854273912347345676
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987387248955099406}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
-  m_Size: 1
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.021468218
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 8293166587411372744}
-  m_Enabled: 1
 --- !u!65 &3082931560941560549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -135,39 +113,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.97854626, y: 1.9264512, z: 0.97854626}
   m_Center: {x: 0, y: -0.47395244, z: 0}
---- !u!114 &6180653902456085367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987387248955099406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 634841488cfca3047839a110a2295876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Breakable
-  explosionVFX: {fileID: 8561264910821484625, guid: 45869b61cb96e064b92a8b02bd38a7f9, type: 3}
-  explosionLifetime: 1
-  resourceDropped: {fileID: 6601367754676294331, guid: 3c232b62c594e264986038e5e0ffb7bd, type: 3}
---- !u!114 &2525860721588990591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987387248955099406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
-  currentHealth: 0
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  startSetHealth: 100

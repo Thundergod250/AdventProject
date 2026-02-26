@@ -7,6 +7,9 @@ public enum UIPanelType
     Inventory,
     Shop1,
     Gacha,
+    Mine,
+    Monolith,
+    BlackCanvas
 }
 
 public class UIPanelIdentifier : MonoBehaviour

@@ -152,6 +152,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4072581693049083769, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072581693049083769, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -287,6 +291,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8589393842477880194, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
+      propertyPath: resourcePrefab
+      value: 
+      objectReference: {fileID: 8943704049594194540, guid: 54246c2e423ee8e4e965622f65d10aa5, type: 3}
     - target: {fileID: 8589393842477880194, guid: 0682fafe86499dc44b48744f9bd64df6, type: 3}
       propertyPath: resourceDropped
       value: 

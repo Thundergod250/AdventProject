@@ -1,15 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(PlayerController))]
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
-    [SerializeField] private float slamRadius = 3f;   // area of effect
-    [SerializeField] private int slamDamage = 25;     // editable/upgradable damage
     [SerializeField] private LayerMask damageMask;    // filter for enemies/harvestables
 
+    [Header("Target Settings")] 
+    [SerializeField] private List<Faction> attackableFactions;
+    
+    private float slamRadius = 3f;   // area of effect
+    private int slamDamage = 25;     // editable/upgradable damage
     private PlayerMovement playerMovement;
     private PlayerAnimation playerAnimation;
     private bool isAttacking = false;
@@ -24,7 +28,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!context.performed) return;
         if (isAttacking) return; 
-        if (!playerMovement.IsGrounded()) return; 
+        if (!playerMovement.IsGrounded()) return;
+        if (!playerMovement.GetCanMove()) return;
+        if (!playerMovement.GetCanLook()) return;
 
         playerMovement.SetCanMove(false);
         StartCoroutine(SlamRoutine());
@@ -49,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
         foreach (var hit in hits)
         {
             Health health = hit.GetComponent<Health>();
-            if (health) 
+            if (health && attackableFactions.Contains(health.GetFaction())) 
                 health.TakeDamage(slamDamage);
         }
 
@@ -61,6 +67,13 @@ public class PlayerAttack : MonoBehaviour
     {
         slamDamage = damage;
         slamRadius = radius;
+    }
+
+    public void AddAttackValues(int damage, int radius)
+    {
+        Debug.LogWarning("AddAttackvalues Called");
+        slamDamage += damage;
+        slamRadius += radius;
     }
 
     private void OnDrawGizmosSelected()
