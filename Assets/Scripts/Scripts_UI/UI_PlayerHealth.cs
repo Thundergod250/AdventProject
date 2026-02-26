@@ -8,15 +8,7 @@ public class UI_PlayerHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to Health events
-        if (health != null)
-        {
-            health.OnDamaged.AddListener(UpdateHealthUI);
-            health.OnDeath.AddListener(HandleDeath);
-
-            // Sync immediately
-            UpdateHealthUI(health.GetCurrentHealth());
-        }
+        OnSpawn();
     }
 
     private void OnDisable()
@@ -31,13 +23,28 @@ public class UI_PlayerHealth : MonoBehaviour
 
     public void UpdateHealthUI(int currentHealth)
     {
-        for (int i = 0; i < healthGems.Length; i++) 
+        for (int i = 0; i < healthGems.Length; i++)
             healthGems[i].SetActive(i < currentHealth);
     }
 
     public void HandleDeath()
     {
-        foreach (var gem in healthGems) 
+        foreach (var gem in healthGems)
             gem.SetActive(false);
+    }
+
+    // New Respawn function
+    public void OnSpawn()
+    {
+        // Subscribe to Health events
+        if (health != null)
+        {
+            Debug.LogWarning("OnSpawned");
+            health.OnDamaged.AddListener(UpdateHealthUI);
+            health.OnDeath.AddListener(HandleDeath);
+
+            // Sync immediately
+            UpdateHealthUI(health.GetCurrentHealth());
+        }
     }
 }

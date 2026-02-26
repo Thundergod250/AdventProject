@@ -41,10 +41,14 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
+        SetHealth();
+        OnDamaged?.Invoke(currentHealth);
+    }
+
+    public void SetHealth()
+    {
         currentHealth = maxHealth;
         if (startSetHealth > 0) currentHealth = startSetHealth;
-        
-        OnDamaged?.Invoke(currentHealth);
     }
 
     public void TakeDamage(int amount)

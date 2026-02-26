@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class PlayerDeathManager : MonoBehaviour
@@ -6,12 +7,17 @@ public class PlayerDeathManager : MonoBehaviour
     [Header("References")]
     public GameObject Player;
     public GameObject SpawnPoint;
+    [SerializeField] private UI_PlayerHealth ui_PlayerHealth;
 
     [Header("Death Settings")]
-    [SerializeField] private float oceanHeightThreshold = -3f; //OCEAN HEIGHT
+    [SerializeField] private float oceanHeightThreshold = -3f; // OCEAN HEIGHT
     [SerializeField] private float respawnDelay = 3f;
 
     private bool isRespawning = false;
+
+    // New UnityEvent for respawn
+    [Header("Events")]
+    public UnityEvent OnRespawn;
 
     public void CallDeathAndRespawnRoutine() => StartCoroutine(DeathAndRespawnRoutine());
 
@@ -46,6 +52,12 @@ public class PlayerDeathManager : MonoBehaviour
         Player.gameObject.SetActive(true);
         Player.GetComponent<PlayerManipulator>()._EnableAllMovement();
         GameManager.Instance.GoldManager.ReduceGoldPercentage(0.5f);
+
+        Health health = Player.GetComponent<Health>();
+        if (health) health.SetHealth();
+
+        // Invoke the respawn event
+        OnRespawn?.Invoke();
 
         Debug.Log("Player has respawned and all movement re-enabled.");
     }
