@@ -54,7 +54,11 @@ public class PlayerDeathManager : MonoBehaviour
         GameManager.Instance.GoldManager.ReduceGoldPercentage(0.5f);
 
         Health health = Player.GetComponent<Health>();
-        if (health) health.SetHealth();
+        if (health)
+        {
+            health.SetHealth();
+            health.IsDead = false;
+        }
 
         // Invoke the respawn event
         OnRespawn?.Invoke();

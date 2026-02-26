@@ -35,25 +35,27 @@ public class Health : MonoBehaviour
     public UnityEvent<int> OnDamaged;   // passes remaining health
     public UnityEvent OnDeath;          // triggered when health <= 0
 
-    private bool isDead = false;
+    public bool IsDead = false;
 
     [SerializeField] private int startSetHealth; //[FOR TESTING] 
 
     private void Awake()
     {
         SetHealth();
-        OnDamaged?.Invoke(currentHealth);
+        //OnDamaged?.Invoke(currentHealth);
     }
 
     public void SetHealth()
     {
         currentHealth = maxHealth;
         if (startSetHealth > 0) currentHealth = startSetHealth;
+
+        OnDamaged?.Invoke(currentHealth);
     }
 
     public void TakeDamage(int amount)
     {
-        if (isDead) return;
+        if (IsDead) return;
 
         switch (damageMode)
         {
@@ -73,7 +75,7 @@ public class Health : MonoBehaviour
     
     public void TakePercentageDamage(float percentage)
     {
-        if (isDead) return;
+        if (IsDead) return;
 
         // Clamp percentage between 0 and 1
         percentage = Mathf.Clamp01(percentage);
@@ -109,9 +111,9 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        if (isDead) return;
+        if (IsDead) return;
 
-        isDead = true;
+        IsDead = true;
         OnDeath?.Invoke();
 
         Debug.Log($"{gameObject.name} has died.");
@@ -119,7 +121,7 @@ public class Health : MonoBehaviour
 
     public void Heal(int amount)
     {
-        if (isDead) return;
+        if (IsDead) return;
 
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         OnDamaged?.Invoke(currentHealth);
