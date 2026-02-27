@@ -1535,16 +1535,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7601949492617239849, guid: 39365e37f437514498eadc08b9660592, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1310955234775898911}
-    - targetCorrespondingSourceObject: {fileID: 4718793157968152038, guid: 39365e37f437514498eadc08b9660592, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4705576253698986978}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39365e37f437514498eadc08b9660592, type: 3}
---- !u!4 &254101705301176720 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4718793157968152038, guid: 39365e37f437514498eadc08b9660592, type: 3}
-  m_PrefabInstance: {fileID: 4826246124684735606}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3136134330604661087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7601949492617239849, guid: 39365e37f437514498eadc08b9660592, type: 3}
@@ -2353,68 +2345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4e33077c9b9844eab56445c61abdcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiningManager
---- !u!1001 &6137063400679841970
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 254101705301176720}
-    m_Modifications:
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 18.077728
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.53633976
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 83.59962
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.21101649
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9774825
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 155.636
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1958210182136534582, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-      propertyPath: m_Name
-      value: Bronze2_Single (12)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
---- !u!4 &4705576253698986978 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1470049306842985296, guid: 84cbac958888a3044a78805ee91c8171, type: 3}
-  m_PrefabInstance: {fileID: 6137063400679841970}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6319279278500539831
 PrefabInstance:
   m_ObjectHideFlags: 0
