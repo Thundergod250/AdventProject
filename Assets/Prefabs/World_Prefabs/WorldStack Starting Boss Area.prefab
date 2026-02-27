@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6332110803814781672}
   m_Layer: 0
-  m_Name: Starting Boss Area
+  m_Name: WorldStack Starting Boss Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
