@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3229439587723544891}
   - component: {fileID: 8705316057282357102}
   - component: {fileID: 6806067105262738428}
-  - component: {fileID: 3763213385965636208}
+  - component: {fileID: 5517927302841644062}
   - component: {fileID: 5020850136797305231}
   - component: {fileID: 8246683468555593567}
   m_Layer: 0
@@ -113,8 +113,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8705316057282357102}
   m_Enabled: 1
---- !u!65 &3763213385965636208
-BoxCollider:
+--- !u!64 &5517927302841644062
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -131,9 +131,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.649279, y: 2.970271, z: 4.649279}
-  m_Center: {x: 0, y: 0.22931647, z: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2451224464106516743, guid: b5afcfb56abdbdd4ea172f81a0d5e8ed, type: 3}
 --- !u!114 &5020850136797305231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Breakable
   explosionVFX: {fileID: 8561264910821484625, guid: 45869b61cb96e064b92a8b02bd38a7f9, type: 3}
   explosionLifetime: 1
-  resourceDropped: {fileID: 8943704049594194540, guid: 54246c2e423ee8e4e965622f65d10aa5, type: 3}
+  resourcePrefab: {fileID: 0}
 --- !u!114 &8246683468555593567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,10 +164,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   currentHealth: 0
+  faction: 0
+  damageMode: 0
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  IsDead: 0
   startSetHealth: 100
