@@ -17,6 +17,7 @@ public class PlayerDeathManager : MonoBehaviour
 
     // New UnityEvent for respawn
     [Header("Events")]
+    public UnityEvent OnDie;
     public UnityEvent OnRespawn;
 
     public void CallDeathAndRespawnRoutine() => StartCoroutine(DeathAndRespawnRoutine());
@@ -33,6 +34,7 @@ public class PlayerDeathManager : MonoBehaviour
 
     private void HandlePlayerDeath()
     {
+        OnDie?.Invoke();
         Player.gameObject.SetActive(false);
         Player.GetComponent<PlayerManipulator>()._DisableAllMovement();
 
