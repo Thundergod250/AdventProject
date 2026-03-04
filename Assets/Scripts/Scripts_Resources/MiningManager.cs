@@ -11,6 +11,7 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private UI_Main_Timer ui_Main_TimerObject;
     [SerializeField] private UI_Mining ui_MiningObject;
     public GameObject Player; // assign Player in Inspector
+    public Interactable Interactable;
 
     [Header("Upgrade UI")]
     [SerializeField] private TextMeshProUGUI uiUpgradePriceText;
@@ -76,6 +77,8 @@ public class MiningManager : MonoBehaviour
         if (blockingWall != null)
             blockingWall.SetActive(true);
 
+        Interactable.IsInteractable = false;
+
         // Spawn rocks
         for (int i = 0; i < rockCount; i++)
         {
@@ -96,6 +99,8 @@ public class MiningManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(miningDuration);
+
+        Interactable.IsInteractable = true;
 
         Cleanup();
 

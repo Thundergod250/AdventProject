@@ -5,7 +5,7 @@ public class Interactable : MonoBehaviour
 {
     [Header("Interaction Settings")]
     public string interactName;
-    [SerializeField] private bool isInteractable = true; // 👈 flag to control availability
+    public bool IsInteractable = true; // 👈 flag to control availability
 
     [Header("Interaction Events")]
     public UnityEvent EvtOnFocus;             
@@ -17,21 +17,21 @@ public class Interactable : MonoBehaviour
     // Called by PlayerInteraction when this is the current target
     public void Focus()
     {
-        if (!isInteractable) return;
+        if (!IsInteractable) return;
         EvtOnFocus?.Invoke();
     }
 
     // Called when no longer targeted
     public void FocusExit()
     {
-        if (!isInteractable) return;
+        if (!IsInteractable) return;
         EvtOnFocusExit?.Invoke();
     }
 
     // Called when player presses interact key
     public void Interact()
     {
-        if (!isInteractable) return;
+        if (!IsInteractable) return;
 
         EvtOnInteract?.Invoke();
         EvtOnInteractWithObj?.Invoke(gameObject);
@@ -40,9 +40,9 @@ public class Interactable : MonoBehaviour
             _OpenUI(uiPanelToOpen);
     }
 
-    public bool GetIsInteractable() => isInteractable;
-    public void _EnableInteraction() => isInteractable = true;
-    public void _DisableInteraction() => isInteractable = false;
+    public bool GetIsInteractable() => IsInteractable;
+    public void _EnableInteraction() => IsInteractable = true;
+    public void _DisableInteraction() => IsInteractable = false;
 
     // 👇 Helper method for UnityEvents
     public void _OpenUI(UIPanelType type) => GameManager.Instance.UIManager.OpenUI(type);
