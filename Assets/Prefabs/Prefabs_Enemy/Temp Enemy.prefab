@@ -34,7 +34,8 @@ Transform:
   m_LocalPosition: {x: 144, y: 13.68634, z: 6.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2468751109608027228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5341296196526234666
@@ -44,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29410035390614187}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!23 &8412365425625361659
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113,10 +114,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.39
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.48, z: 0}
 --- !u!114 &-5059986592189980412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +177,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  IsDead: 0
   startSetHealth: 10
 --- !u!114 &-5650053588772379992
 MonoBehaviour:
@@ -191,4 +193,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Breakable
   explosionVFX: {fileID: 0}
   explosionLifetime: 1
-  resourceDropped: {fileID: 0}
+  resourcePrefab: {fileID: 0}
+--- !u!1001 &2722563897448256439
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8434228859316586427}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+      propertyPath: m_Name
+      value: PebbleMine_Mesh
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+--- !u!4 &2468751109608027228 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 253cf65eda5b0d44e8b83bbc640733ad, type: 3}
+  m_PrefabInstance: {fileID: 2722563897448256439}
+  m_PrefabAsset: {fileID: 0}

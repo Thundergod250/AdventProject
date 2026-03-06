@@ -3,9 +3,9 @@ using UnityEngine;
 public class NewEnemyMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float speed = 3f; // enemy movement speed
+    public float speed = 3f; // enemy movement speed
 
-    private Transform playerTransform;
+    public Transform playerTransform;
     private Health playerHealth;
 
     private void Start()
@@ -23,6 +23,11 @@ public class NewEnemyMovement : MonoBehaviour
     }
 
     private void Update()
+    {
+        MoveToPlayer();
+    }
+
+    protected virtual void MoveToPlayer()
     {
         if (playerTransform != null)
         {

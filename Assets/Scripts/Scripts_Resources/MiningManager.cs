@@ -175,10 +175,11 @@ public class MiningManager : MonoBehaviour
         {
             currentRockIndex++;
             MineLevel++;
-            Debug.Log($"Rock type upgraded to index {currentRockIndex}, level {MineLevel}");
 
             ui_MiningObject.UpdateRockLevel(currentRockIndex);
-        }
+        } 
+        else
+            Debug.LogWarning("Max Level Rocks Reached");
     }
 
     private void UpgradeEnemies()
@@ -186,10 +187,11 @@ public class MiningManager : MonoBehaviour
         if (currentEnemyIndex < enemyPrefabs.Count - 1)
         {
             currentEnemyIndex++;
-            Debug.Log($"Enemy type upgraded to index {currentEnemyIndex}");
 
             ui_MiningObject.UpdateEnemyLevel(currentEnemyIndex);
         }
+        else
+            Debug.LogWarning("Max Level Enemies Reached");
     }
 
     private void DestroyAll(List<GameObject> list)
