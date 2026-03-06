@@ -5,6 +5,10 @@ public class NewEnemyMovement : MonoBehaviour
     [Header("Movement Settings")]
     public float speed = 3f; // enemy movement speed
 
+    [Header("Enemy Model")]
+    [SerializeField] private Transform model;
+    private Vector3 lastDirection;
+
     public Transform playerTransform;
     private Health playerHealth;
 
@@ -35,8 +39,17 @@ public class NewEnemyMovement : MonoBehaviour
             Vector3 direction = (playerTransform.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
 
-            // Optional: rotate to face the player
-            transform.LookAt(playerTransform);
+            Debug.LogWarning($"direction: {direction}");
+
+            // Store last direction if moving
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                lastDirection = direction;
+            }
+
+            // Rotate the model to face movement direction
+            if (lastDirection != Vector3.zero)
+                model.rotation = Quaternion.LookRotation(lastDirection, Vector3.up);
         }
     }
 
