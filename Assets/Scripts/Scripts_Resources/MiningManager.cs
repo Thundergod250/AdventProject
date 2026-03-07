@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -32,8 +32,10 @@ public class MiningManager : MonoBehaviour
 
     // Separate upgrade prices
     [SerializeField] private int mineDurationUpgradePrice = 1;
-    [SerializeField] private int destroyablesUpgradePrice = 10;
-    [SerializeField] private int upgradePriceIncrease = 30;
+    [SerializeField] private int destroyablesUpgradePrice;
+    [SerializeField] private int upgradePriceIncrease = 10;
+    private int upgradeCallCount = 0; // tracks how many times UpgradeMineQuality was called
+
     public int MineLevel { get; private set; } = 1;
 
     private bool isMiningActive = false;
@@ -41,13 +43,14 @@ public class MiningManager : MonoBehaviour
 
     private List<GameObject> spawnedRocks = new List<GameObject>();
     private List<GameObject> spawnedEnemies = new List<GameObject>();
-    private int upgradePrice;
 
     private int currentRockIndex = 0; // tracks which rock prefab to use
 
     private void Awake()
     {
         //upgradePrice = currentPrice;
+        upgradeCallCount = 1;
+        destroyablesUpgradePrice = GetUpgradeIncrement(upgradeCallCount);
         UpdateUITexts();
     }
 
@@ -160,14 +163,41 @@ public class MiningManager : MonoBehaviour
             UpgradeRocks();
             UpgradeEnemies();
 
-            destroyablesUpgradePrice += upgradePriceIncrease;
+            // Increment call count
+            upgradeCallCount++;
+
+            // Get increment from helper function
+            int increment = GetUpgradeIncrement(upgradeCallCount);
+
+            destroyablesUpgradePrice = increment;
+            Debug.LogWarning($"destroyablesUpgradePrice: {destroyablesUpgradePrice}");
 
             // Update UI price
             ui_MiningObject.UpdateMineQualityPrice(destroyablesUpgradePrice);
+
+            // Optional: trigger boss summon when increment hits 50
+            if (destroyablesUpgradePrice == 50)
+            {
+                Debug.Log("Boss summoned!");
+                // Add your boss summon logic here
+            }
         }
         else
         {
             StartCoroutine(ClearNotEnoughMineQualityText());
+        }
+    }
+
+    /// Returns the upgrade increment based on how many times the upgrade has been called.
+    /// Progression: 10 → 20 → 40 → 50 (max).
+    private int GetUpgradeIncrement(int callCount)
+    {
+        switch (callCount)
+        {
+            case 1: return 10;
+            case 2: return 20;
+            case 3: return 40;
+            default: return 50; // cap at 50
         }
     }
 
@@ -211,7 +241,7 @@ public class MiningManager : MonoBehaviour
         {
             // Update prices
             ui_MiningObject.UpdateMineDurationPrice(mineDurationUpgradePrice);
-            ui_MiningObject.UpdateMineQualityPrice(destroyablesUpgradePrice);
+            ui_MiningObject.UpdateMineQualityPrice(GetUpgradeIncrement(upgradeCallCount));
 
             // Update levels
             ui_MiningObject.UpdateRockLevel(currentRockIndex);
@@ -253,8 +283,6 @@ public class MiningManager : MonoBehaviour
         ui_MiningObject.MineQualityButton.interactable = true;
         if (buttonText != null) buttonText.text = $"Upgrade Mine Quality";
     }
-
-
 
     private Vector3 GetRandomGroundPosition()
     {
