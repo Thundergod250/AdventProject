@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   interactName: Start Mining
-  isInteractable: 1
+  IsInteractable: 1
   EvtOnFocus:
     m_PersistentCalls:
       m_Calls:
@@ -545,18 +545,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1617370447672804083}
         m_TargetAssemblyTypeName: MiningManager, Assembly-CSharp
-        m_MethodName: UpdateUpgradePriceText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1617370447672804083}
-        m_TargetAssemblyTypeName: MiningManager, Assembly-CSharp
         m_MethodName: SetUI
         m_Mode: 1
         m_Arguments:
@@ -586,18 +574,19 @@ MonoBehaviour:
   rockPrefabs:
   - {fileID: 2103984203466088857, guid: 4b2873d2a29ebb34f99d69390430476a, type: 3}
   - {fileID: 3065502443422450566, guid: 459d003c0311d0541ae7a41648133602, type: 3}
+  - {fileID: 1256252484681245782, guid: a059a0cc57133c34dbd205bcf2be6695, type: 3}
   blockingWall: {fileID: 0}
   ui_Main_TimerObject: {fileID: 0}
   ui_MiningObject: {fileID: 0}
   Player: {fileID: 0}
-  uiUpgradePriceText: {fileID: 0}
-  uiUpgradeLabelText: {fileID: 0}
+  Interactable: {fileID: 5629360681750767613}
   planeSize: {x: 51.97, y: 42.41}
   rockCount: 10
   groundY: -0.18
   enemyPrefabs:
   - {fileID: 29410035390614187, guid: 6c0e1def7156798499b9c7ce3c0177b5, type: 3}
   - {fileID: 1486057460327448443, guid: 1560fb0be9dd65d4abe5d3120943691a, type: 3}
+  - {fileID: 3925406895579867673, guid: 934fc128dfbcead4c93d778f65a88bb7, type: 3}
   enemySpawnPoints:
   - {fileID: 8416021997016498102}
   - {fileID: 2395062275552947089}
@@ -609,8 +598,15 @@ MonoBehaviour:
   - {fileID: 6915086294075056686}
   - {fileID: 6789013815827367199}
   - {fileID: 8486231508062732518}
+  bossSpawnPoint: {fileID: 0}
+  mineBoss: {fileID: 5030305338561387124, guid: 39e22f4ef95c49845b620bbfc8101dea, type: 3}
+  bossTime: 0
+  GMFromRocks: 010000000200000003000000
+  GMFromEnemies: 020000000400000006000000
   miningDuration: 10
   currentPrice: 10
+  mineDurationUpgradePrice: 1
+  destroyablesUpgradePrice: 0
   upgradePriceIncrease: 30
 --- !u!114 &5766542088145615619
 MonoBehaviour:

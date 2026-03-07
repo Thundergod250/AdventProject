@@ -4011,7 +4011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5338218344644504175, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: startSetHealth
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5338218344644504175, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
@@ -4466,6 +4466,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1901571699762406226, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: UpdateUpgradePriceText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901571699762406226, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
       value: UpdateUpgradePriceText
       objectReference: {fileID: 0}
@@ -4570,13 +4574,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 29410035390614187, guid: 6c0e1def7156798499b9c7ce3c0177b5, type: 3}
     - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      propertyPath: Interactable
+      propertyPath: bossSpawnPoint
       value: 
-      objectReference: {fileID: 6720083353953556394}
-    - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      propertyPath: blockingWall
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6720083353953556396}
     - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: ui_MiningObject
       value: 
@@ -4602,6 +4602,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1661049750}
     - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+      propertyPath: Gemstone.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: ui_Main_TimerObject
       value: 
       objectReference: {fileID: 7788687841394568310}
@@ -4621,14 +4625,6 @@ PrefabInstance:
       propertyPath: uiMineDurationPriceText
       value: 
       objectReference: {fileID: 1917344799}
-    - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      propertyPath: destroyablesUpgradePrice
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-      propertyPath: mineDurationUpgradePrice
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6299116826749529228, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -4884,20 +4880,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9c8720df4f2ed4fa681e0502319cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManipulator
---- !u!114 &6720083353953556394 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1901571699762406226, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
-  m_PrefabInstance: {fileID: 6720083353953556391}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6720083353953556395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9904cccab47a4c4f931f3b927a97bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
 --- !u!1 &6720083353953556395 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4757114099460331828, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
+  m_PrefabInstance: {fileID: 6720083353953556391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6720083353953556396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5793893344772514799, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
   m_PrefabInstance: {fileID: 6720083353953556391}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6747977204231897188

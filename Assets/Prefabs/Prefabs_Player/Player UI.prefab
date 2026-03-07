@@ -4585,9 +4585,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4299359520764027537}
-        m_TargetAssemblyTypeName: UI_MonolithUpgrade, Assembly-CSharp
-        m_MethodName: ToggleMonolithUpgradeUI
+      - m_Target: {fileID: 7214417882162235751}
+        m_TargetAssemblyTypeName: UI_Mining, Assembly-CSharp
+        m_MethodName: ToggleMiningUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9961,6 +9961,7 @@ MonoBehaviour:
   UiMineQualityLabelText: {fileID: 0}
   MineDurationButton: {fileID: 0}
   MineQualityButton: {fileID: 0}
+  CurrentTimerText: {fileID: 0}
   RockLevelText: {fileID: 0}
   EnemyLevelText: {fileID: 0}
 --- !u!114 &4077854619140247699

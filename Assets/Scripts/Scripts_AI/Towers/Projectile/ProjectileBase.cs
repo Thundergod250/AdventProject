@@ -45,6 +45,7 @@ public class ProjectileBase : MonoBehaviour
         }
         else
         {
+            SpawnVFX();
             Destroy(this.gameObject);
         }
     }
@@ -54,16 +55,21 @@ public class ProjectileBase : MonoBehaviour
         Health targetHealth = other.GetComponent<Health>();
         if (targetHealth && attackableFactions.Contains(targetHealth.GetFaction()))
         {
-            // Spawn VFX if assigned
-            if (explosionVFX != null)
-            {
-                GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
-                Destroy(vfx, explosionLifetime); // destroy VFX after its lifetime
-            }
+            SpawnVFX();
 
             targetHealth.TakeDamage(1);
             // Destroy projectile on impact
             Destroy(gameObject);
+        }
+    }
+
+    private void SpawnVFX()
+    {
+        // Spawn VFX if assigned
+        if (explosionVFX != null)
+        {
+            GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
+            Destroy(vfx, explosionLifetime); // destroy VFX after its lifetime
         }
     }
 }

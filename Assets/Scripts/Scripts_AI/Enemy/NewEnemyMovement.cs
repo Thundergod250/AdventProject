@@ -6,8 +6,8 @@ public class NewEnemyMovement : MonoBehaviour
     public float speed = 3f; // enemy movement speed
 
     [Header("Enemy Model")]
-    [SerializeField] private Transform model;
-    private Vector3 lastDirection;
+    [SerializeField] public Transform model;
+    public Vector3 lastDirection;
 
     public Transform playerTransform;
     private Health playerHealth;
@@ -53,16 +53,20 @@ public class NewEnemyMovement : MonoBehaviour
         }
     }
 
+    protected virtual void DamagePlayer()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(2); // call player's Health script
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if the trigger was the player
         if (other.gameObject.GetComponent<PlayerMovement>())
         {
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(2); // call player's Health script
-                Debug.Log("Enemy triggered with player. Damage applied.");
-            }
+            DamagePlayer();
         }
     }
 }

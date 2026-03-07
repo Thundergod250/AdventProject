@@ -22,7 +22,15 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private List<GameObject> enemyPrefabs; // assign multiple enemy prefabs in Inspector
     [SerializeField] private Transform[] enemySpawnPoints;
 
-    private int currentEnemyIndex = 0; // tracks which enemy prefab to use
+    [Header("Boss Settings")]
+    [SerializeField] private GameObject bossSpawnPoint;
+    [SerializeField] private GameObject mineBoss;
+    [SerializeField] private bool bossTime = false;
+
+    [Header("Gemstone(GM) Levels")]
+    public List<int> GMFromRocks = new List<int>();
+    public List<int> GMFromEnemies = new List<int>();
+    public int MineLevel { get; private set; } = 1;
 
     [Header("Game Settings")]
     [SerializeField] private float miningDuration = 10f;
@@ -36,15 +44,15 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private int upgradePriceIncrease = 10;
     private int upgradeCallCount = 0; // tracks how many times UpgradeMineQuality was called
 
-    public int MineLevel { get; private set; } = 1;
-
     private bool isMiningActive = false;
     private Coroutine miningRoutine;
 
     private List<GameObject> spawnedRocks = new List<GameObject>();
     private List<GameObject> spawnedEnemies = new List<GameObject>();
 
+    [Header("Indexes")]
     private int currentRockIndex = 0; // tracks which rock prefab to use
+    private int currentEnemyIndex = 0; // tracks which enemy prefab to use
 
     private void Awake()
     {
@@ -64,10 +72,15 @@ public class MiningManager : MonoBehaviour
         if (isMiningActive) return;
         miningRoutine = StartCoroutine(MiningSession());
     }
-    private GameObject SpawnPrefab(GameObject prefab, Vector3 position, Quaternion rotation, List<GameObject> list)
+    private GameObject SpawnPrefab(GameObject prefab, Vector3 position, Quaternion rotation, List<GameObject> list, int GemsToBeDropped)
     {
         GameObject obj = Instantiate(prefab, position, rotation);
         list.Add(obj);
+
+        Breakable breakable = obj.GetComponent<Breakable>();
+        if (breakable)
+            breakable.GemsDropped = GemsToBeDropped;
+
         return obj;
     }
 
@@ -86,20 +99,23 @@ public class MiningManager : MonoBehaviour
         for (int i = 0; i < rockCount; i++)
         {
             Vector3 spawnPos = GetRandomGroundPosition();
-            if (rockPrefabs.Count > 0 && currentRockIndex < rockPrefabs.Count)
+            if (rockPrefabs.Count > 0 && currentRockIndex < rockPrefabs.Count && bossTime == false)
             {
-                SpawnPrefab(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity, spawnedRocks);
+                SpawnPrefab(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity, spawnedRocks, GMFromRocks[currentRockIndex]);
             }
         }
 
         // Spawn enemies
         foreach (Transform spawnPoint in enemySpawnPoints)
         {
-            if (enemyPrefabs.Count > 0 && currentEnemyIndex < enemyPrefabs.Count && spawnPoint != null)
+            if (enemyPrefabs.Count > 0 && currentEnemyIndex < enemyPrefabs.Count && spawnPoint != null && bossTime == false)
             {
-                SpawnPrefab(enemyPrefabs[currentEnemyIndex], spawnPoint.position, spawnPoint.rotation, spawnedEnemies);
+                SpawnPrefab(enemyPrefabs[currentEnemyIndex], spawnPoint.position, spawnPoint.rotation, spawnedEnemies, GMFromEnemies[currentEnemyIndex]);
             }
         }
+
+        if(bossTime == true)
+            Instantiate(mineBoss, bossSpawnPoint.transform.position, Quaternion.identity);
 
         yield return new WaitForSeconds(miningDuration);
 
@@ -160,9 +176,6 @@ public class MiningManager : MonoBehaviour
         {
             GameManager.Instance.GoldManager.SpendGold(destroyablesUpgradePrice);
 
-            UpgradeRocks();
-            UpgradeEnemies();
-
             // Increment call count
             upgradeCallCount++;
 
@@ -175,11 +188,16 @@ public class MiningManager : MonoBehaviour
             // Update UI price
             ui_MiningObject.UpdateMineQualityPrice(destroyablesUpgradePrice);
 
-            // Optional: trigger boss summon when increment hits 50
-            if (destroyablesUpgradePrice == 50)
+            if(destroyablesUpgradePrice < 50)
+            {
+                UpgradeRocks();
+                UpgradeEnemies();
+
+            } 
+            else if (destroyablesUpgradePrice == 50)
             {
                 Debug.Log("Boss summoned!");
-                // Add your boss summon logic here
+                bossTime = true;
             }
         }
         else
