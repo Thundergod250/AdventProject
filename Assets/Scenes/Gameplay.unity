@@ -194,6 +194,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &137696446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6691053792143822867, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+  m_PrefabInstance: {fileID: 7788687841394568305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &205153919
 GameObject:
   m_ObjectHideFlags: 0
@@ -4616,7 +4627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4759795794268685916, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: mineDurationUpgradePrice
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6299116826749529228, guid: 7d64c333890001645aacf8f8e16f944e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5544,6 +5555,10 @@ PrefabInstance:
       propertyPath: enemyLevelText
       value: 
       objectReference: {fileID: 916954085}
+    - target: {fileID: 7214417882162235751, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: CurrentTimerText
+      value: 
+      objectReference: {fileID: 137696446}
     - target: {fileID: 7214417882162235751, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: MineQualityButton
       value: 

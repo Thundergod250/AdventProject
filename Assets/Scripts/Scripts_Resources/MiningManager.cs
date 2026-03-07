@@ -31,7 +31,7 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private int currentPrice;
 
     // Separate upgrade prices
-    [SerializeField] private int mineDurationUpgradePrice = 10;
+    [SerializeField] private int mineDurationUpgradePrice = 1;
     [SerializeField] private int destroyablesUpgradePrice = 10;
     [SerializeField] private int upgradePriceIncrease = 30;
     public int MineLevel { get; private set; } = 1;
@@ -47,8 +47,8 @@ public class MiningManager : MonoBehaviour
 
     private void Awake()
     {
-        upgradePrice = currentPrice;
-        UpdateUpgradePriceText();
+        //upgradePrice = currentPrice;
+        UpdateUITexts();
     }
 
     public void SetUI()
@@ -137,8 +137,10 @@ public class MiningManager : MonoBehaviour
         {
             GameManager.Instance.GoldManager.SpendGold(mineDurationUpgradePrice);
 
-            miningDuration += 10f;
-            mineDurationUpgradePrice += upgradePriceIncrease;
+            miningDuration += 1f;
+            mineDurationUpgradePrice += 1;
+
+            ui_MiningObject.UpdateTimerLevel(miningDuration);
 
             // Update UI price
             ui_MiningObject.UpdateMineDurationPrice(mineDurationUpgradePrice);
@@ -203,7 +205,7 @@ public class MiningManager : MonoBehaviour
         list.Clear();
     }
 
-    private void UpdateUpgradePriceText()
+    private void UpdateUITexts()
     {
         if (ui_MiningObject != null)
         {
@@ -214,6 +216,9 @@ public class MiningManager : MonoBehaviour
             // Update levels
             ui_MiningObject.UpdateRockLevel(currentRockIndex);
             ui_MiningObject.UpdateEnemyLevel(currentEnemyIndex);
+
+            //Update Time
+            ui_MiningObject.UpdateTimerLevel(miningDuration);
         }
     }
 

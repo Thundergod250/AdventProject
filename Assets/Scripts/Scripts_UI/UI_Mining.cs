@@ -15,6 +15,7 @@ public class UI_Mining : MonoBehaviour
     public Button MineQualityButton;
 
     [Header("Level Text References")]
+    public TextMeshProUGUI CurrentTimerText;
     public TextMeshProUGUI RockLevelText;
     public TextMeshProUGUI EnemyLevelText;
 
@@ -32,6 +33,11 @@ public class UI_Mining : MonoBehaviour
     public void UpdateEnemyLevel(int enemyIndex)
     {
         EnemyLevelText.text = $"Enemy Level: {enemyIndex + 1}";
+    }
+
+    public void UpdateTimerLevel(float timerValue)
+    {
+        CurrentTimerText.text = $"Current Time: {timerValue}";
     }
 
     public void UpdateMineDurationPrice(int price)
