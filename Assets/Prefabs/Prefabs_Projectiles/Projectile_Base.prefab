@@ -9846,10 +9846,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileBase
   speed: 15
-  lifetime: 10
+  lifetime: 1.5
+  startTime: 0
   explosionVFX: {fileID: 8561264910821484625, guid: 45869b61cb96e064b92a8b02bd38a7f9, type: 3}
   explosionLifetime: 1
-  direction: {x: 0, y: 0, z: 0}
+  attackableFactions: 00000000
 --- !u!1 &4047507747977847433
 GameObject:
   m_ObjectHideFlags: 0

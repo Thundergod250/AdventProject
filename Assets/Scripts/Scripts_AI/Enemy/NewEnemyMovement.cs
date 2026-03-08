@@ -3,9 +3,13 @@ using UnityEngine;
 public class NewEnemyMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float speed = 3f; // enemy movement speed
+    public float speed = 3f; // enemy movement speed
 
-    private Transform playerTransform;
+    [Header("Enemy Model")]
+    [SerializeField] public Transform model;
+    public Vector3 lastDirection;
+
+    public Transform playerTransform;
     private Health playerHealth;
 
     private void Start()
@@ -24,14 +28,36 @@ public class NewEnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        MoveToPlayer();
+    }
+
+    protected virtual void MoveToPlayer()
+    {
         if (playerTransform != null)
         {
             // Move towards the player
             Vector3 direction = (playerTransform.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
 
-            // Optional: rotate to face the player
-            transform.LookAt(playerTransform);
+            Debug.LogWarning($"direction: {direction}");
+
+            // Store last direction if moving
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                lastDirection = direction;
+            }
+
+            // Rotate the model to face movement direction
+            if (lastDirection != Vector3.zero)
+                model.rotation = Quaternion.LookRotation(lastDirection, Vector3.up);
+        }
+    }
+
+    protected virtual void DamagePlayer()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(2); // call player's Health script
         }
     }
 
@@ -40,11 +66,7 @@ public class NewEnemyMovement : MonoBehaviour
         // Check if the trigger was the player
         if (other.gameObject.GetComponent<PlayerMovement>())
         {
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(2); // call player's Health script
-                Debug.Log("Enemy triggered with player. Damage applied.");
-            }
+            DamagePlayer();
         }
     }
 }

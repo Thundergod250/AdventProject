@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,10 +13,6 @@ public class MiningManager : MonoBehaviour
     public GameObject Player; // assign Player in Inspector
     public Interactable Interactable;
 
-    [Header("Upgrade UI")]
-    [SerializeField] private TextMeshProUGUI uiUpgradePriceText;
-    [SerializeField] private GameObject uiUpgradeLabelText;
-
     [Header("Spawn Settings")]
     [SerializeField] private Vector2 planeSize = new Vector2(10f, 10f);
     [SerializeField] private int rockCount = 10;
@@ -26,29 +22,44 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private List<GameObject> enemyPrefabs; // assign multiple enemy prefabs in Inspector
     [SerializeField] private Transform[] enemySpawnPoints;
 
-    private int currentEnemyIndex = 0; // tracks which enemy prefab to use
+    [Header("Boss Settings")]
+    [SerializeField] private GameObject bossSpawnPoint;
+    [SerializeField] private GameObject mineBoss;
+    [SerializeField] private bool bossTime = false;
+
+    [Header("Gemstone(GM) Levels")]
+    public List<int> GMFromRocks = new List<int>();
+    public List<int> GMFromEnemies = new List<int>();
+    public int MineLevel { get; private set; } = 1;
 
     [Header("Game Settings")]
     [SerializeField] private float miningDuration = 10f;
 
     [Header("Upgrade Settings")]
     [SerializeField] private int currentPrice;
-    [SerializeField] private int upgradePriceIncrease = 30;
-    public int MineLevel { get; private set; } = 1;
+
+    // Separate upgrade prices
+    [SerializeField] private int mineDurationUpgradePrice = 1;
+    [SerializeField] private int destroyablesUpgradePrice;
+    [SerializeField] private int upgradePriceIncrease = 10;
+    private int upgradeCallCount = 0; // tracks how many times UpgradeMineQuality was called
 
     private bool isMiningActive = false;
     private Coroutine miningRoutine;
 
     private List<GameObject> spawnedRocks = new List<GameObject>();
     private List<GameObject> spawnedEnemies = new List<GameObject>();
-    private int upgradePrice;
 
+    [Header("Indexes")]
     private int currentRockIndex = 0; // tracks which rock prefab to use
+    private int currentEnemyIndex = 0; // tracks which enemy prefab to use
 
     private void Awake()
     {
-        upgradePrice = currentPrice;
-        UpdateUpgradePriceText();
+        //upgradePrice = currentPrice;
+        upgradeCallCount = 1;
+        destroyablesUpgradePrice = GetUpgradeIncrement(upgradeCallCount);
+        UpdateUITexts();
     }
 
     public void SetUI()
@@ -61,10 +72,15 @@ public class MiningManager : MonoBehaviour
         if (isMiningActive) return;
         miningRoutine = StartCoroutine(MiningSession());
     }
-    private GameObject SpawnPrefab(GameObject prefab, Vector3 position, Quaternion rotation, List<GameObject> list)
+    private GameObject SpawnPrefab(GameObject prefab, Vector3 position, Quaternion rotation, List<GameObject> list, int GemsToBeDropped)
     {
         GameObject obj = Instantiate(prefab, position, rotation);
         list.Add(obj);
+
+        Breakable breakable = obj.GetComponent<Breakable>();
+        if (breakable)
+            breakable.GemsDropped = GemsToBeDropped;
+
         return obj;
     }
 
@@ -83,20 +99,23 @@ public class MiningManager : MonoBehaviour
         for (int i = 0; i < rockCount; i++)
         {
             Vector3 spawnPos = GetRandomGroundPosition();
-            if (rockPrefabs.Count > 0 && currentRockIndex < rockPrefabs.Count)
+            if (rockPrefabs.Count > 0 && currentRockIndex < rockPrefabs.Count && bossTime == false)
             {
-                SpawnPrefab(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity, spawnedRocks);
+                SpawnPrefab(rockPrefabs[currentRockIndex], spawnPos, Quaternion.identity, spawnedRocks, GMFromRocks[currentRockIndex]);
             }
         }
 
         // Spawn enemies
         foreach (Transform spawnPoint in enemySpawnPoints)
         {
-            if (enemyPrefabs.Count > 0 && currentEnemyIndex < enemyPrefabs.Count && spawnPoint != null)
+            if (enemyPrefabs.Count > 0 && currentEnemyIndex < enemyPrefabs.Count && spawnPoint != null && bossTime == false)
             {
-                SpawnPrefab(enemyPrefabs[currentEnemyIndex], spawnPoint.position, spawnPoint.rotation, spawnedEnemies);
+                SpawnPrefab(enemyPrefabs[currentEnemyIndex], spawnPoint.position, spawnPoint.rotation, spawnedEnemies, GMFromEnemies[currentEnemyIndex]);
             }
         }
+
+        if(bossTime == true)
+            Instantiate(mineBoss, bossSpawnPoint.transform.position, Quaternion.identity);
 
         yield return new WaitForSeconds(miningDuration);
 
@@ -131,27 +150,74 @@ public class MiningManager : MonoBehaviour
         ui_Main_TimerObject?.StopTimer();
     }
 
-
-    public void Upgrade()
+    public void UpgradeMineDuration()
     {
-        if (GameManager.Instance.GoldManager.HasEnoughGold(upgradePrice))
+        if (GameManager.Instance.GoldManager.HasEnoughGold(mineDurationUpgradePrice))
         {
-            GameManager.Instance.GoldManager.SpendGold(upgradePrice);
+            GameManager.Instance.GoldManager.SpendGold(mineDurationUpgradePrice);
 
-            miningDuration += 10f;
-            upgradePrice += upgradePriceIncrease;
+            miningDuration += 1f;
+            mineDurationUpgradePrice += 1;
 
-            UpgradeRocks();
-            UpgradeEnemies();
+            ui_MiningObject.UpdateTimerLevel(miningDuration);
 
-            UpdateUpgradePriceText();
+            // Update UI price
+            ui_MiningObject.UpdateMineDurationPrice(mineDurationUpgradePrice);
         }
         else
         {
-            StartCoroutine(ClearNotEnoughText());
+            StartCoroutine(ClearNotEnoughMineDurationText());
         }
     }
 
+    public void UpgradeMineQuality()
+    {
+        if (GameManager.Instance.GoldManager.HasEnoughGold(destroyablesUpgradePrice))
+        {
+            GameManager.Instance.GoldManager.SpendGold(destroyablesUpgradePrice);
+
+            // Increment call count
+            upgradeCallCount++;
+
+            // Get increment from helper function
+            int increment = GetUpgradeIncrement(upgradeCallCount);
+
+            destroyablesUpgradePrice = increment;
+            Debug.LogWarning($"destroyablesUpgradePrice: {destroyablesUpgradePrice}");
+
+            // Update UI price
+            ui_MiningObject.UpdateMineQualityPrice(destroyablesUpgradePrice);
+
+            if(destroyablesUpgradePrice < 50)
+            {
+                UpgradeRocks();
+                UpgradeEnemies();
+
+            } 
+            else if (destroyablesUpgradePrice == 50)
+            {
+                Debug.Log("Boss summoned!");
+                bossTime = true;
+            }
+        }
+        else
+        {
+            StartCoroutine(ClearNotEnoughMineQualityText());
+        }
+    }
+
+    /// Returns the upgrade increment based on how many times the upgrade has been called.
+    /// Progression: 10 → 20 → 40 → 50 (max).
+    private int GetUpgradeIncrement(int callCount)
+    {
+        switch (callCount)
+        {
+            case 1: return 10;
+            case 2: return 20;
+            case 3: return 40;
+            default: return 50; // cap at 50
+        }
+    }
 
     private void UpgradeRocks()
     {
@@ -159,8 +225,11 @@ public class MiningManager : MonoBehaviour
         {
             currentRockIndex++;
             MineLevel++;
-            Debug.Log($"Rock type upgraded to index {currentRockIndex}, level {MineLevel}");
-        }
+
+            ui_MiningObject.UpdateRockLevel(currentRockIndex);
+        } 
+        else
+            Debug.LogWarning("Max Level Rocks Reached");
     }
 
     private void UpgradeEnemies()
@@ -168,8 +237,11 @@ public class MiningManager : MonoBehaviour
         if (currentEnemyIndex < enemyPrefabs.Count - 1)
         {
             currentEnemyIndex++;
-            Debug.Log($"Enemy type upgraded to index {currentEnemyIndex}");
+
+            ui_MiningObject.UpdateEnemyLevel(currentEnemyIndex);
         }
+        else
+            Debug.LogWarning("Max Level Enemies Reached");
     }
 
     private void DestroyAll(List<GameObject> list)
@@ -181,19 +253,53 @@ public class MiningManager : MonoBehaviour
         list.Clear();
     }
 
-    private void UpdateUpgradePriceText()
+    private void UpdateUITexts()
     {
-        if (uiUpgradePriceText != null)
-            uiUpgradePriceText.text = upgradePrice.ToString();
+        if (ui_MiningObject != null)
+        {
+            // Update prices
+            ui_MiningObject.UpdateMineDurationPrice(mineDurationUpgradePrice);
+            ui_MiningObject.UpdateMineQualityPrice(GetUpgradeIncrement(upgradeCallCount));
+
+            // Update levels
+            ui_MiningObject.UpdateRockLevel(currentRockIndex);
+            ui_MiningObject.UpdateEnemyLevel(currentEnemyIndex);
+
+            //Update Time
+            ui_MiningObject.UpdateTimerLevel(miningDuration);
+        }
     }
 
-    private IEnumerator ClearNotEnoughText()
+    private IEnumerator ClearNotEnoughMineDurationText()
     {
-        if (uiUpgradeLabelText == null) yield break;
+        if (ui_MiningObject.MineDurationButton == null || ui_MiningObject.UiMineDurationLabelText == null) yield break;
 
-        uiUpgradeLabelText.SetActive(true);
+        // Disable button and show "Not enough money"
+        ui_MiningObject.MineDurationButton.interactable = false;
+        TextMeshProUGUI buttonText = ui_MiningObject.MineDurationButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (buttonText != null) buttonText.text = "Not enough money";
+
         yield return new WaitForSeconds(1f);
-        uiUpgradeLabelText.SetActive(false);
+
+        // Re-enable button and restore label
+        ui_MiningObject.MineDurationButton.interactable = true;
+        if (buttonText != null) buttonText.text = $"Upgrade Mine Duration";
+    }
+
+    private IEnumerator ClearNotEnoughMineQualityText()
+    {
+        if (ui_MiningObject.MineQualityButton == null || ui_MiningObject.UiMineQualityLabelText == null || ui_MiningObject.UiMineQualityPriceText == null) yield break;
+
+        // Disable button and show "Not enough money"
+        ui_MiningObject.MineQualityButton.interactable = false;
+        TextMeshProUGUI buttonText = ui_MiningObject.MineQualityButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (buttonText != null) buttonText.text = "Not enough money";
+
+        yield return new WaitForSeconds(1f);
+
+        // Re-enable button and restore label
+        ui_MiningObject.MineQualityButton.interactable = true;
+        if (buttonText != null) buttonText.text = $"Upgrade Mine Quality";
     }
 
     private Vector3 GetRandomGroundPosition()
