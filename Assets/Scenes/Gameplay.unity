@@ -660,10 +660,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1495768812355637158, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
+      propertyPath: ui_MonolithUpgrade
+      value: 
+      objectReference: {fileID: 7788687841394568337}
     - target: {fileID: 2253903821176898040, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
       propertyPath: m_Name
       value: Monolith
       objectReference: {fileID: 0}
+    - target: {fileID: 5237394722916076736, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2914ecf3a8d0d7849a86d90714a43358, type: 2}
+    - target: {fileID: 5237394722916076736, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 79b0c2b0a88f9264faf8f4070c1dcf06, type: 2}
+    - target: {fileID: 5237394722916076736, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2914ecf3a8d0d7849a86d90714a43358, type: 2}
+    - target: {fileID: 5237394722916076736, guid: 3bfd428a6d564144bb8c3871fcf104b0, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ece21167258e0c479a9d1a8a20ba119, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
