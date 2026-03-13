@@ -23,7 +23,7 @@ public class MiningManager : MonoBehaviour
     [SerializeField] private Transform[] enemySpawnPoints;
 
     [Header("Boss Settings")]
-    [SerializeField] private GameObject bossSpawnPoint;
+    [SerializeField] private List<GameObject> bossSpawnPoints;
     [SerializeField] private GameObject mineBoss;
     [SerializeField] private bool bossTime = false;
 
@@ -56,6 +56,9 @@ public class MiningManager : MonoBehaviour
 
     private void Awake()
     {
+        if (this.gameObject == null)
+            Debug.Log("MiningManager: Null");
+
         //upgradePrice = currentPrice;
         upgradeCallCount = 1;
         destroyablesUpgradePrice = GetUpgradeIncrement(upgradeCallCount);
@@ -88,7 +91,8 @@ public class MiningManager : MonoBehaviour
     {
         isMiningActive = true;
 
-        ui_Main_TimerObject.StartTimer((int)miningDuration);
+        if (!bossTime)
+            ui_Main_TimerObject.StartTimer((int)miningDuration);
 
         if (blockingWall != null)
             blockingWall.SetActive(true);
@@ -114,12 +118,12 @@ public class MiningManager : MonoBehaviour
             }
         }
 
-        if(bossTime == true)
-            Instantiate(mineBoss, bossSpawnPoint.transform.position, Quaternion.identity);
+        SpawnBoss(bossTime);
 
         yield return new WaitForSeconds(miningDuration);
 
-        Interactable.IsInteractable = true;
+        if (!bossTime)
+            Interactable.IsInteractable = true;
 
         Cleanup();
 
@@ -188,12 +192,12 @@ public class MiningManager : MonoBehaviour
             // Update UI price
             ui_MiningObject.UpdateMineQualityPrice(destroyablesUpgradePrice);
 
-            if(destroyablesUpgradePrice < 50)
+            if (destroyablesUpgradePrice < 50)
             {
                 UpgradeRocks();
                 UpgradeEnemies();
 
-            } 
+            }
             else if (destroyablesUpgradePrice == 50)
             {
                 Debug.Log("Boss summoned!");
@@ -218,7 +222,6 @@ public class MiningManager : MonoBehaviour
             default: return 50; // cap at 50
         }
     }
-
     private void UpgradeRocks()
     {
         if (currentRockIndex < rockPrefabs.Count - 1)
@@ -227,11 +230,10 @@ public class MiningManager : MonoBehaviour
             MineLevel++;
 
             ui_MiningObject.UpdateRockLevel(currentRockIndex);
-        } 
+        }
         else
             Debug.LogWarning("Max Level Rocks Reached");
     }
-
     private void UpgradeEnemies()
     {
         if (currentEnemyIndex < enemyPrefabs.Count - 1)
@@ -243,7 +245,15 @@ public class MiningManager : MonoBehaviour
         else
             Debug.LogWarning("Max Level Enemies Reached");
     }
+    private void SpawnBoss(bool value)
+    {
+        int rand = Random.Range(0, 3);
 
+        Debug.LogWarning($"rand: {rand}");
+
+        if (value)
+            Instantiate(mineBoss, bossSpawnPoints[rand].transform.position, Quaternion.identity);
+    }
     private void DestroyAll(List<GameObject> list)
     {
         foreach (var obj in list)
@@ -252,7 +262,6 @@ public class MiningManager : MonoBehaviour
         }
         list.Clear();
     }
-
     private void UpdateUITexts()
     {
         if (ui_MiningObject != null)
@@ -269,7 +278,6 @@ public class MiningManager : MonoBehaviour
             ui_MiningObject.UpdateTimerLevel(miningDuration);
         }
     }
-
     private IEnumerator ClearNotEnoughMineDurationText()
     {
         if (ui_MiningObject.MineDurationButton == null || ui_MiningObject.UiMineDurationLabelText == null) yield break;
@@ -285,7 +293,6 @@ public class MiningManager : MonoBehaviour
         ui_MiningObject.MineDurationButton.interactable = true;
         if (buttonText != null) buttonText.text = $"Upgrade Mine Duration";
     }
-
     private IEnumerator ClearNotEnoughMineQualityText()
     {
         if (ui_MiningObject.MineQualityButton == null || ui_MiningObject.UiMineQualityLabelText == null || ui_MiningObject.UiMineQualityPriceText == null) yield break;
@@ -301,7 +308,6 @@ public class MiningManager : MonoBehaviour
         ui_MiningObject.MineQualityButton.interactable = true;
         if (buttonText != null) buttonText.text = $"Upgrade Mine Quality";
     }
-
     private Vector3 GetRandomGroundPosition()
     {
         float x = Random.Range(-planeSize.x * 0.5f, planeSize.x * 0.5f);
@@ -309,7 +315,6 @@ public class MiningManager : MonoBehaviour
 
         return transform.position + new Vector3(x, groundY, z);
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
