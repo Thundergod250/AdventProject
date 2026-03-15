@@ -1,0 +1,139 @@
+{
+    "version": 1,
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "53137f80-86de-4914-ab42-fb0648883ab4",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "7476ee85-2e25-48b7-8853-96fd2359f9b4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotation",
+                    "type": "Value",
+                    "id": "8ac9cd3c-deb6-45cb-9669-54e194f359da",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "d0ef959e-a04c-4f22-b0b9-5d0ffb1ef997",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "c72b3fdb-266f-41c0-9545-877da8315457",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "5346d7f3-4aed-4b86-a395-2aee95153044",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "727318b0-2c17-4109-b595-f20422c93f3e",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "0b685638-c320-4d15-9e5b-01be64442d1e",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "9ba0282d-6450-4f3d-9bd6-ffa1e234bbbf",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c3e60361-6500-4df0-bf70-6ea0388a2220",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "cf34db23-f778-455d-bb46-513677414265",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea5a26c9-235d-4f7e-bcbf-4884e3b18007",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74778dca-9f50-424b-ad40-a34bcb41556a",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
