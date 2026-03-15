@@ -11,13 +11,6 @@ TagManager:
   - 
   - Water
   - UI
-  - Tower
-  - Projectiles
-  - Resources
-  - Player
-  - Enemy
-  - Ground
-  - PlayerIgnore
   - 
   - 
   - 
@@ -25,8 +18,15 @@ TagManager:
   - 
   - 
   - 
-  - TowerProjectiles
-  - EnemyProjectiles
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
