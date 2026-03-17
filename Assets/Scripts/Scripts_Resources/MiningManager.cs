@@ -251,8 +251,11 @@ public class MiningManager : MonoBehaviour
 
         Debug.LogWarning($"rand: {rand}");
 
-        if (value)
+        if (value && Player)
+        {
+            mineBoss.GetComponent<Boss_MineLord>().Player = Player.transform;
             Instantiate(mineBoss, bossSpawnPoints[rand].transform.position, Quaternion.identity);
+        }
     }
     private void DestroyAll(List<GameObject> list)
     {
