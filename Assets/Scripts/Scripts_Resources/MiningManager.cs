@@ -86,7 +86,6 @@ public class MiningManager : MonoBehaviour
 
         return obj;
     }
-
     private IEnumerator MiningSession()
     {
         isMiningActive = true;
@@ -254,6 +253,7 @@ public class MiningManager : MonoBehaviour
         if (value && Player)
         {
             mineBoss.GetComponent<Boss_MineLord>().Player = Player.transform;
+            mineBoss.GetComponent<Boss_MineLord>().JumpPoints.AddRange(bossSpawnPoints);
             Instantiate(mineBoss, bossSpawnPoints[rand].transform.position, Quaternion.identity);
         }
     }

@@ -127,6 +127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Player: {fileID: 0}
+  bossBody: {fileID: 1066798402637466827}
+  bulletPrefab: {fileID: 4758307977512465119, guid: 34f910b0ac525e0438946e70aaa11a11, type: 3}
+  JumpPoints: []
+  health: 100
+  attackInterval: 2
+  bobbingHeight: 0.5
+  bobbingSpeed: 3
 --- !u!1001 &667867568116362016
 PrefabInstance:
   m_ObjectHideFlags: 0
