@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ public class Boss_MineLord : MonoBehaviour
     public float attackInterval = 2f;
     public float bobbingHeight = 0.5f;
     public float bobbingSpeed = 3f;
+    public GameObject turretObject;
 
     private bool isAttacking = false;
     private Vector3 initialBodyPos;
@@ -73,29 +74,62 @@ public class Boss_MineLord : MonoBehaviour
         float interval = health <= 50 ? attackInterval / 2f : attackInterval;
         float timer = 0f;
 
-        while (timer < interval)
+        // Swing forward (0 → 180)
+        float duration = interval / 2f;
+        float t = 0f;
+        while (t < 1f)
         {
-            // Bobbing effect
-            float bob = Mathf.Sin(Time.time * bobbingSpeed) * bobbingHeight;
-            bossBody.localPosition = initialBodyPos + new Vector3(0, bob, 0);
+            float angle = Mathf.Lerp(-90f, 90f, t);
+            bossBody.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
 
-            // Fire bullets in all directions
-            int bulletCount = 12;
-            for (int i = 0; i < bulletCount; i++)
-            {
-                float angle = i * (360f / bulletCount);
-                Vector3 dir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody>().linearVelocity = dir * 10f;
-            }
+            ShootingInterval();
 
-            timer += 1f;
-            yield return new WaitForSeconds(1f);
+            t += Time.deltaTime / duration;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // Swing back (180 → 0)
+        t = 0f;
+        while (t < 1f)
+        {
+            float angle = Mathf.Lerp(90f, -90f, t);
+            bossBody.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
+
+            ShootingInterval();
+
+            t += Time.deltaTime / duration;
+            timer += Time.deltaTime;
+            yield return null;
         }
 
         bossBody.localPosition = initialBodyPos;
         isAttacking = false;
         currentState = BossState.Idle;
+    }
+
+    private void ShootingInterval()
+    {
+        float intervalStart = 0f;
+        float intervalEnd = 1.5f;
+
+        if (intervalStart < intervalEnd)
+        {
+            // Fire bullets forward
+            GameObject bullet = Instantiate(bulletPrefab, turretObject.transform.position, turretObject.transform.rotation);
+            // Initialize projectile direction
+            ProjectileBase pb = bullet.GetComponent<ProjectileBase>();
+            if (pb != null)
+            {
+                pb.SetDirection(turretObject.transform.forward); // Pass the enemy's facing direction
+            }
+            intervalStart++;
+        }
+        else
+        {
+            intervalStart = 0;
+        }
+        
     }
 
     private IEnumerator Jump()
