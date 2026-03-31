@@ -16,13 +16,14 @@ public class Boss_MineLord : MonoBehaviour
     public GameObject bulletPrefab;
     public List<GameObject> JumpPoints;
     public float health = 100f;
-    public float attackInterval = 2f;
     public float bobbingHeight = 0.5f;
     public float bobbingSpeed = 3f;
     public GameObject turretObject;
 
     private bool isAttacking = false;
+    [SerializeField] private bool canShoot;
     private Vector3 initialBodyPos;
+    public float attackInterval = 2f;
 
     void Start()
     {
@@ -34,6 +35,8 @@ public class Boss_MineLord : MonoBehaviour
     {
         if (currentState != BossState.Defeated)
             FacePlayer();
+        //if(currentState == BossState.Attacking || isAttacking == true)
+        //    Shooting();
     }
 
     private void FacePlayer()
@@ -81,11 +84,11 @@ public class Boss_MineLord : MonoBehaviour
         {
             float angle = Mathf.Lerp(-90f, 90f, t);
             bossBody.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
-
-            ShootingInterval();
-
             t += Time.deltaTime / duration;
             timer += Time.deltaTime;
+
+            Shooting();
+
             yield return null;
         }
 
@@ -96,7 +99,7 @@ public class Boss_MineLord : MonoBehaviour
             float angle = Mathf.Lerp(90f, -90f, t);
             bossBody.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
 
-            ShootingInterval();
+            Shooting();
 
             t += Time.deltaTime / duration;
             timer += Time.deltaTime;
@@ -108,12 +111,9 @@ public class Boss_MineLord : MonoBehaviour
         currentState = BossState.Idle;
     }
 
-    private void ShootingInterval()
+    private void Shooting()
     {
-        float intervalStart = 0f;
-        float intervalEnd = 1.5f;
-
-        if (intervalStart < intervalEnd)
+        if (canShoot)
         {
             // Fire bullets forward
             GameObject bullet = Instantiate(bulletPrefab, turretObject.transform.position, turretObject.transform.rotation);
@@ -123,13 +123,36 @@ public class Boss_MineLord : MonoBehaviour
             {
                 pb.SetDirection(turretObject.transform.forward); // Pass the enemy's facing direction
             }
-            intervalStart++;
+
+            StartCoroutine(ShootingInterval());
         }
-        else
-        {
-            intervalStart = 0;
-        }
+        //float intervalStart = 0f;
+        //float intervalEnd = 1.5f;
+
+        //if (intervalStart < intervalEnd)
+        //{
+        //    // Fire bullets forward
+        //    GameObject bullet = Instantiate(bulletPrefab, turretObject.transform.position, turretObject.transform.rotation);
+        //    // Initialize projectile direction
+        //    ProjectileBase pb = bullet.GetComponent<ProjectileBase>();
+        //    if (pb != null)
+        //    {
+        //        pb.SetDirection(turretObject.transform.forward); // Pass the enemy's facing direction
+        //    }
+        //    intervalStart++;
+        //}
+        //else
+        //{
+        //    intervalStart = 0;
+        //}
         
+    }
+
+    private IEnumerator ShootingInterval()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(0.2f);
+        canShoot = true;
     }
 
     private IEnumerator Jump()

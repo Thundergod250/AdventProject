@@ -399,12 +399,17 @@ MonoBehaviour:
   Player: {fileID: 0}
   bossBody: {fileID: 7187317072751925999}
   bulletPrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
-  JumpPoints: []
+  JumpPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   health: 100
-  attackInterval: 2
   bobbingHeight: 0.5
   bobbingSpeed: 3
   turretObject: {fileID: 574189898477573227}
+  canShoot: 1
+  attackInterval: 2
 --- !u!1 &6355223971567996980
 GameObject:
   m_ObjectHideFlags: 0
