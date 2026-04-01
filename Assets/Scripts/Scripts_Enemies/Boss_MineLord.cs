@@ -2,6 +2,7 @@
 using System.Collections;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class Boss_MineLord : MonoBehaviour
 {
@@ -23,7 +24,9 @@ public class Boss_MineLord : MonoBehaviour
     private bool isAttacking = false;
     [SerializeField] private bool canShoot;
     private Vector3 initialBodyPos;
-    public float attackInterval = 2f;
+    public float AttackInterval = 2f;
+
+    [SerializeField] private SphereCollider thisSphereCollider;
 
     void Start()
     {
@@ -74,7 +77,7 @@ public class Boss_MineLord : MonoBehaviour
         currentState = BossState.Attacking;
         isAttacking = true;
 
-        float interval = health <= 50 ? attackInterval / 2f : attackInterval;
+        float interval = health <= 50 ? AttackInterval / 2f : AttackInterval;
         float timer = 0f;
 
         // Swing forward (0 → 180)
@@ -111,7 +114,7 @@ public class Boss_MineLord : MonoBehaviour
         currentState = BossState.Idle;
     }
 
-    private void Shooting()
+    private async void Shooting()
     {
         if (canShoot)
         {
@@ -124,34 +127,14 @@ public class Boss_MineLord : MonoBehaviour
                 pb.SetDirection(turretObject.transform.forward); // Pass the enemy's facing direction
             }
 
-            StartCoroutine(ShootingInterval());
+            await ShootingInterval();
         }
-        //float intervalStart = 0f;
-        //float intervalEnd = 1.5f;
-
-        //if (intervalStart < intervalEnd)
-        //{
-        //    // Fire bullets forward
-        //    GameObject bullet = Instantiate(bulletPrefab, turretObject.transform.position, turretObject.transform.rotation);
-        //    // Initialize projectile direction
-        //    ProjectileBase pb = bullet.GetComponent<ProjectileBase>();
-        //    if (pb != null)
-        //    {
-        //        pb.SetDirection(turretObject.transform.forward); // Pass the enemy's facing direction
-        //    }
-        //    intervalStart++;
-        //}
-        //else
-        //{
-        //    intervalStart = 0;
-        //}
-        
     }
 
-    private IEnumerator ShootingInterval()
+    private async Task ShootingInterval()
     {
         canShoot = false;
-        yield return new WaitForSeconds(0.2f);
+        await Task.Delay(50 * (int)AttackInterval);
         canShoot = true;
     }
 
@@ -168,12 +151,32 @@ public class Boss_MineLord : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startPos, endPos, t);
             t += Time.deltaTime;
+
+            if (thisSphereCollider) thisSphereCollider.enabled = false;
+
+            // Call JumpBobUp during the jump
+            JumpBobUp();
+
             yield return null;
         }
+
+        if (thisSphereCollider) thisSphereCollider.enabled = true;
 
         transform.position = endPos;
         currentState = BossState.Idle;
     }
+
+
+    private void JumpBobUp()
+    {
+        if (bossBody != null)
+        {
+            Vector3 pos = bossBody.localPosition;
+            pos.y = 25f;
+            bossBody.localPosition = pos;
+        }
+    }
+
 
     public void TakeDamage(float damage)
     {

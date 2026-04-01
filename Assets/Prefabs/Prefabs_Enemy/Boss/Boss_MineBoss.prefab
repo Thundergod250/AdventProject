@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 4729537569842983000}
   - component: {fileID: 7997448296298290986}
   - component: {fileID: 6393050582462729366}
+  - component: {fileID: 2417944741223822026}
   m_Layer: 0
   m_Name: Boss_MineBoss
   m_TagString: Untagged
@@ -399,17 +400,38 @@ MonoBehaviour:
   Player: {fileID: 0}
   bossBody: {fileID: 7187317072751925999}
   bulletPrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
-  JumpPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  JumpPoints: []
   health: 100
   bobbingHeight: 0.5
   bobbingSpeed: 3
   turretObject: {fileID: 574189898477573227}
   canShoot: 1
-  attackInterval: 2
+  AttackInterval: 2
+  thisSphereCollider: {fileID: 0}
+--- !u!114 &2417944741223822026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030305338561387124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  currentHealth: 0
+  faction: 0
+  damageMode: 0
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  IsDead: 0
+  startSetHealth: 0
 --- !u!1 &6355223971567996980
 GameObject:
   m_ObjectHideFlags: 0
