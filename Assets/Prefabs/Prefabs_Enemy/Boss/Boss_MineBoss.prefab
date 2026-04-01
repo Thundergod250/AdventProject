@@ -407,7 +407,7 @@ MonoBehaviour:
   turretObject: {fileID: 574189898477573227}
   canShoot: 1
   AttackInterval: 2
-  thisSphereCollider: {fileID: 0}
+  thisSphereCollider: {fileID: 7997448296298290986}
 --- !u!114 &2417944741223822026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   currentHealth: 0
-  faction: 0
+  faction: 1
   damageMode: 0
   OnDamaged:
     m_PersistentCalls:

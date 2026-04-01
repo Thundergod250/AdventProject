@@ -23,6 +23,8 @@ public class Boss_MineLord : MonoBehaviour
 
     private bool isAttacking = false;
     [SerializeField] private bool canShoot;
+    [SerializeField] private bool JumpHeightReached = false;
+
     private Vector3 initialBodyPos;
     public float AttackInterval = 2f;
 
@@ -140,6 +142,7 @@ public class Boss_MineLord : MonoBehaviour
 
     private IEnumerator Jump()
     {
+        JumpHeightReached = false;
         currentState = BossState.Jumping;
         int jumpPoints = Random.Range(0, 3);
         GameObject targetPoint = JumpPoints[Random.Range(0, jumpPoints)];
@@ -155,7 +158,7 @@ public class Boss_MineLord : MonoBehaviour
             if (thisSphereCollider) thisSphereCollider.enabled = false;
 
             // Call JumpBobUp during the jump
-            JumpBobUp();
+            JumpBob();
 
             yield return null;
         }
@@ -166,17 +169,29 @@ public class Boss_MineLord : MonoBehaviour
         currentState = BossState.Idle;
     }
 
-
-    private void JumpBobUp()
+    private void JumpBob()
     {
+
         if (bossBody != null)
         {
             Vector3 pos = bossBody.localPosition;
-            pos.y = 25f;
-            bossBody.localPosition = pos;
+
+            if (pos.y < 25 && JumpHeightReached == false)
+            {
+                pos.y++;
+            } else if (pos.y == 25)
+            {
+                JumpHeightReached = true;
+            }
+
+            if (pos.y > 0 && JumpHeightReached == true)
+                pos.y--;
+                //else if (pos.y == 25 && pos.y > 0)
+                //    pos.y--;
+
+             bossBody.localPosition = pos;
         }
     }
-
 
     public void TakeDamage(float damage)
     {
