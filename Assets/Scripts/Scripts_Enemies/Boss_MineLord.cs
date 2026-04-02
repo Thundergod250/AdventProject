@@ -16,7 +16,7 @@ public class Boss_MineLord : MonoBehaviour
     public Transform bossBody; // child holding appearance
     public GameObject bulletPrefab;
     public List<GameObject> JumpPoints;
-    public float health = 100f;
+    //public float health = 100f;
     public float bobbingHeight = 0.5f;
     public float bobbingSpeed = 3f;
     public GameObject turretObject;
@@ -29,6 +29,7 @@ public class Boss_MineLord : MonoBehaviour
     public float AttackInterval = 2f;
 
     [SerializeField] private SphereCollider thisSphereCollider;
+    private Health health;
 
     void Start()
     {
@@ -62,7 +63,7 @@ public class Boss_MineLord : MonoBehaviour
 
     private IEnumerator BossRoutine()
     {
-        while (health > 0)
+        while (health.GetCurrentHealth() > 0)
         {
             if (currentState == BossState.Idle)
             {
@@ -79,7 +80,7 @@ public class Boss_MineLord : MonoBehaviour
         currentState = BossState.Attacking;
         isAttacking = true;
 
-        float interval = health <= 50 ? AttackInterval / 2f : AttackInterval;
+        float interval = health.GetCurrentHealth() <= 50 ? AttackInterval / 2f : AttackInterval;
         float timer = 0f;
 
         // Swing forward (0 → 180)
@@ -171,41 +172,43 @@ public class Boss_MineLord : MonoBehaviour
 
     private void JumpBob()
     {
-
         if (bossBody != null)
         {
             Vector3 pos = bossBody.localPosition;
 
-            if (pos.y < 25 && JumpHeightReached == false)
-            {
-                pos.y++;
-            } else if (pos.y == 25)
-            {
-                JumpHeightReached = true;
-            }
+            if (pos.y < 25 && JumpHeightReached == false) pos.y++;
+            else if (pos.y == 25) JumpHeightReached = true;
 
-            if (pos.y > 0 && JumpHeightReached == true)
-                pos.y--;
-                //else if (pos.y == 25 && pos.y > 0)
-                //    pos.y--;
+            if(JumpHeightReached == true)
+                if (pos.y > 0) pos.y--;
 
              bossBody.localPosition = pos;
         }
     }
 
-    public void TakeDamage(float damage)
+    public void DeclareDead()
     {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            currentState = BossState.Defeated;
-        }
-        else if (health <= 50 && currentState != BossState.Staggered)
-        {
-            StartCoroutine(Staggered());
-        }
+        currentState = BossState.Defeated;
     }
+
+    public void DeclareStaggered()
+    {
+        StartCoroutine(Staggered());
+    }
+
+    //public void TakeDamage(float damage)
+    //{
+    //    health -= damage;
+
+    //    if (health <= 0)
+    //    {
+    //        currentState = BossState.Defeated;
+    //    }
+    //    else if (health <= 50 && currentState != BossState.Staggered)
+    //    {
+    //        StartCoroutine(Staggered());
+    //    }
+    //}
 
     private IEnumerator Staggered()
     {
