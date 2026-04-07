@@ -16,6 +16,8 @@ public class Boss_MineLord : MonoBehaviour
     public Transform bossBody; // child holding appearance
     public GameObject bulletPrefab;
     public List<GameObject> JumpPoints;
+    [SerializeField] private GameObject explosionVFX;
+
     //public float health = 100f;
     public float bobbingHeight = 0.5f;
     public float bobbingSpeed = 3f;
@@ -29,7 +31,7 @@ public class Boss_MineLord : MonoBehaviour
     public float AttackInterval = 2f;
 
     [SerializeField] private SphereCollider thisSphereCollider;
-    private Health health;
+    [SerializeField] private Health health;
 
     void Start()
     {
@@ -196,20 +198,6 @@ public class Boss_MineLord : MonoBehaviour
         StartCoroutine(Staggered());
     }
 
-    //public void TakeDamage(float damage)
-    //{
-    //    health -= damage;
-
-    //    if (health <= 0)
-    //    {
-    //        currentState = BossState.Defeated;
-    //    }
-    //    else if (health <= 50 && currentState != BossState.Staggered)
-    //    {
-    //        StartCoroutine(Staggered());
-    //    }
-    //}
-
     private IEnumerator Staggered()
     {
         currentState = BossState.Staggered;
@@ -240,7 +228,19 @@ public class Boss_MineLord : MonoBehaviour
             yield return null;
         }
 
+        Destroy(gameObject);
         // Explosion
-        Destroy(gameObject, 2f);
+        SpawnVFX();
+    }
+
+    private void SpawnVFX()
+    {
+        // Spawn VFX if assigned
+        if (explosionVFX != null)
+        {
+            GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
+
+            Destroy(vfx, 1f); // destroy VFX after its lifetime
+        }
     }
 }

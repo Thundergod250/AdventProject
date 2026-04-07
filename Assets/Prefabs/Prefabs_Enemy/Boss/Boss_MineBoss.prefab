@@ -401,13 +401,15 @@ MonoBehaviour:
   bossBody: {fileID: 7187317072751925999}
   bulletPrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
   JumpPoints: []
-  health: 100
+  explosionVFX: {fileID: 8561264910821484625, guid: 45869b61cb96e064b92a8b02bd38a7f9, type: 3}
   bobbingHeight: 0.5
   bobbingSpeed: 3
   turretObject: {fileID: 574189898477573227}
   canShoot: 1
+  JumpHeightReached: 0
   AttackInterval: 2
   thisSphereCollider: {fileID: 7997448296298290986}
+  health: {fileID: 2417944741223822026}
 --- !u!114 &2417944741223822026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,9 +431,21 @@ MonoBehaviour:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6393050582462729366}
+        m_TargetAssemblyTypeName: Boss_MineLord, Assembly-CSharp
+        m_MethodName: DeclareDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   IsDead: 0
-  startSetHealth: 0
+  startSetHealth: 100
 --- !u!1 &6355223971567996980
 GameObject:
   m_ObjectHideFlags: 0
