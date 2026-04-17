@@ -85,6 +85,8 @@ public class Boss_MineLord : MonoBehaviour
         float interval = health.GetCurrentHealth() <= 50 ? AttackInterval / 2f : AttackInterval;
         float timer = 0f;
 
+        Debug.LogWarning($"interval: {interval}");
+
         // Swing forward (0 → 180)
         float duration = interval / 2f;
         float t = 0f;
@@ -95,7 +97,7 @@ public class Boss_MineLord : MonoBehaviour
             t += Time.deltaTime / duration;
             timer += Time.deltaTime;
 
-            Shooting();
+            Shooting(interval);
 
             yield return null;
         }
@@ -107,7 +109,7 @@ public class Boss_MineLord : MonoBehaviour
             float angle = Mathf.Lerp(90f, -90f, t);
             bossBody.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
 
-            Shooting();
+            Shooting(interval);
 
             t += Time.deltaTime / duration;
             timer += Time.deltaTime;
@@ -119,7 +121,7 @@ public class Boss_MineLord : MonoBehaviour
         currentState = BossState.Idle;
     }
 
-    private async void Shooting()
+    private async void Shooting(float num)
     {
         if (canShoot)
         {
@@ -132,20 +134,20 @@ public class Boss_MineLord : MonoBehaviour
                 pb.SetDirection(turretObject.transform.forward); // Pass the enemy's facing direction
             }
 
-            await ShootingInterval();
+            await ShootingInterval(num);
         }
     }
 
-    private async Task ShootingInterval()
+    private async Task ShootingInterval(float num)
     {
         canShoot = false;
-        await Task.Delay(50 * (int)AttackInterval);
+        await Task.Delay(50 * (int)num);
         canShoot = true;
     }
 
     private IEnumerator Jump()
     {
-        JumpHeightReached = false;
+        //JumpHeightReached = false;
         currentState = BossState.Jumping;
         int jumpPoints = Random.Range(0, 3);
         GameObject targetPoint = JumpPoints[Random.Range(0, jumpPoints)];
@@ -166,6 +168,9 @@ public class Boss_MineLord : MonoBehaviour
             yield return null;
         }
 
+        JumpHeightReached = false;
+
+
         if (thisSphereCollider) thisSphereCollider.enabled = true;
 
         transform.position = endPos;
@@ -179,10 +184,20 @@ public class Boss_MineLord : MonoBehaviour
             Vector3 pos = bossBody.localPosition;
 
             if (pos.y < 25 && JumpHeightReached == false) pos.y++;
-            else if (pos.y == 25) JumpHeightReached = true;
+            else if(pos.y == 25)
+                JumpHeightReached = true;
+            
+            if(JumpHeightReached == true && pos.y > 0)
+            {
+                pos.y--;
+            }
 
-            if(JumpHeightReached == true)
-                if (pos.y > 0) pos.y--;
+                //if (pos.y >= 25)
+                //{
+                //    JumpHeightReached = true;
+                //}
+                //if(JumpHeightReached == true)
+                //    if (pos.y > 0) pos.y--;
 
              bossBody.localPosition = pos;
         }
