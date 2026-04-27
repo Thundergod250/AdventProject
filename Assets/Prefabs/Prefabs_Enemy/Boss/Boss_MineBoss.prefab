@@ -300,7 +300,7 @@ Transform:
   m_GameObject: {fileID: 5030305338561387124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 360.9145, y: 42.17044, z: 28.17094}
+  m_LocalPosition: {x: 172.25381, y: 15.40634, z: -4.209671}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -400,8 +400,14 @@ MonoBehaviour:
   Player: {fileID: 0}
   bossBody: {fileID: 7187317072751925999}
   bulletPrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
-  JumpPoints: []
+  JumpPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   explosionVFX: {fileID: 8561264910821484625, guid: 45869b61cb96e064b92a8b02bd38a7f9, type: 3}
+  bossHealth: {fileID: 0}
+  bossHealthBarPanel: {fileID: 0}
   bobbingHeight: 0.5
   bobbingSpeed: 3
   turretObject: {fileID: 574189898477573227}

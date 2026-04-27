@@ -17,6 +17,8 @@ public class Boss_MineLord : MonoBehaviour
     public GameObject bulletPrefab;
     public List<GameObject> JumpPoints;
     [SerializeField] private GameObject explosionVFX;
+    [SerializeField] private UI_BossHealth bossHealth;
+    [Header("UI Reference")] [SerializeField] private TMPro.TextMeshProUGUI bossTitleText;
 
     //public float health = 100f;
     public float bobbingHeight = 0.5f;
@@ -32,6 +34,18 @@ public class Boss_MineLord : MonoBehaviour
 
     [SerializeField] private SphereCollider thisSphereCollider;
     [SerializeField] private Health health;
+
+    private void OnEnable()
+    {
+        // Set the boss title when enabled
+        if (bossTitleText != null)
+        {
+            bossTitleText.text = "Corrupted Mine Lord";
+        }
+
+        // Activate health system
+        bossHealth.OnActivate(health);
+    }
 
     void Start()
     {
@@ -192,13 +206,6 @@ public class Boss_MineLord : MonoBehaviour
                 pos.y--;
             }
 
-                //if (pos.y >= 25)
-                //{
-                //    JumpHeightReached = true;
-                //}
-                //if(JumpHeightReached == true)
-                //    if (pos.y > 0) pos.y--;
-
              bossBody.localPosition = pos;
         }
     }
@@ -242,9 +249,6 @@ public class Boss_MineLord : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-
-        Destroy(gameObject);
-        // Explosion
         SpawnVFX();
     }
 
@@ -256,6 +260,8 @@ public class Boss_MineLord : MonoBehaviour
             GameObject vfx = Instantiate(explosionVFX, transform.position, Quaternion.identity);
 
             Destroy(vfx, 1f); // destroy VFX after its lifetime
+
+            gameObject.SetActive(false);
         }
     }
 }

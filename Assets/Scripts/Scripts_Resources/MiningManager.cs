@@ -244,19 +244,25 @@ public class MiningManager : MonoBehaviour
         else
             Debug.LogWarning("Max Level Enemies Reached");
     }
+
     private void SpawnBoss(bool value)
     {
-        int rand = Random.Range(0, 3);
-
-        Debug.LogWarning($"rand: {rand}");
+        int rand = Random.Range(0, bossSpawnPoints.Count); // pick a random index
 
         if (value && Player)
         {
-            mineBoss.GetComponent<Boss_MineLord>().Player = Player.transform;
-            mineBoss.GetComponent<Boss_MineLord>().JumpPoints.AddRange(bossSpawnPoints);
-            Instantiate(mineBoss, bossSpawnPoints[rand].transform.position, Quaternion.identity);
+            // Set up boss references
+            Boss_MineLord bossScript = mineBoss.GetComponent<Boss_MineLord>();
+            bossScript.Player = Player.transform;
+            bossScript.JumpPoints.Clear();
+            bossScript.JumpPoints.AddRange(bossSpawnPoints);
+
+            // Activate boss and move it to a random spawn point
+            mineBoss.SetActive(true);
+            mineBoss.transform.position = bossSpawnPoints[rand].transform.position;
         }
     }
+
     private void DestroyAll(List<GameObject> list)
     {
         foreach (var obj in list)
