@@ -671,7 +671,7 @@ Transform:
   m_GameObject: {fileID: 263098330}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0.00000079011033, z: -0.0000003272744, w: 0.92387956}
-  m_LocalPosition: {x: 168.4, y: 31.42, z: 10.5}
+  m_LocalPosition: {x: -2.6, y: 39.5, z: 172.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3117,7 +3117,7 @@ Transform:
   m_GameObject: {fileID: 1934863771}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3826834, y: 0.00000079011016, z: -0.0000003272743, w: 0.9238796}
-  m_LocalPosition: {x: 168.4, y: 31.42, z: 10.5}
+  m_LocalPosition: {x: -2.6, y: 39.5, z: 172.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8762,15 +8762,15 @@ PrefabInstance:
       objectReference: {fileID: 1977973919}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 168.4
+      value: -2.6
       objectReference: {fileID: 0}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.42
+      value: 24.5
       objectReference: {fileID: 0}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.5
+      value: 187.9
       objectReference: {fileID: 0}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15017,6 +15017,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 715899787770034870}
     m_Modifications:
+    - target: {fileID: 4834081600862235446, guid: f88e67b73d1b1374dbd952394173fb77, type: 3}
+      propertyPath: dropAmount
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462806638860817935, guid: f88e67b73d1b1374dbd952394173fb77, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5802771072408050704, guid: f88e67b73d1b1374dbd952394173fb77, type: 3}
       propertyPath: m_Name
       value: WorldStack Starting Boss Area
