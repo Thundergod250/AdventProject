@@ -312,7 +312,7 @@ MonoBehaviour:
   sprintMultiplier: 1.8
   jumpHeight: 1.5
   gravity: -24.525
-  cameraTransform: {fileID: 547884936}
+  cameraTransform: {fileID: 1207015429}
 --- !u!1 &547884935
 GameObject:
   m_ObjectHideFlags: 0
