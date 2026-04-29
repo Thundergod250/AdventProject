@@ -1188,6 +1188,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &1760040068464185260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426347868786355661}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.049, y: 2.091, z: 20.12}
+  m_LocalScale: {x: 2.7074876, y: 2.7074876, z: 2.7074876}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1993381048295988329}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1993381048295988328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1236,15 +1251,93 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2903003094767648350, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d60c8ba9a4d38043b646e5ead53ed5b, type: 2}
+    - target: {fileID: 2903003094767648350, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d60c8ba9a4d38043b646e5ead53ed5b, type: 2}
+    - target: {fileID: 3747025644724399682, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.99
+      objectReference: {fileID: 0}
     - target: {fileID: 6903416307502802379, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
       propertyPath: m_Name
       value: Food Stall
       objectReference: {fileID: 0}
+    - target: {fileID: 7158975716223811915, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -9003789610150177838, guid: 8c010c234a1b3454f8607c2ba78ed523, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4224739614860516132, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7459395496059550363, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1760040068464185260}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+--- !u!4 &1993381048295988329 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7459395496059550363, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+  m_PrefabInstance: {fileID: 1993381048295988328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2331203975532404119
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426347868786355661}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: ff7757e5c1e74c9449c2c69004074b3c, type: 2}
+  - {fileID: 2100000, guid: 33cf61af7eeb59449b4193030fdefbe0, type: 2}
+  - {fileID: 2100000, guid: 4d60c8ba9a4d38043b646e5ead53ed5b, type: 2}
+  - {fileID: 2100000, guid: 9bddaebd57b49aa408a3444855315a78, type: 2}
+  - {fileID: 2100000, guid: ff7757e5c1e74c9449c2c69004074b3c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &5135850508482327381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1302,6 +1395,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 618f3a20f153ee84cbadfbb8f5cddfe4, type: 3}
+--- !u!1 &5426347868786355661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1760040068464185260}
+  - component: {fileID: 8704544899908153156}
+  - component: {fileID: 2331203975532404119}
+  m_Layer: 0
+  m_Name: FoodStall_Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &6823008650906547621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1529,6 +1640,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44ff4ce75ad149b428894ccfc2a414cf, type: 3}
+--- !u!33 &8704544899908153156
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5426347868786355661}
+  m_Mesh: {fileID: -9003789610150177838, guid: 8c010c234a1b3454f8607c2ba78ed523, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
