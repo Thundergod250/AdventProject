@@ -124,7 +124,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
   m_PrefabInstance: {fileID: 6823008650906547621}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2011725813}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c8bfeed32df621499cf6684cc3cb8de, type: 3}
@@ -388,6 +388,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &397881575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8100756904307864891, guid: 44ff4ce75ad149b428894ccfc2a414cf, type: 3}
+  m_PrefabInstance: {fileID: 8178455221691067031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &547884935
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +424,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 54985794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &879022696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+  m_PrefabInstance: {fileID: 6823008650906547621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55faece3b6af6b043bf9ad42edd602c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &962348580
 GameObject:
   m_ObjectHideFlags: 1
@@ -948,6 +964,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1315586956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 134312051215000689, guid: 618f3a20f153ee84cbadfbb8f5cddfe4, type: 3}
+  m_PrefabInstance: {fileID: 5135850508482327381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1688321877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1209,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1922737446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922737447}
+  - component: {fileID: 1922737448}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1922737447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922737446}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.51072, y: -0, z: 97.89568}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1922737448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922737446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2932d3e9e7a5b1f498b62decb9b5d134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  TouristShipMovementRef: {fileID: 879022696}
+  TouristSpawnerRef: {fileID: 37963755}
+  TouristAttractions:
+  - {fileID: 1929136729}
+  - {fileID: 1315586956}
+--- !u!1 &1929136729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6903416307502802379, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+  m_PrefabInstance: {fileID: 1993381048295988328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2011725813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6054423659323676787, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+  m_PrefabInstance: {fileID: 6823008650906547621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1993381048295988328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1334,6 +1414,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 30.88
       objectReference: {fileID: 0}
+    - target: {fileID: 3814013143378536593, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 4907457126663803386, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1378,29 +1462,69 @@ PrefabInstance:
       propertyPath: m_Name
       value: Harbor
       objectReference: {fileID: 0}
+    - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4610654
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.3927054
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4610654
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 33.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: TouristAttractions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: 'TouristAttractions.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1929136729}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: 'TouristAttractions.Array.data[1]'
+      value: 
+      objectReference: {fileID: 397881575}
     - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 37963755}
+      objectReference: {fileID: 2011725813}
     - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnTourists
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TouristSpawner, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1534,6 +1658,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1207015429}
+  - {fileID: 1922737447}
   - {fileID: 54985794}
   - {fileID: 1688321880}
   - {fileID: 962348582}

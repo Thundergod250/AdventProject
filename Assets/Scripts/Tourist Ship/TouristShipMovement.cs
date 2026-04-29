@@ -1,56 +1,49 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class TouristShipMovement : MonoBehaviour
 {
+    [Header("Boat Start & End Positions")]
     [SerializeField] private Transform boatPointStart; // assign in Inspector
-    [SerializeField] private Transform boatPointEnd;   // assign in Inspector
-    [SerializeField] private Transform bridge;   // assign in Inspector
-    [SerializeField] private Vector3 bridgeRestPosition = new Vector3(0.757f, 0.145f, 0f);
+    // This is the variable target position you can set in Inspector or via script
+    [SerializeField] private Vector3 targetPosition = new Vector3(-7.32000017f, -3.77999997f, 39.9000015f);
 
     public UnityEvent BridgeCall;
 
-    [SerializeField] private float travelTime = 5f;    // time to move from start to end
-
-    private float elapsedTime = 0f;
+    [SerializeField] private float travelTime = 5f;    // time to move from start to target
     private bool isMoving = false;
 
-    private void Start()
+    public void BeginJourney()
     {
         // Place ship at start point initially
         transform.position = boatPointStart.position;
 
-        BeginJourney();
+        // Start coroutine for movement
+        StartCoroutine(HandleShipMovement());
     }
 
-    private void Update()
+    private IEnumerator HandleShipMovement()
     {
-        if (isMoving)
+        isMoving = true;
+        float elapsedTime = 0f;
+
+        while (isMoving)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / travelTime;
 
-            // Smooth movement using Lerp
-            transform.position = Vector3.Lerp(boatPointStart.position, boatPointEnd.position, t);
+            // Smooth movement using Lerp from start to targetPosition
+            transform.position = Vector3.Lerp(boatPointStart.position, targetPosition, t);
 
-            // Stop once we reach the end
             if (t >= 1f)
             {
                 isMoving = false;
             }
-        }
-        else
-        {
-            bridge.transform.localPosition = Vector3.Lerp(bridge.position, bridgeRestPosition, 1f);
-            BridgeCall.Invoke();
+
+            yield return null;
         }
 
-    }
-
-    // Call this method to start the ship’s journey
-    public void BeginJourney()
-    {
-        elapsedTime = 0f;
-        isMoving = true;
+        BridgeCall.Invoke();
     }
 }
