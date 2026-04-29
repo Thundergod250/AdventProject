@@ -1813,10 +1813,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Harbor
       objectReference: {fileID: 0}
-    - target: {fileID: 5401758652254957852, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.78
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
