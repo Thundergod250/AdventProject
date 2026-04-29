@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &37963755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+  m_PrefabInstance: {fileID: 6823008650906547621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8bfeed32df621499cf6684cc3cb8de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &54985790
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +324,70 @@ MonoBehaviour:
   jumpHeight: 1.5
   gravity: -24.525
   cameraTransform: {fileID: 1207015429}
+--- !u!1 &85977482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85977484}
+  - component: {fileID: 85977483}
+  m_Layer: 0
+  m_Name: NavMesh Surface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &85977483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85977482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: c88afe6bc504c7c4387aa29d8df30256, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!4 &85977484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85977482}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.02697, y: -0, z: 59.67379}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &547884935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,6 +1888,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Harbor
       objectReference: {fileID: 0}
+    - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 37963755}
+    - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnTourists
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TouristSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745437300991674568, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.117
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1835,3 +1942,4 @@ SceneRoots:
   - {fileID: 5135850508482327381}
   - {fileID: 1993381048295988328}
   - {fileID: 1310132352}
+  - {fileID: 85977484}
