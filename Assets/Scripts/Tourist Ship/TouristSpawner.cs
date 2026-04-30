@@ -6,6 +6,8 @@ public class TouristSpawner : MonoBehaviour
 {
     [Header("Tourist Setup")]
     public List<GameObject> TouristAttractions = new List<GameObject>(); // drop attraction GameObjects here
+    [SerializeField] private GameObject foodStall;
+
     [SerializeField] private GameObject touristPrefab;
     [SerializeField] private int numberOfTourists = 5;
     [SerializeField] private float spawnDelay = 1f;
@@ -22,11 +24,16 @@ public class TouristSpawner : MonoBehaviour
             Vector3 offset = new Vector3(i * 1.5f, 0f, 0f);
             GameObject tourist = Instantiate(touristPrefab, transform.position + offset, Quaternion.identity);
 
+            TouristMovement movement = tourist.GetComponent<TouristMovement>();
+
+            // Give the food stall reference
+            movement.SetFoodStall(foodStall);
+
             // Assign a random attraction if list is not empty
             if (TouristAttractions.Count > 0)
             {
                 GameObject randomAttraction = TouristAttractions[Random.Range(0, TouristAttractions.Count)];
-                tourist.GetComponent<TouristMovement>().SetDestination(randomAttraction);
+                movement.SetDestination(randomAttraction);
             }
 
             yield return new WaitForSeconds(spawnDelay);

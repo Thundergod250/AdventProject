@@ -388,6 +388,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &88098813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 338474951536107852, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+  m_PrefabInstance: {fileID: 1993381048295988328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &88098815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88098813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e2e5cca6f5ff247bc0ba8378644cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  StallAppeal: 0
 --- !u!1 &224357823
 GameObject:
   m_ObjectHideFlags: 1
@@ -550,6 +568,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 54985794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &868459520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7730094713282490515, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+  m_PrefabInstance: {fileID: 1993381048295988328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &879022696 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
@@ -1449,7 +1472,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 338474951536107852, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 88098815}
   m_SourcePrefab: {fileID: 100100000, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
 --- !u!1001 &5135850508482327381
 PrefabInstance:
@@ -1625,17 +1651,21 @@ PrefabInstance:
       value: 42.33
       objectReference: {fileID: 0}
     - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: foodStall
+      value: 
+      objectReference: {fileID: 868459520}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: TouristAttractions.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: 'TouristAttractions.Array.data[0]'
       value: 
-      objectReference: {fileID: 1929136729}
+      objectReference: {fileID: 397881575}
     - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: 'TouristAttractions.Array.data[1]'
       value: 
-      objectReference: {fileID: 397881575}
+      objectReference: {fileID: 88098813}
     - target: {fileID: 6054423659323676787, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_IsActive
       value: 0
