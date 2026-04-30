@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class StallRating : MonoBehaviour
 {
-    public int StallAppeal;
+    public int Stall_Appeal;
 }

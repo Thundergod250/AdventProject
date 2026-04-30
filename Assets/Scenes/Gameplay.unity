@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e2e5cca6f5ff247bc0ba8378644cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  StallAppeal: 0
+  Stall_Appeal: 3
 --- !u!1 &224357823
 GameObject:
   m_ObjectHideFlags: 1
@@ -1113,11 +1113,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1315586956 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 134312051215000689, guid: 618f3a20f153ee84cbadfbb8f5cddfe4, type: 3}
-  m_PrefabInstance: {fileID: 5135850508482327381}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1688321877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,16 +1397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2932d3e9e7a5b1f498b62decb9b5d134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  TouristShipMovementRef: {fileID: 879022696}
-  TouristSpawnerRef: {fileID: 37963755}
-  TouristAttractions:
-  - {fileID: 1929136729}
-  - {fileID: 1315586956}
---- !u!1 &1929136729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6903416307502802379, guid: d68e0918795ce2f43a46adc8a97ca9c8, type: 3}
-  m_PrefabInstance: {fileID: 1993381048295988328}
-  m_PrefabAsset: {fileID: 0}
+  Tourist_Ship_Movement_Ref: {fileID: 879022696}
+  Tourist_Spawner_Ref: {fileID: 37963755}
+  Stall_Rating_Ref: {fileID: 88098815}
+  Tourist_Manager_Ref: {fileID: 0}
 --- !u!1 &2011725813 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6054423659323676787, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
@@ -1655,7 +1644,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 868459520}
     - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: food_Stall
+      value: 
+      objectReference: {fileID: 868459520}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: tourist_Prefab
+      value: 
+      objectReference: {fileID: 6276358070003125032, guid: ad526cbf4519bd54dbf314d7c811cc3c, type: 3}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: TouristAttractions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: Tourist_Attractions.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
@@ -1666,6 +1667,10 @@ PrefabInstance:
       propertyPath: 'TouristAttractions.Array.data[1]'
       value: 
       objectReference: {fileID: 88098813}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: 'Tourist_Attractions.Array.data[0]'
+      value: 
+      objectReference: {fileID: 397881575}
     - target: {fileID: 6054423659323676787, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_IsActive
       value: 0

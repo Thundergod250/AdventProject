@@ -249,10 +249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8bfeed32df621499cf6684cc3cb8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  TouristAttractions: []
-  touristPrefab: {fileID: 6276358070003125032, guid: ad526cbf4519bd54dbf314d7c811cc3c, type: 3}
-  numberOfTourists: 5
-  spawnDelay: 1
+  Tourist_Attractions: []
+  food_Stall: {fileID: 0}
+  tourist_Prefab: {fileID: 0}
+  number_Of_Tourists: 5
+  spawn_Delay: 1
 --- !u!1 &8801072305401823642
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,11 +449,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55faece3b6af6b043bf9ad42edd602c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  boatPointStart: {fileID: 1614975161834755997}
-  targetPosition: {x: -7.32, y: -3.78, z: 39.9}
-  BridgeCall:
+  boat_Point_Start: {fileID: 1614975161834755997}
+  target_Position: {x: -7.32, y: -3.78, z: 39.9}
+  Bridge_Call:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6054423659323676787}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   travelTime: 5
 --- !u!4 &5401758652254957852 stripped
 Transform:

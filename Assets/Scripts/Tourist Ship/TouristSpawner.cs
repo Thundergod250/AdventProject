@@ -5,12 +5,12 @@ using UnityEngine;
 public class TouristSpawner : MonoBehaviour
 {
     [Header("Tourist Setup")]
-    public List<GameObject> TouristAttractions = new List<GameObject>(); // drop attraction GameObjects here
-    [SerializeField] private GameObject foodStall;
+    public List<GameObject> Tourist_Attractions = new List<GameObject>(); // drop attraction GameObjects here
+    [SerializeField] private GameObject food_Stall;
 
-    [SerializeField] private GameObject touristPrefab;
-    [SerializeField] private int numberOfTourists = 5;
-    [SerializeField] private float spawnDelay = 1f;
+    [SerializeField] private GameObject tourist_Prefab;
+    [SerializeField] private int number_Of_Tourists = 5;
+    [SerializeField] private float spawn_Delay = 1f;
 
     private void Awake()
     {
@@ -19,24 +19,25 @@ public class TouristSpawner : MonoBehaviour
 
     private IEnumerator SpawnTourists()
     {
-        for (int i = 0; i < numberOfTourists; i++)
+        for (int i = 0; i < number_Of_Tourists; i++)
         {
             Vector3 offset = new Vector3(i * 1.5f, 0f, 0f);
-            GameObject tourist = Instantiate(touristPrefab, transform.position + offset, Quaternion.identity);
+            GameObject tourist = Instantiate(tourist_Prefab, transform.position + offset, Quaternion.identity);
 
+            //GameManager.Instance.Tourist_Manager_Ref.tourists.Add(tourist.GetComponent<TouristMovement>());
             TouristMovement movement = tourist.GetComponent<TouristMovement>();
 
             // Give the food stall reference
-            movement.SetFoodStall(foodStall);
+            movement.SetFoodStall(food_Stall);
 
             // Assign a random attraction if list is not empty
-            if (TouristAttractions.Count > 0)
+            if (Tourist_Attractions.Count > 0)
             {
-                GameObject randomAttraction = TouristAttractions[Random.Range(0, TouristAttractions.Count)];
+                GameObject randomAttraction = Tourist_Attractions[Random.Range(0, Tourist_Attractions.Count)];
                 movement.SetDestination(randomAttraction);
             }
 
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(spawn_Delay);
         }
     }
 }
