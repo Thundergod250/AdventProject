@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -475,7 +475,7 @@ MonoBehaviour:
   version: 2
   globalVolume: 0
   mode: 1
-  size: {x: 0.01, y: 0.01, z: 0.01}
+  size: {x: 3, y: 3, z: 3}
   overrideRendererFilters: 0
   minRendererVolumeSize: 0.1
   objectLayerMask:
@@ -1516,6 +1516,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 314218033059256324, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419979394460743242, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1801183737644625136, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.380401
@@ -1543,7 +1551,7 @@ PrefabInstance:
     - target: {fileID: 3814013143378536593, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 4907457126663803386, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1588,6 +1596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Harbor
       objectReference: {fileID: 0}
+    - target: {fileID: 5031465646981145216, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4610654
@@ -1602,15 +1614,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.55
+      value: 17.3
       objectReference: {fileID: 0}
     - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.32
+      value: 6.13
       objectReference: {fileID: 0}
     - target: {fileID: 5089512072828641128, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 33.19
+      value: 42.33
       objectReference: {fileID: 0}
     - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: TouristAttractions.Array.size
@@ -1624,6 +1636,10 @@ PrefabInstance:
       propertyPath: 'TouristAttractions.Array.data[1]'
       value: 
       objectReference: {fileID: 397881575}
+    - target: {fileID: 6054423659323676787, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6551130376165328492, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: BridgeCall.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1661,7 +1677,8 @@ PrefabInstance:
       value: 0.117
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1527831613757596857, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
