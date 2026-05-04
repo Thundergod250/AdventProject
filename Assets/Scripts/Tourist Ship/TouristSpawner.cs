@@ -28,7 +28,7 @@ public class TouristSpawner : MonoBehaviour
             //GameManager.Instance.Tourist_Manager_Ref.tourists.Add(tourist.GetComponent<TouristMovement>());
             TouristMovement movement = tourist.GetComponent<TouristMovement>();
 
-            movement.SetReturnToShip(return_To_Ship);
+            //movement.SetReturnToShip(return_To_Ship);
             // Give the food stall reference
             movement.SetFoodStall(food_Stall);
 
