@@ -7,7 +7,7 @@ public class TouristSpawner : MonoBehaviour
     [Header("Tourist Setup")]
     public List<GameObject> Tourist_Attractions = new List<GameObject>(); // drop attraction GameObjects here
     [SerializeField] private GameObject food_Stall;
-    [SerializeField] private GameObject return_To_Ship;
+    [SerializeField] private GameObject returnToShip;
 
     [SerializeField] private GameObject tourist_Prefab;
     [SerializeField] private int number_Of_Tourists = 5;
@@ -28,7 +28,7 @@ public class TouristSpawner : MonoBehaviour
             //GameManager.Instance.Tourist_Manager_Ref.tourists.Add(tourist.GetComponent<TouristMovement>());
             TouristMovement movement = tourist.GetComponent<TouristMovement>();
 
-            //movement.SetReturnToShip(return_To_Ship);
+            movement.SetReturnShip(returnToShip);
             // Give the food stall reference
             movement.SetFoodStall(food_Stall);
 
