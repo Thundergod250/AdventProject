@@ -46,15 +46,16 @@ public class TouristMovement : MonoBehaviour
             }
             else if (destination != null)
             {
-                // Offset destination to avoid crowding
-                Vector3 targetPos = destination.transform.position;
-                Vector2 offset = Random.insideUnitCircle * 2f;
-                Vector3 finalPos = new Vector3(targetPos.x + offset.x, targetPos.y, targetPos.z + offset.y);
+                GoToDestination();
+                //// Offset destination to avoid crowding
+                //Vector3 targetPos = destination.transform.position;
+                //Vector2 offset = Random.insideUnitCircle * 2f;
+                //Vector3 finalPos = new Vector3(targetPos.x + offset.x, targetPos.y, targetPos.z + offset.y);
 
-                agent.SetDestination(finalPos);
+                //agent.SetDestination(finalPos);
 
-                // Start coroutine to handle return ship after destination
-                StartCoroutine(ReturnToShipAfterDestination());
+                //// Start coroutine to handle return ship after destination
+                //StartCoroutine(ReturnToShipAfterDestination());
             }
         }
     }
@@ -80,23 +81,30 @@ public class TouristMovement : MonoBehaviour
         //For Going To Stall
         if (VisitScore() > 10 && food_Stall != null && destination != null)
         {
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && isGoingHome != true && isGoingToStallAgain != true)
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
             {
-                StartCoroutine(ReduceHungerAndGoToDestination());
+                StartCoroutine(ReduceHungerCoroutine());
             }
         }
     }
 
-    private IEnumerator ReduceHungerAndGoToDestination()
+    private IEnumerator ReduceHungerCoroutine()
     {
         if (hungerMeter <= 0) yield break;
 
         // Wait before resetting hunger
         yield return new WaitForSeconds(Seconds);
 
+        // Instantly reset hunger
         hungerMeter = 0;
 
-        // Send NPC to destination
+        if(isGoingHome != true && isGoingToStallAgain != true)
+            // After hunger reset, call function to move NPC
+            GoToDestination();
+    }
+
+    private void GoToDestination()
+    {
         if (destination != null)
         {
             // Offset destination to avoid crowding
@@ -106,11 +114,11 @@ public class TouristMovement : MonoBehaviour
 
             agent.SetDestination(finalPos);
 
+            // Chain return ship logic
             StartCoroutine(ReturnToShipAfterDestination());
-            // Start coroutine to handle next step once destination is reached
-            //StartCoroutine(GoToReturnShipAfterDestination());
         }
     }
+
 
     private IEnumerator ReturnToShipAfterDestination()
     {
