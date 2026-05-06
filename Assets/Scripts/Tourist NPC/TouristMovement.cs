@@ -19,6 +19,8 @@ public class TouristMovement : MonoBehaviour
     [SerializeField] private float canBeHungryNow = 5f; // threshold before hunger increases
     [SerializeField] private float hungerTimer = 0f;
 
+    [SerializeField] private bool isGoingHome;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -34,21 +36,22 @@ public class TouristMovement : MonoBehaviour
     {
         destination = attraction;
 
-        Vector3 targetPos = destination.transform.position;
-
-        // Random offset within a circle
-        Vector2 offset = Random.insideUnitCircle * 2f; // radius = 2 units
-        Vector3 finalPos = new Vector3(targetPos.x + offset.x, targetPos.y, targetPos.z + offset.y);
-
         if (agent != null)
         {
             if (VisitScore() > 10 && food_Stall != null)
+            {
                 agent.SetDestination(food_Stall.transform.position);
+            }
             else if (destination != null)
             {
-                agent.SetDestination(finalPos);
-                //agent.SetDestination(destination.transform.position);
+                // Offset destination to avoid crowding
+                Vector3 targetPos = destination.transform.position;
+                Vector2 offset = Random.insideUnitCircle * 2f;
+                Vector3 finalPos = new Vector3(targetPos.x + offset.x, targetPos.y, targetPos.z + offset.y);
 
+                agent.SetDestination(finalPos);
+
+                // Start coroutine to handle return ship after destination
                 StartCoroutine(ReturnToShipAfterDestination());
             }
         }
@@ -72,9 +75,10 @@ public class TouristMovement : MonoBehaviour
 
     public void HandleMovement()
     {
+        //For Going To Stall
         if (VisitScore() > 10 && food_Stall != null && destination != null)
         {
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && isGoingHome != true)
             {
                 StartCoroutine(ReduceHungerAndGoToDestination());
             }
@@ -93,8 +97,14 @@ public class TouristMovement : MonoBehaviour
         // Send NPC to destination
         if (destination != null)
         {
-            agent.SetDestination(destination.transform.position);
+            // Offset destination to avoid crowding
+            Vector3 targetPos = destination.transform.position;
+            Vector2 offset = Random.insideUnitCircle * 2f;
+            Vector3 finalPos = new Vector3(targetPos.x + offset.x, targetPos.y, targetPos.z + offset.y);
 
+            agent.SetDestination(finalPos);
+
+            StartCoroutine(ReturnToShipAfterDestination());
             // Start coroutine to handle next step once destination is reached
             //StartCoroutine(GoToReturnShipAfterDestination());
         }
@@ -116,9 +126,9 @@ public class TouristMovement : MonoBehaviour
         {
             Debug.LogWarning("Return Home");
             agent.SetDestination(returnShip.transform.position);
+            isGoingHome = true;
         }
     }
-
 
     private void HandleHungerIncrease()
     {

@@ -1749,6 +1749,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6276358070003125032, guid: ad526cbf4519bd54dbf314d7c811cc3c, type: 3}
     - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
+      propertyPath: number_Of_Tourists
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383512275156193539, guid: e22cf35ff2a9fd94badc3a359d36ae8f, type: 3}
       propertyPath: TouristAttractions.Array.size
       value: 1
       objectReference: {fileID: 0}
